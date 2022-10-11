@@ -22,7 +22,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return response()->json(['message' => 'Passed the guard'], 200);
+                return response()->json(
+                    [
+                        'status' => 200,
+                        'message' => 'Passed the guard'
+                    ]
+                , 200);
             }
         }
 
