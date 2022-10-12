@@ -26,3 +26,4 @@ None... yet !
 ## Objectives
 - Setting up the entities
 - Set laravel to be an API backend
+- Tokens must have 24h limit of validity;
