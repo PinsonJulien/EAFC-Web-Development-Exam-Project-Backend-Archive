@@ -16,14 +16,20 @@ This repository is part of the web development project of my bachelor degree in 
 - Fill the environment variables.
 - Run `php artisan key:generate` (this will fill the `APP_KEY` environment variable).
 - run `php artisan migrate` command.
+- For demo purpose you can run `php artisan db:seed --class=DemoSeeder` to populate the database.
 
 ## How to serve the project
-`php artisan serve`
+Run `php artisan serve`
 
 ## Known issues
 None... yet !
 
 ## Objectives
-- Setting up the entities
-- Set laravel to be an API backend
-- Tokens must have 24h limit of validity;
+- Setting up :
+  - models
+  - seeders
+  - factories
+  - controllers
+  - routes
+- Tokens must have 24h limit of validity
+- Routes should be secured.
