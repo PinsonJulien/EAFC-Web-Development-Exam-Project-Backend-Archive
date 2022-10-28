@@ -14,6 +14,8 @@ class DemoSeeder extends Seeder
     public function run()
     {
         $this->call([
+            EducationLevelSeeder::class,
+            FormationSeeder::class,
             CourseSeeder::class,
         ]);
     }

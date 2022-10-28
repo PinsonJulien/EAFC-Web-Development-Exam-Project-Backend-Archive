@@ -21,3 +21,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //Route::apiResource('courses', CourseController::class);
 
 Route::group([],__DIR__.'/api/courses.php');
+Route::group([],__DIR__.'/api/formations.php');
+Route::group([],__DIR__.'/api/education-levels.php');

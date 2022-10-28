@@ -7,7 +7,7 @@ use App\Models\Course;
 class CourseController extends Controller
 {
     public function index() {
-        $courses = Course::all();
+        $courses = Course::with('teacher')->get();
 
         return response()->json($courses);
     }
