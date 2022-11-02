@@ -17,6 +17,7 @@ class DemoSeeder extends Seeder
             EducationLevelSeeder::class,
             FormationSeeder::class,
             CourseSeeder::class,
+            FormationCourseSeeder::class,
         ]);
     }
 }

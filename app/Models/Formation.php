@@ -20,4 +20,8 @@ class Formation extends Model
     public function educationLevel() {
         return $this->belongsTo(EducationLevel::class);
     }
+
+    public function courses() {
+        return $this->belongsToMany(Course::class, 'formation_courses');
+    }
 }

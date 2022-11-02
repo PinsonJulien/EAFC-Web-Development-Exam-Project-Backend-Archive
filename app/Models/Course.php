@@ -18,4 +18,8 @@ class Course extends Model
     public function teacher() {
         return $this->belongsTo(User::class);
     }
+
+    public function formations() {
+        return $this->belongsToMany(Formation::class, 'formation_courses');
+    }
 }
