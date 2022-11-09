@@ -33,3 +33,5 @@ None... yet !
   - routes
 - Tokens must have 24h limit of validity
 - Routes should be secured.
+
+- Get all requests should return the count of rows and use request headers to provide a offset and number to deal with pagination.
