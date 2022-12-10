@@ -11,6 +11,8 @@ use App\Filters\V1\CoursesFilter;
 
 class CourseController extends Controller
 {
+    protected array $relations = ['formations'];
+
     function __construct() {}
 
     /**
@@ -21,10 +23,7 @@ class CourseController extends Controller
     */
     public function index(Request $request) {
         $courses = $this->filterRequest(new CoursesFilter(), Course::query(), $request);
-
-        if ($request->query('includeFormations')) {
-            $courses = $courses->with('formations');
-        }
+        $courses = $this->includeRequestedRelations($courses, $request, $this->relations);
 
         return new CourseCollection($courses->paginate()->appends($request->query()));
     }
@@ -37,6 +36,7 @@ class CourseController extends Controller
     */
     public function show(Course $course): CourseResource
     {
+        $course = $this->includeRequestedRelations($course, request(), $this->relations);
         return new CourseResource($course);
     }
 }

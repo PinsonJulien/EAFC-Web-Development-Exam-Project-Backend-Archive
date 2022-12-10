@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -26,5 +27,25 @@ class Controller extends BaseController
         return $builder->where(
             $filter->transform($request)
         );
+    }
+
+    /**
+     * Include relations if they were requested. (?includeExample)
+     *
+     * @param Builder|Model $builderOrModel
+     * @param Request $request
+     * @param array $relations
+     * @return Builder|Model
+     */
+    protected function includeRequestedRelations(Builder|Model $builderOrModel, Request $request, array $relations): Builder|Model {
+        foreach ($relations as $relation) {
+            if ($request->query('include' . ucfirst($relation))) {
+                $builderOrModel = ($builderOrModel::class === Builder::class)
+                    ? $builderOrModel->with($relation)
+                    : $builderOrModel->loadMissing($relation);
+            }
+        }
+
+        return $builderOrModel;
     }
 }

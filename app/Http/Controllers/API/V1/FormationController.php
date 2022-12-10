@@ -11,6 +11,8 @@ use App\Filters\V1\FormationsFilter;
 
 class FormationController extends Controller
 {
+    protected array $relations = ['courses'];
+
     function __construct() {}
 
     /**
@@ -21,10 +23,7 @@ class FormationController extends Controller
     */
     public function index(Request $request) {
         $formations = $this->filterRequest(new FormationsFilter(), Formation::query(), $request);
-
-        if ($request->query('includeCourses')) {
-            $formations = $formations->with('courses');
-        }
+        $formations = $this->includeRequestedRelations($formations, $request, $this->relations);
 
         return new FormationCollection($formations->paginate()->appends($request->query()));
     }
@@ -37,6 +36,7 @@ class FormationController extends Controller
     */
     public function show(Formation $formation): FormationResource
     {
+        $formation = $this->includeRequestedRelations($formation, request(), $this->relations);
         return new FormationResource($formation);
     }
 }

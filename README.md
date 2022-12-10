@@ -45,5 +45,4 @@ None... yet !
 - Type based filters
 - Dynamic "include with" in controllers to avoid repetition
 - Controllers
-  - Dynamic "include" (initialize "include" as private property)
   - Allow to specify a number of elements per page.

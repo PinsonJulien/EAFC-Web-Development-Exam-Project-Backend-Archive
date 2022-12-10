@@ -11,6 +11,8 @@ use App\Filters\V1\EducationLevelsFilter;
 
 class EducationLevelController extends Controller
 {
+    protected array $relations = ['formations'];
+
     function __construct() {}
 
     /**
@@ -21,10 +23,7 @@ class EducationLevelController extends Controller
     */
     public function index(Request $request): EducationLevelCollection {
         $educationLevels = $this->filterRequest(new EducationLevelsFilter(), EducationLevel::query(), $request);
-
-        if ($request->query('includeFormations')) {
-            $educationLevels = $educationLevels->with('formations');
-        }
+        $educationLevels  = $this->includeRequestedRelations($educationLevels , $request, $this->relations);
 
         return new EducationLevelCollection($educationLevels->paginate()->appends($request->query()));
     }
@@ -37,6 +36,7 @@ class EducationLevelController extends Controller
     */
     public function show(EducationLevel $educationLevel): EducationLevelResource
     {
+        $educationLevel = $this->includeRequestedRelations($educationLevel, request(), $this->relations);
         return new EducationLevelResource($educationLevel);
     }
 }
