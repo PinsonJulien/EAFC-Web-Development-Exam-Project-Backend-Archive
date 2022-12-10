@@ -42,7 +42,5 @@ None... yet !
   - get folders
   - path is name of the folder with a first lowercase
   - include routes from inside the folder
-- Type based filters
-- Dynamic "include with" in controllers to avoid repetition
 - Controllers
   - Allow to specify a number of elements per page.

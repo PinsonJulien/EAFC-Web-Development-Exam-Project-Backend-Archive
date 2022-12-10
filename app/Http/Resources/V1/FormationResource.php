@@ -20,7 +20,7 @@ class FormationResource extends JsonResource
             'status' => $this->status,
             'startDate' => $this->start_date,
             'endDate' => $this->end_date,
-            'educationLevel' => $this->education_level,
+            'educationLevel' => $this->educationLevel,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'courses' => CourseResource::collection($this->whenLoaded('courses')),

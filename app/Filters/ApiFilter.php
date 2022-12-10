@@ -5,44 +5,40 @@ namespace App\Filters;
 use Illuminate\Http\Request;
 
 class ApiFilter {
-    protected $safeParameters = [
-        // 'example' => ['eq', 'neq', 'lt', 'lte', 'gt', 'gte']
+    private array $safeParameters = [
+        // 'example' => new CombinedOperator([new Equal(), new NotEqual()])
     ];
 
-    protected $columnMap = [
+    private array $columnMap = [
         // 'underscoreName' => 'underscore_name'
     ];
 
-    protected $operatorMap = [
-        'eq' => '=',        // Equal
-        'neq' => '!=',      // Not Equal
-        'lt' => '<',        // Less than
-        'lte' => '<=',      // Less or equal than
-        'gt' => '>',        // Greater than
-        'gte' => '>=',      // Greater or equal than
-    ];
+    public function __construct(array $safeParameters, array $columnMap)
+    {
+        $this->safeParameters = $safeParameters;
+        $this->columnMap = $columnMap;
+    }
 
     public function transform(Request $request) {
         $eloquentQuery = [];
 
         foreach ($this->safeParameters as $parameter => $operators) {
             $query = $request->query($parameter);
-
             if (!isset($query)) continue;
 
             $column = $this->columnMap[$parameter] ?? $parameter;
 
-            foreach ($operators as $operator) {
-                if (isset($query[$operator])) {
+            foreach ($operators->getOperators() as $operator) {
+                if (isset($query[$operator->getAbbreviation()])) {
                     $eloquentQuery[] = [
                         $column,
-                        $this->operatorMap[$operator],
-                        $query[$operator]
+                        $operator->getOperator(),
+                        $query[$operator->getAbbreviation()],
                     ];
                 }
             }
         }
-
+        
         return $eloquentQuery;
     }
 
