@@ -11,6 +11,8 @@ use App\Filters\V1\EducationLevelsFilter;
 
 class EducationLevelController extends Controller
 {
+    function __construct() {}
+
     /**
     * Display a listing of the education levels.
      *
@@ -18,9 +20,7 @@ class EducationLevelController extends Controller
      * @return EducationLevelCollection
     */
     public function index(Request $request): EducationLevelCollection {
-        $filter = new EducationLevelsFilter();
-        $conditions = $filter->transform($request);
-        $educationLevels = EducationLevel::where($conditions);
+        $educationLevels = $this->filterRequest(new EducationLevelsFilter(), EducationLevel::query(), $request);
 
         if ($request->query('includeFormations')) {
             $educationLevels = $educationLevels->with('formations');

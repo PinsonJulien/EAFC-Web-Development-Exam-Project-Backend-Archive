@@ -11,6 +11,8 @@ use App\Filters\V1\FormationsFilter;
 
 class FormationController extends Controller
 {
+    function __construct() {}
+
     /**
     * Display a listing of all formations
      *
@@ -18,9 +20,7 @@ class FormationController extends Controller
      * @return FormationCollection
     */
     public function index(Request $request) {
-        $filter = new FormationsFilter();
-        $conditions = $filter->transform($request);
-        $formations = Formation::where($conditions);
+        $formations = $this->filterRequest(new FormationsFilter(), Formation::query(), $request);
 
         if ($request->query('includeCourses')) {
             $formations = $formations->with('courses');

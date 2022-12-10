@@ -11,6 +11,8 @@ use App\Filters\V1\CoursesFilter;
 
 class CourseController extends Controller
 {
+    function __construct() {}
+
     /**
     * Display a listing of the courses.
      *
@@ -18,9 +20,7 @@ class CourseController extends Controller
      * @return CourseCollection
     */
     public function index(Request $request) {
-        $filter = new CoursesFilter();
-        $conditions = $filter->transform($request);
-        $courses = Course::where($conditions);
+        $courses = $this->filterRequest(new CoursesFilter(), Course::query(), $request);
 
         if ($request->query('includeFormations')) {
             $courses = $courses->with('formations');
