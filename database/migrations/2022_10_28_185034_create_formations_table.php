@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->foreignIdFor(EducationLevel::class)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
