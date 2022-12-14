@@ -14,10 +14,11 @@ class DemoSeeder extends Seeder
     public function run()
     {
         $this->call([
+            CountrySeeder::class,
             EducationLevelSeeder::class,
+
+            UserSeeder::class,
             FormationSeeder::class,
-            CourseSeeder::class,
-            FormationCourseSeeder::class,
         ]);
     }
 }

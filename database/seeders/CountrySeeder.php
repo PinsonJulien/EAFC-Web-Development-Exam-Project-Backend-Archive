@@ -15,7 +15,11 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::insert(
+        Country::factory()
+            ->count(25)
+            ->create();
+
+        /*Country::insert(
             [
                 ['name' => 'Belgium', 'iso' => 'BE'],
                 ['name' => 'France', 'iso' => 'FR'],
@@ -23,6 +27,6 @@ class CountrySeeder extends Seeder
                 ['name' => 'Germany', 'iso' => 'DE'],
                 ['name' => 'Spain', 'iso' => 'ES'],
             ]
-        );
+        );*/
     }
 }

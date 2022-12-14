@@ -18,7 +18,7 @@ class FormationFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->sentence(5),
             'start_date' => fake()->date(),
             'end_date' => fake()->date(),
             'education_level_id' => fake()->randomElement(EducationLevel::query()->get('id')),

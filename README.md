@@ -44,3 +44,5 @@ None... yet !
   - include routes from inside the folder
 - Controllers
   - Allow to specify a number of elements per page.
+
+- Role seeder -> for each create users with the role;

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('status')->default(true);
-            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(User::class, 'teacher_user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
