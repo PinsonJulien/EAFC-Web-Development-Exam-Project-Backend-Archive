@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -16,7 +17,7 @@ class Course extends Model
     ];
 
     public function teacher() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'teacher_user_id');
     }
 
     public function formations() {

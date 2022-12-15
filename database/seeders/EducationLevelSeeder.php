@@ -14,16 +14,14 @@ class EducationLevelSeeder extends Seeder
      */
     public function run()
     {
-        $levels = [
-            'Master',
-            'Bac',
-            'BES',
-            'DS',
-            'DI',
-        ];
-
-        foreach($levels as $level) {
-            EducationLevel::create(['name' => $level]);
-        }
+        EducationLevel::insert(
+            [
+                ['name' => 'Master'],
+                ['name' => 'Bac'],
+                ['name' => 'BES'],
+                ['name' => 'DS'],
+                ['name' => 'DI'],
+            ]
+        );
     }
 }
