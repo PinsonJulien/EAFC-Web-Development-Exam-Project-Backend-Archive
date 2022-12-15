@@ -36,6 +36,7 @@ None... yet !
 ## Ideas
 - Calendar to deal with courses and formations being available multiple times (instead of updating each entry)
 - Tokens must have 24h limit of validity
+- Order by for each fields on all getAll's;
 
 ## Possible improvements
 - Dynamic api routing
@@ -46,3 +47,4 @@ None... yet !
   - Allow to specify a number of elements per page.
 
 - Role seeder -> for each create users with the role;
+
