@@ -69,15 +69,10 @@
 									}
 								],
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/v1/courses/1?includeFormations=1",
-									"protocol": "http",
+									"raw": "{{url}}/api/v1/courses/1?includeFormations=1",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{url}}"
 									],
-									"port": "8000",
 									"path": [
 										"api",
 										"v1",
@@ -89,6 +84,84 @@
 											"key": "includeFormations",
 											"value": "1"
 										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Countries",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "%aus%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "includeFormations",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"1"
 									]
 								}
 							},
@@ -253,6 +326,94 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "All",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "includeTeacherCourses",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "name[neq]",
+											"value": "Prof. Elyssa Weissnat",
+											"disabled": true
+										},
+										{
+											"key": "educationLevelId[eq]",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "status[eq]",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeStudentCourses=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"1"
+									],
+									"query": [
+										{
+											"key": "includeTeacherCourses",
+											"value": "true"
+										},
+										{
+											"key": "includeStudentCourses",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -355,12 +516,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "test@test.com",
+									"value": "eokon@example.org",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "Testtesttest",
+									"value": "secret",
 									"type": "text"
 								}
 							]
