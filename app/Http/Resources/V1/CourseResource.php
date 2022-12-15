@@ -18,7 +18,7 @@ class CourseResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'status' => $this->status,
-            'teacher' => $this->teacher,
+            'teacher' => new UserResource($this->teacher),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'formations' => FormationResource::collection($this->whenLoaded('formations')),

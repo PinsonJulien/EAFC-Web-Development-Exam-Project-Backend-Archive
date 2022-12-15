@@ -42,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nationality() {
+        return $this->belongsTo(Country::class, 'nationality_country_id');
+    }
+
+    public function addressCountry() {
+        return $this->belongsTo(Country::class, 'address_country_id');
+    }
+
+    public function studentCourses() {
+        // todo
+    }
+
+    public function teacherCourses() {
+        return $this->hasMany(Course::class, 'teacher_user_id');
+    }
 }
