@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CourseResource;
 use App\Http\Resources\V1\CourseCollection;
 use App\Filters\V1\CoursesFilter;
+use App\Http\Requests\V1\StoreCourseRequest;
 
 class CourseController extends Controller
 {
@@ -38,5 +39,10 @@ class CourseController extends Controller
     {
         $course = $this->includeRequestedRelations($course, request(), $this->relations);
         return new CourseResource($course);
+    }
+
+    public function store(StoreCourseRequest $request)
+    {
+        return new CourseResource(Course::create($request->all()));
     }
 }

@@ -8,4 +8,5 @@ Route::prefix('courses')
     ->group(function() {
    Route::get('', 'index');
    Route::get('{course}', 'show');
+   Route::post('', 'store');
 });
