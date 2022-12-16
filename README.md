@@ -48,3 +48,7 @@ None... yet !
 
 - Role seeder -> for each create users with the role;
 
+
+## Todo
+- formations/addCourse (post ?)
+- formations/removeCourse (delete ?)

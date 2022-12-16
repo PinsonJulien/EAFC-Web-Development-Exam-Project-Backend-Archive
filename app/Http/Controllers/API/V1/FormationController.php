@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\StoreFormationRequest;
 use Illuminate\Http\Request;
 use App\Models\Formation;
 use App\Http\Controllers\Controller;
@@ -38,5 +39,10 @@ class FormationController extends Controller
     {
         $formation = $this->includeRequestedRelations($formation, request(), $this->relations);
         return new FormationResource($formation);
+    }
+
+    public function store(StoreFormationRequest $request): FormationResource
+    {
+        return new FormationResource(Formation::create($request->all()));
     }
 }
