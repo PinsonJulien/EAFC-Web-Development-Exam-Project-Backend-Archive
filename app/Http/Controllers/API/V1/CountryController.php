@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\StoreCountryRequest;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Http\Controllers\Controller;
@@ -34,5 +35,10 @@ class CountryController extends Controller
     public function show(Country $country): CountryResource
     {
         return new CountryResource($country);
+    }
+
+    public function store(StoreCountryRequest $request): CountryResource
+    {
+        return new CountryResource(Country::create($request->all()));
     }
 }
