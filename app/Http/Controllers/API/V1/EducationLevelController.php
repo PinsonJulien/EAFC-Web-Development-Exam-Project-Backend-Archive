@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\StoreEducationLevelRequest;
 use Illuminate\Http\Request;
 use App\Models\EducationLevel;
 use App\Http\Controllers\Controller;
@@ -38,5 +39,10 @@ class EducationLevelController extends Controller
     {
         $educationLevel = $this->includeRequestedRelations($educationLevel, request(), $this->relations);
         return new EducationLevelResource($educationLevel);
+    }
+
+    public function store(StoreEducationLevelRequest $request): EducationLevelResource
+    {
+        return new EducationLevelResource(EducationLevel::create($request->all()));
     }
 }
