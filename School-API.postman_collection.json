@@ -88,6 +88,40 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Object oriented programming\",\r\n    \"status\": true,\r\n    \"teacherUserId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/courses",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"courses"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -166,6 +200,40 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Belgium\",\r\n    \"iso\": \"BE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/countries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -239,6 +307,40 @@
 											"key": "includeFormations",
 											"value": "true"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"BAC\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/educationLevels",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"educationLevels"
 									]
 								}
 							},
@@ -324,6 +426,40 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Computer science degree\",\r\n    \"status\": true,\r\n    \"startDate\": \"1995-4-10\",\r\n    \"endDate\": \"1995-12-30\",\r\n    \"educationLevelId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/formations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"formations"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -342,7 +478,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users",
+									"raw": "{{url}}/api/v1/users?username[l]=%mr%",
 									"host": [
 										"{{url}}"
 									],
@@ -358,9 +494,8 @@
 											"disabled": true
 										},
 										{
-											"key": "name[neq]",
-											"value": "Prof. Elyssa Weissnat",
-											"disabled": true
+											"key": "username[l]",
+											"value": "%mr%"
 										},
 										{
 											"key": "educationLevelId[eq]",
@@ -408,6 +543,101 @@
 											"key": "includeStudentCourses",
 											"value": "true"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "email",
+											"value": "mr.test@test.com",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "Mr. Test",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Testtest",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "Testtest",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "Jean",
+											"type": "text"
+										},
+										{
+											"key": "firstname",
+											"value": "Yves",
+											"type": "text"
+										},
+										{
+											"key": "nationalityCountryId",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "birthdate",
+											"value": "1950-5-30",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Red turtle street, 5",
+											"type": "text"
+										},
+										{
+											"key": "postalCode",
+											"value": "98310",
+											"type": "text"
+										},
+										{
+											"key": "addressCountryId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "00943641565",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users"
 									]
 								}
 							},
