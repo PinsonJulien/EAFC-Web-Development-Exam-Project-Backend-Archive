@@ -26,7 +26,7 @@ class StoreCourseRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'status' => ['required', 'boolean'],
-            'teacherUserId' => ['nullable', 'integer'],
+            'teacherUserId' => ['nullable', 'integer', 'exists:users,id'],
         ];
     }
 

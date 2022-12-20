@@ -28,7 +28,7 @@ class StoreFormationRequest extends FormRequest
             'status' => ['required', 'boolean'],
             'startDate' => ['nullable', 'date'],
             'endDate' => ['nullable', 'date'],
-            'educationLevelId' => ['nullable', 'integer'],
+            'educationLevelId' => ['nullable', 'integer', 'exists:education_levels,id'],
         ];
     }
 
