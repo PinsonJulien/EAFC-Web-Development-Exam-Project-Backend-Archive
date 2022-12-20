@@ -17,6 +17,7 @@ This repository is part of the web development project of my bachelor degree in 
 - Run `php artisan key:generate` (this will fill the `APP_KEY` environment variable).
 - Run `php artisan migrate` command.
 - For demo purpose you can run `php artisan db:seed --class=DemoSeeder` to populate the database.
+- If you store files locally, run : `php artisan storage:link` to create a symbolic link between "public/storage" and "storage/app/public"
 
 ## How to serve the project
 Run `php artisan serve`

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\UserResource;
 use App\Http\Resources\V1\UserCollection;
 use App\Filters\V1\UsersFilter;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -38,5 +40,19 @@ class UserController extends Controller
     {
         $user = $this->includeRequestedRelations($user, request(), $this->relations);
         return new UserResource($user);
+    }
+
+    public function store(StoreUserRequest $request): UserResource
+    {
+        $data = $request->all();
+
+        // Store the profile picture if it's uploaded.
+        $picture = $request->file('picture');
+        if ($picture) {
+            $path = $picture->storePublicly('public/pictures');
+            $data['picture'] = Storage::url($path);
+        }
+
+        return new UserResource(User::create($data));
     }
 }

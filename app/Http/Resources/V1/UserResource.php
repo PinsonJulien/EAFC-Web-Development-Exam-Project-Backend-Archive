@@ -27,6 +27,7 @@ class UserResource extends JsonResource
             'postalCode' => $this->postal_code,
             'addressCountry' => new CountryResource($this->addressCountry),
             'phone' => $this->phone,
+            'picture' => $this->picture,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'studentCourses' => CourseResource::collection($this->whenLoaded('studentCourses')),
