@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\StoreEducationLevelRequest;
-use Illuminate\Http\Request;
-use App\Models\EducationLevel;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\EducationLevelResource;
-use App\Http\Resources\V1\EducationLevelCollection;
 use App\Filters\V1\EducationLevelsFilter;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\EducationLevel\StoreEducationLevelRequest;
+use App\Http\Resources\V1\EducationLevelCollection;
+use App\Http\Resources\V1\EducationLevelResource;
+use App\Models\EducationLevel;
+use Illuminate\Http\Request;
 
 class EducationLevelController extends Controller
 {

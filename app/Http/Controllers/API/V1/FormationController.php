@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\StoreFormationRequest;
-use Illuminate\Http\Request;
-use App\Models\Formation;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\FormationResource;
-use App\Http\Resources\V1\FormationCollection;
 use App\Filters\V1\FormationsFilter;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Formation\StoreFormationRequest;
+use App\Http\Resources\V1\FormationCollection;
+use App\Http\Resources\V1\FormationResource;
+use App\Models\Formation;
+use Illuminate\Http\Request;
 
 class FormationController extends Controller
 {

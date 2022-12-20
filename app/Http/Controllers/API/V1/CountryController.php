@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\StoreCountryRequest;
-use Illuminate\Http\Request;
-use App\Models\Country;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\CountryResource;
-use App\Http\Resources\V1\CountryCollection;
 use App\Filters\V1\CountriesFilter;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Country\StoreCountryRequest;
+use App\Http\Resources\V1\CountryCollection;
+use App\Http\Resources\V1\CountryResource;
+use App\Models\Country;
+use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {

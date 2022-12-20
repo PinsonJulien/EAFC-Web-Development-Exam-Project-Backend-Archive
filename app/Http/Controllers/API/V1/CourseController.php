@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use Illuminate\Http\Request;
-use App\Models\Course;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\CourseResource;
-use App\Http\Resources\V1\CourseCollection;
 use App\Filters\V1\CoursesFilter;
-use App\Http\Requests\V1\StoreCourseRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Course\StoreCourseRequest;
+use App\Http\Resources\V1\CourseCollection;
+use App\Http\Resources\V1\CourseResource;
+use App\Models\Course;
+use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {

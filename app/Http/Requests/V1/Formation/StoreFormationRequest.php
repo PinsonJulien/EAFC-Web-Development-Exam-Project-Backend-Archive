@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\V1\Formation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCourseRequest extends FormRequest
+class StoreFormationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,18 @@ class StoreCourseRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'status' => ['required', 'boolean'],
-            'teacherUserId' => ['nullable', 'integer'],
+            'startDate' => ['nullable', 'date'],
+            'endDate' => ['nullable', 'date'],
+            'educationLevelId' => ['nullable', 'integer'],
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'teacher_user_id' => $this->teacherUserId,
+            'education_level_id' => $this->educationLevelId,
+            'start_date' => $this->startDate,
+            'end_date' => $this->endDate,
         ]);
     }
 }

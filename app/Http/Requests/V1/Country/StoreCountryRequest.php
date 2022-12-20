@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\V1\Country;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEducationLevelRequest extends FormRequest
+class StoreCountryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class StoreEducationLevelRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'iso' => ['required', 'string', 'size:2'],
         ];
     }
 }
