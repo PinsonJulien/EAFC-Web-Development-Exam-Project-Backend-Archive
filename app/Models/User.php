@@ -61,7 +61,11 @@ class User extends Authenticatable
     }
 
     public function studentCourses() {
-        // todo
+        return $this->belongsToMany(Course::class, 'user_courses');
+    }
+
+    public function studentFormations() {
+        return $this->belongsToMany(Formation::class, 'user_formations');
     }
 
     public function teacherCourses() {

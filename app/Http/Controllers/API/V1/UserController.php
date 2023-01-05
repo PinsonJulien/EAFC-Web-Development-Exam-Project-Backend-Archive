@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    protected array $relations = [/*'studentCourses', */'teacherCourses'];
+    protected array $relations = ['studentCourses', 'teacherCourses', 'studentFormations'];
 
     function __construct() {}
 

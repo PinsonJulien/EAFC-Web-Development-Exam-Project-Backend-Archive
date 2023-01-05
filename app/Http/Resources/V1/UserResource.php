@@ -32,6 +32,7 @@ class UserResource extends JsonResource
             'updatedAt' => $this->updated_at,
             'studentCourses' => CourseResource::collection($this->whenLoaded('studentCourses')),
             'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
+            'studentFormations' => FormationResource::collection($this->whenLoaded('studentFormations')),
         ];
     }
 }

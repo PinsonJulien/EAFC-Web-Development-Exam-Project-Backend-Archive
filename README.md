@@ -49,6 +49,7 @@ None... yet !
 
 - Role seeder -> for each create users with the role;
 
+- Rework the user seeder to reuse the same set of create courses over the formations and users.
 
 ## Todo
 - formations/addCourse (post ?)
