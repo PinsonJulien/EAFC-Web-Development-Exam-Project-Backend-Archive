@@ -53,3 +53,9 @@ None... yet !
 ## Todo
 - formations/addCourse (post ?)
 - formations/removeCourse (delete ?)
+- groups
+  - Name, timestamps (to determine school year 20XX - 20YY) 
+  - user_group (user_id, group_id)
+  - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
+  - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
+
