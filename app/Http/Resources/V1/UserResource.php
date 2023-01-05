@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             'studentCourses' => CourseResource::collection($this->whenLoaded('studentCourses')),
             'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
             'studentFormations' => FormationResource::collection($this->whenLoaded('studentFormations')),
+            'groups' => GroupResource::collection($this->whenLoaded('groups')),
         ];
     }
 }

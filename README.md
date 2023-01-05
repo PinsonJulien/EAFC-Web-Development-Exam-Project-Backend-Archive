@@ -60,3 +60,9 @@ None... yet !
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
 
+# Useful commands to generate new content
+- generate a new model and related classes : `php artisan make:model Name -mfsc`
+- refresh migration : `php artisan migrate:refresh`
+- generate resource : `php artisan make:resource V1\NameResource`
+- generate collection : `php artisan make:resource V1\NameCollection`
+- generate request : `php artisan make:request V1\StoreNameRequest`
