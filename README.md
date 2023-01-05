@@ -60,6 +60,14 @@ None... yet !
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
 
+- Filters and sorting
+Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
+  - sorting
+    - sortBy
+  - filtering
+    - filterBy
+    - It could be possible to filter at least the count of many-to-many relations
+    
 # Useful commands to generate new content
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
 - refresh migration : `php artisan migrate:refresh`
