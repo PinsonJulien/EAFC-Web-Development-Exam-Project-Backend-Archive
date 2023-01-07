@@ -73,4 +73,4 @@ Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering
 - refresh migration : `php artisan migrate:refresh`
 - generate resource : `php artisan make:resource V1\NameResource`
 - generate collection : `php artisan make:resource V1\NameCollection`
-- generate request : `php artisan make:request V1\StoreNameRequest`
+- generate request : `php artisan make:request V1\Name\StoreNameRequest`

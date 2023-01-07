@@ -9,4 +9,5 @@ Route::prefix('courses')
    Route::get('', 'index');
    Route::get('{course}', 'show');
    Route::post('', 'store');
+   Route::delete('{course}', 'destroy');
 });

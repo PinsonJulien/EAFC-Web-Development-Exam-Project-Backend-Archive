@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Filters\V1\CoursesFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\Course\DestroyCourseRequest;
 use App\Http\Requests\V1\Course\StoreCourseRequest;
 use App\Http\Resources\V1\CourseCollection;
 use App\Http\Resources\V1\CourseResource;
@@ -44,5 +45,10 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request): CourseResource
     {
         return new CourseResource(Course::create($request->all()));
+    }
+
+    public function destroy(DestroyCourseRequest $request, Course $course) {
+        $course->delete();
+        return response()->json(null, 204);
     }
 }
