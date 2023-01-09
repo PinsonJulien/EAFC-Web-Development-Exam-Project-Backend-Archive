@@ -9,4 +9,5 @@ Route::prefix('formations')
     Route::get('', 'index');
     Route::get('{formation}', 'show');
     Route::post('', 'store');
+    Route::delete('{formation}', 'destroy');
 });
