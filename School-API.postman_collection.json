@@ -24,7 +24,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses?name[l]=D%&includeFormations=1",
+									"raw": "{{url}}/api/v1/courses?includeFormations=1&includeStudents=true",
 									"host": [
 										"{{url}}"
 									],
@@ -46,11 +46,16 @@
 										},
 										{
 											"key": "name[l]",
-											"value": "D%"
+											"value": "D%",
+											"disabled": true
 										},
 										{
 											"key": "includeFormations",
 											"value": "1"
+										},
+										{
+											"key": "includeStudents",
+											"value": "true"
 										}
 									]
 								}
@@ -69,7 +74,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses/1?includeFormations=1",
+									"raw": "{{url}}/api/v1/courses/1?includeFormations=1&includeStudents=1",
 									"host": [
 										"{{url}}"
 									],
@@ -82,6 +87,10 @@
 									"query": [
 										{
 											"key": "includeFormations",
+											"value": "1"
+										},
+										{
+											"key": "includeStudents",
 											"value": "1"
 										}
 									]
@@ -118,6 +127,32 @@
 										"api",
 										"v1",
 										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/courses/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"courses",
+										"1"
 									]
 								}
 							},
@@ -163,11 +198,6 @@
 										{
 											"key": "name[l]",
 											"value": "D%",
-											"disabled": true
-										},
-										{
-											"key": "includeFormations",
-											"value": "1",
 											"disabled": true
 										}
 									]
@@ -363,7 +393,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations?includeCourses=true&name[neq]=Prof. Elyssa Weissnat&educationLevelId[eq]=3",
+									"raw": "{{url}}/api/v1/formations?includeCourses=true&includeStudents=true",
 									"host": [
 										"{{url}}"
 									],
@@ -378,8 +408,13 @@
 											"value": "true"
 										},
 										{
+											"key": "includeStudents",
+											"value": "true"
+										},
+										{
 											"key": "name[neq]",
-											"value": "Prof. Elyssa Weissnat"
+											"value": "Prof. Elyssa Weissnat",
+											"disabled": true
 										},
 										{
 											"key": "status[eq]",
@@ -388,7 +423,8 @@
 										},
 										{
 											"key": "educationLevelId[eq]",
-											"value": "3"
+											"value": "3",
+											"disabled": true
 										}
 									]
 								}
@@ -407,7 +443,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations/1?includeCourses=true",
+									"raw": "{{url}}/api/v1/formations/1?includeCourses=true&includeStudents=true",
 									"host": [
 										"{{url}}"
 									],
@@ -420,6 +456,10 @@
 									"query": [
 										{
 											"key": "includeCourses",
+											"value": "true"
+										},
+										{
+											"key": "includeStudents",
 											"value": "true"
 										}
 									]
@@ -460,6 +500,146 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/formations/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"formations",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Groups",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/groups",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"groups"
+									],
+									"query": [
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "includeUsers",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/groups/1?includeUsers=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"groups",
+										"1"
+									],
+									"query": [
+										{
+											"key": "includeUsers",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/groups",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"groups"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -478,7 +658,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users?username[l]=%mr%",
+									"raw": "{{url}}/api/v1/users?includeStudentCourses=true&includeStudentFormations=true&includeGroups=1",
 									"host": [
 										"{{url}}"
 									],
@@ -494,8 +674,21 @@
 											"disabled": true
 										},
 										{
+											"key": "includeStudentCourses",
+											"value": "true"
+										},
+										{
+											"key": "includeStudentFormations",
+											"value": "true"
+										},
+										{
+											"key": "includeGroups",
+											"value": "1"
+										},
+										{
 											"key": "username[l]",
-											"value": "%mr%"
+											"value": "%mr%",
+											"disabled": true
 										},
 										{
 											"key": "educationLevelId[eq]",
@@ -524,7 +717,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeStudentCourses=true",
+									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeStudentCourses=true&includeGroups=true",
 									"host": [
 										"{{url}}"
 									],
@@ -541,6 +734,10 @@
 										},
 										{
 											"key": "includeStudentCourses",
+											"value": "true"
+										},
+										{
+											"key": "includeGroups",
 											"value": "true"
 										}
 									]
