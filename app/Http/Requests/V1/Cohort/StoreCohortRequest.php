@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1\Group;
+namespace App\Http\Requests\V1\Cohort;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreGroupRequest extends FormRequest
+class StoreCohortRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

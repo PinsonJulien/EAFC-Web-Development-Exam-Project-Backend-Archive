@@ -72,7 +72,7 @@ class User extends Authenticatable
         return $this->hasMany(Course::class, 'teacher_user_id');
     }
 
-    public function groups() {
-        return $this->belongsToMany(Group::class, 'user_groups');
+    public function cohorts() {
+        return $this->belongsToMany(Cohort::class, 'user_cohorts');
     }
 }

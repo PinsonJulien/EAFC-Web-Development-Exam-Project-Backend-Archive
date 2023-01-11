@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Group;
+use App\Models\Cohort;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserGroup>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserCohort>
  */
-class UserGroupFactory extends Factory
+class UserCohortFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,7 @@ class UserGroupFactory extends Factory
     {
         return [
             'user_id' => fake()->randomElement(User::query()->get('id')),
-            'group_id' => fake()->randomElement(Group::query()->get('id')),
+            'cohort_id' => fake()->randomElement(Cohort::query()->get('id')),
         ];
     }
 }

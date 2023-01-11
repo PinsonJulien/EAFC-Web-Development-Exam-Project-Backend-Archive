@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'studentFormations'
             )
             ->hasStudentCourses(3)
-            ->hasGroups(3)
+            ->hasCohorts(3)
             ->create();
     }
 }

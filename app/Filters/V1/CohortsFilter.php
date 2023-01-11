@@ -7,7 +7,7 @@ use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
 
-class GroupsFilter extends ApiFilter {
+class CohortsFilter extends ApiFilter {
 
     public function __construct()
     {

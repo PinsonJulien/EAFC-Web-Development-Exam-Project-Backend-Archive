@@ -12,7 +12,7 @@ Route::prefix('v1')
             'educationLevels',
             'users',
             'countries',
-            'groups',
+            'cohorts',
         ];
 
         foreach ($files as $file) {

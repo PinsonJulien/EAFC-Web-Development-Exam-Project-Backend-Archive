@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Group extends Model
+class Cohort extends Model
 {
     use HasFactory,  SoftDeletes;
 
@@ -15,6 +15,6 @@ class Group extends Model
     ];
 
     public function users() {
-        return $this->belongsToMany(User::class, 'user_groups');
+        return $this->belongsToMany(User::class, 'user_cohorts');
     }
 }
