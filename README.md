@@ -67,6 +67,9 @@ Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering
   - filtering
     - filterBy
     - It could be possible to filter at least the count of many-to-many relations
+
+- Courses
+  - when assigning a group to a course, only create grades for students.
     
 # Useful commands to generate new content
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
