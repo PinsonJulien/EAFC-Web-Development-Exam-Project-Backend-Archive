@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a19b45d0-b64e-403f-8b8a-a5a1b4db66d9",
+		"_postman_id": "640fcb8d-4b06-4d00-a8ce-645e9af96654",
 		"name": "School-API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12652516"
+		"_exporter_id": "11573079"
 	},
 	"item": [
 		{
@@ -24,7 +24,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses?includeFormations=1&includeStudents=true",
+									"raw": "{{url}}/api/v1/courses?includeFormations=1",
 									"host": [
 										"{{url}}"
 									],
@@ -52,10 +52,6 @@
 										{
 											"key": "includeFormations",
 											"value": "1"
-										},
-										{
-											"key": "includeStudents",
-											"value": "true"
 										}
 									]
 								}
@@ -74,7 +70,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses/1?includeFormations=1&includeStudents=1",
+									"raw": "{{url}}/api/v1/courses/1?includeFormations=1",
 									"host": [
 										"{{url}}"
 									],
@@ -87,10 +83,6 @@
 									"query": [
 										{
 											"key": "includeFormations",
-											"value": "1"
-										},
-										{
-											"key": "includeStudents",
 											"value": "1"
 										}
 									]
@@ -393,7 +385,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations?includeCourses=true&includeStudents=true",
+									"raw": "{{url}}/api/v1/formations?includeCourses=true",
 									"host": [
 										"{{url}}"
 									],
@@ -405,10 +397,6 @@
 									"query": [
 										{
 											"key": "includeCourses",
-											"value": "true"
-										},
-										{
-											"key": "includeStudents",
 											"value": "true"
 										},
 										{
@@ -443,7 +431,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations/1?includeCourses=true&includeStudents=true",
+									"raw": "{{url}}/api/v1/formations/1?includeCourses=true",
 									"host": [
 										"{{url}}"
 									],
@@ -456,10 +444,6 @@
 									"query": [
 										{
 											"key": "includeCourses",
-											"value": "true"
-										},
-										{
-											"key": "includeStudents",
 											"value": "true"
 										}
 									]
@@ -544,7 +528,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts?includeUsers=1",
+									"raw": "{{url}}/api/v1/cohorts",
 									"host": [
 										"{{url}}"
 									],
@@ -566,7 +550,8 @@
 										},
 										{
 											"key": "includeUsers",
-											"value": "1"
+											"value": "1",
+											"disabled": true
 										}
 									]
 								}
@@ -627,14 +612,14 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts",
+									"raw": "{{url}}/api/v1/groups",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts"
+										"groups"
 									]
 								}
 							},
@@ -657,7 +642,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users?includeCohorts=1",
+									"raw": "{{url}}/api/v1/users?includeGroups=1",
 									"host": [
 										"{{url}}"
 									],
@@ -673,17 +658,7 @@
 											"disabled": true
 										},
 										{
-											"key": "includeStudentCourses",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeStudentFormations",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeCohorts",
+											"key": "includeGroups",
 											"value": "1"
 										},
 										{
@@ -718,7 +693,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/1?includeCohorts=true",
+									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeGroups=true",
 									"host": [
 										"{{url}}"
 									],
@@ -731,16 +706,10 @@
 									"query": [
 										{
 											"key": "includeTeacherCourses",
-											"value": "true",
-											"disabled": true
+											"value": "true"
 										},
 										{
-											"key": "includeStudentCourses",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeCohorts",
+											"key": "includeGroups",
 											"value": "true"
 										}
 									]
@@ -838,6 +807,145 @@
 										"api",
 										"v1",
 										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Site roles",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/siteRoles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"siteRoles"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "includeUsers",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/siteRoles/1?includeUsers=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"siteRoles",
+										"1"
+									],
+									"query": [
+										{
+											"key": "includeUsers",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/siteRoles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"siteRoles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/siteRoles/4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"siteRoles",
+										"4"
 									]
 								}
 							},
