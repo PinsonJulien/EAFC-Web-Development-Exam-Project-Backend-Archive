@@ -23,6 +23,6 @@ class Formation extends Model
     }
 
     public function courses() {
-        return $this->belongsToMany(Course::class, 'formation_courses');
+        return $this->belongsToMany(Course::class, 'formations_courses');
     }
 }

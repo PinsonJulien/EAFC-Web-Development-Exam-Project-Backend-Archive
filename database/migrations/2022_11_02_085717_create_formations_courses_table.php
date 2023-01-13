@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formation_courses', function (Blueprint $table) {
+        Schema::create('formations_courses', function (Blueprint $table) {
             $table->foreignIdFor(Formation::class);
             $table->foreignIdFor(Course::class);
             $table->softDeletes();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formation_courses');
+        Schema::dropIfExists('formations_courses');
     }
 };

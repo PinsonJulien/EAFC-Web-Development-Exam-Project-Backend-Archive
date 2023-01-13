@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_cohorts', function (Blueprint $table) {
+        Schema::create('users_cohorts', function (Blueprint $table) {
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Cohort::class);
             $table->softDeletes();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_groups');
+        Schema::dropIfExists('users_cohorts');
     }
 };

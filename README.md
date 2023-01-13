@@ -73,7 +73,8 @@ Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering
     
 # Useful commands to generate new content
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
-- refresh migration : `php artisan migrate:refresh`
+- refresh migrations : `php artisan migrate:refresh`
+- reset migrations : `php artisan migrate:reset`
 - generate resource : `php artisan make:resource V1\NameResource`
 - generate collection : `php artisan make:resource V1\NameCollection`
 - generate request : `php artisan make:request V1\Name\StoreNameRequest`
