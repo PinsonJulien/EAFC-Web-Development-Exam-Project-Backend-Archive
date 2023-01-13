@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cohort;
 use Illuminate\Database\Seeder;
 
 class CohortSeeder extends Seeder
@@ -14,6 +14,8 @@ class CohortSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Cohort::factory()
+            ->count(10)
+            ->create();
     }
 }

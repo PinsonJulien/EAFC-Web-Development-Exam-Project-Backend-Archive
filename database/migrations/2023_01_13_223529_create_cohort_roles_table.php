@@ -3,9 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-use App\Models\Cohort;
-use App\Models\CohortRole;
 
 return new class extends Migration
 {
@@ -16,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_cohorts', function (Blueprint $table) {
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Cohort::class);
-            $table->foreignIdFor(CohortRole::class);
+        Schema::create('cohort_roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_cohorts');
+        Schema::dropIfExists('cohort_roles');
     }
 };

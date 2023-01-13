@@ -14,11 +14,20 @@ class DemoSeeder extends Seeder
     public function run()
     {
         $this->call([
+            // constants
             SiteRoleSeeder::class,
-            CountrySeeder::class,
+            CohortRoleSeeder::class,
             EducationLevelSeeder::class,
 
+            // Administrator
+            // todo
+
+            // Fake data for demo purpose.
+            CountrySeeder::class,
             UserSeeder::class,
+            FormationSeeder::class,
+            CohortSeeder::class,
+            UserCohortSeeder::class,
         ]);
     }
 }

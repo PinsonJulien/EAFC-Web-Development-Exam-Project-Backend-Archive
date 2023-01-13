@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Cohort;
+use App\Models\CohortRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,7 @@ class UserCohortFactory extends Factory
         return [
             'user_id' => fake()->randomElement(User::query()->get('id')),
             'cohort_id' => fake()->randomElement(Cohort::query()->get('id')),
+            'cohort_role_id' => fake()->randomElement(CohortRole::query()->get('id')),
         ];
     }
 }

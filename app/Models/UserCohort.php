@@ -10,6 +10,8 @@ class UserCohort extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'users_cohorts';
+
     protected $fillable = [
         'user_id',
         'group_id',

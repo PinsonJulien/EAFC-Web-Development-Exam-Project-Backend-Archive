@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Formation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cohort>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CohortRole>
  */
-class CohortFactory extends Factory
+class CohortRoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +17,7 @@ class CohortFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->sentence(3),
-            'formation_id' => fake()->randomElement(Formation::query()->get('id')),
+            'name' => fake()->word(),
         ];
     }
 }

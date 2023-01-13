@@ -28,7 +28,6 @@ class UserSeeder extends Seeder
             )
             ->hasStudentCourses(3)
             */
-            ->hasCohorts(3)
             ->create();
     }
 }
