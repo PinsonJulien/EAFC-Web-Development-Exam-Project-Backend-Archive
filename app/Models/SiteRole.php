@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Country extends Model
+class SiteRole extends Model
 {
-    use HasFactory, SoftDeletes;
-    public $timestamps = false;
+    use HasFactory;
 
     protected $fillable = [
         'name',
-        'iso'
     ];
+
+    public function users() {
+        return $this->hasMany(User::class);
+    }
 }

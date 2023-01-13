@@ -67,4 +67,8 @@ class User extends Authenticatable
     public function cohorts() {
         return $this->belongsToMany(Cohort::class, 'users_cohorts');
     }
+
+    public function siteRole() {
+        return $this->belongsTo(SiteRole::class);
+    }
 }

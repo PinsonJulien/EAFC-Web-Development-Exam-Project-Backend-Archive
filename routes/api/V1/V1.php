@@ -13,6 +13,7 @@ Route::prefix('v1')
             'users',
             'countries',
             'cohorts',
+            'siteRoles',
         ];
 
         foreach ($files as $file) {

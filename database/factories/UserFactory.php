@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Country;
+use App\Models\SiteRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -35,6 +36,8 @@ class UserFactory extends Factory
             'address_country_id' => fake()->randomElement(Country::query()->get('id')),
             'phone' => fake()->phoneNumber(),
             'picture' => fake()->imageUrl(),
+
+            'site_role_id' => fake()->randomElement(SiteRole::query()->get('id')),
         ];
     }
 

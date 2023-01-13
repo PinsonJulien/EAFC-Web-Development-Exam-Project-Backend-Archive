@@ -14,6 +14,7 @@ class DemoSeeder extends Seeder
     public function run()
     {
         $this->call([
+            SiteRoleSeeder::class,
             CountrySeeder::class,
             EducationLevelSeeder::class,
 

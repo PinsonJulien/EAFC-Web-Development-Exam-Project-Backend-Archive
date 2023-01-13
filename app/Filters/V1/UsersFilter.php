@@ -26,6 +26,7 @@ class UsersFilter extends ApiFilter {
                 'phone' => new StringOperators(),
                 'createdAt' => new DateOperators(),
                 'updatedAt' => new DateOperators(),
+                'siteRoleId' => new NumberOperators(),
             ],
             [
                 'emailVerifiedAt' => 'email_verified_at',
@@ -34,6 +35,7 @@ class UsersFilter extends ApiFilter {
                 'addressCountryId' => 'address_country_id',
                 'createdAt' => 'created_at',
                 'updatedAt' => 'updated_at',
+                'siteRoleId' => 'site_role_id',
             ]
         );
     }
