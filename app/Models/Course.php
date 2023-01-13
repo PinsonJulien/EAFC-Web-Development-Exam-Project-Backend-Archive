@@ -23,8 +23,4 @@ class Course extends Model
     public function formations() {
         return $this->belongsToMany(Formation::class, 'formation_courses');
     }
-
-    public function students() {
-        return $this->belongsToMany(User::class, 'user_courses');
-    }
 }

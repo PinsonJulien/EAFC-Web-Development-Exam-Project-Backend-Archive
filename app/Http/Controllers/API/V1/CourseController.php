@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    protected array $relations = ['formations', 'students'];
+    protected array $relations = ['formations'];
 
     function __construct() {}
 

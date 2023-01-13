@@ -60,14 +60,6 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class, 'address_country_id');
     }
 
-    public function studentCourses() {
-        return $this->belongsToMany(Course::class, 'user_courses');
-    }
-
-    public function studentFormations() {
-        return $this->belongsToMany(Formation::class, 'user_formations');
-    }
-
     public function teacherCourses() {
         return $this->hasMany(Course::class, 'teacher_user_id');
     }
