@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class CohortController extends Controller
 {
-    protected array $relations = ['users',];
+    protected array $relations = ['members',];
 
     function __construct() {}
 

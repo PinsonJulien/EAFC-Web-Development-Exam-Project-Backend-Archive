@@ -16,7 +16,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_cohorts', function (Blueprint $table) {
+        Schema::create('cohort_members', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Cohort::class);
             $table->foreignIdFor(CohortRole::class);
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_cohorts');
+        Schema::dropIfExists('cohort_members');
     }
 };

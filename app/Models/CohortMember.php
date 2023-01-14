@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserCohort extends Model
+class CohortMember extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'users_cohorts';
-
     protected $fillable = [
         'user_id',
-        'group_id',
+        'cohort_id',
+        'cohort_role_id',
     ];
 
     public function user() {
@@ -23,5 +22,9 @@ class UserCohort extends Model
 
     public function cohort() {
         return $this->belongsTo(Cohort::class);
+    }
+
+    public function role() {
+        return $this->belongsTo(CohortRole::class, 'cohort_role_id');
     }
 }

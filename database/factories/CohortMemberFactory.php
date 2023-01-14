@@ -8,9 +8,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserCohort>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CohortMember>
  */
-class UserCohortFactory extends Factory
+class CohortMemberFactory extends Factory
 {
     /**
      * Define the model's default state.

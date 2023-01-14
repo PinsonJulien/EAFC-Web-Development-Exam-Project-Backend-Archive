@@ -27,7 +27,7 @@ class DemoSeeder extends Seeder
             UserSeeder::class,
             FormationSeeder::class,
             CohortSeeder::class,
-            UserCohortSeeder::class,
+            CohortMemberSeeder::class,
         ]);
     }
 }

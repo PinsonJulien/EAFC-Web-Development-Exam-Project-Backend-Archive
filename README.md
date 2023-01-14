@@ -60,6 +60,8 @@ None... yet !
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
 
+don't allow adding the same person to the same cohort twice (via the respective custom Request)
+
 - Filters and sorting
 Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
   - sorting

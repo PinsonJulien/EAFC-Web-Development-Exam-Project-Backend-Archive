@@ -14,12 +14,7 @@ class Cohort extends Model
         'name',
     ];
 
-    public function users() {
-        // todo delete users().
-        return $this->belongsToMany(User::class, 'users_cohorts');
-    }
-
     public function members() {
-        // todo return members { user, cohortRole }
+        return $this->hasMany(CohortMember::class);
     }
 }
