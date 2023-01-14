@@ -528,7 +528,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts",
+									"raw": "{{url}}/api/v1/cohorts?includeMembers=1",
 									"host": [
 										"{{url}}"
 									],
@@ -549,9 +549,8 @@
 											"disabled": true
 										},
 										{
-											"key": "includeUsers",
-											"value": "1",
-											"disabled": true
+											"key": "includeMembers",
+											"value": "1"
 										}
 									]
 								}
@@ -570,7 +569,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/1?includeUsers=1",
+									"raw": "{{url}}/api/v1/cohorts/1?includeMembers=1",
 									"host": [
 										"{{url}}"
 									],
@@ -582,7 +581,7 @@
 									],
 									"query": [
 										{
-											"key": "includeUsers",
+											"key": "includeMembers",
 											"value": "1"
 										}
 									]
@@ -612,14 +611,14 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/groups",
+									"raw": "{{url}}/api/v1/cohorts",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"groups"
+										"cohorts"
 									]
 								}
 							},
@@ -642,7 +641,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users?includeGroups=1",
+									"raw": "{{url}}/api/v1/users?includeCohorts=1",
 									"host": [
 										"{{url}}"
 									],
@@ -658,7 +657,7 @@
 											"disabled": true
 										},
 										{
-											"key": "includeGroups",
+											"key": "includeCohorts",
 											"value": "1"
 										},
 										{
@@ -693,7 +692,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeGroups=true",
+									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeCohorts=true",
 									"host": [
 										"{{url}}"
 									],
@@ -709,7 +708,7 @@
 											"value": "true"
 										},
 										{
-											"key": "includeGroups",
+											"key": "includeCohorts",
 											"value": "true"
 										}
 									]
@@ -945,6 +944,134 @@
 										"api",
 										"v1",
 										"siteRoles",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cohort roles",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
 										"4"
 									]
 								}
