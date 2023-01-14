@@ -15,6 +15,7 @@ Route::prefix('v1')
             'cohorts',
             'siteRoles',
             'cohortRoles',
+            'statuses',
         ];
 
         foreach ($files as $file) {

@@ -18,6 +18,7 @@ class DemoSeeder extends Seeder
             SiteRoleSeeder::class,
             CohortRoleSeeder::class,
             EducationLevelSeeder::class,
+            StatusSeeder::class,
 
             // Administrator
             // todo
