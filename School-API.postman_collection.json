@@ -385,7 +385,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations?includeCourses=true",
+									"raw": "{{url}}/api/v1/formations?includeEnrollments=1",
 									"host": [
 										"{{url}}"
 									],
@@ -397,7 +397,12 @@
 									"query": [
 										{
 											"key": "includeCourses",
-											"value": "true"
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "includeEnrollments",
+											"value": "1"
 										},
 										{
 											"key": "name[neq]",
@@ -431,7 +436,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations/1?includeCourses=true",
+									"raw": "{{url}}/api/v1/formations/1?includeEnrollments=1",
 									"host": [
 										"{{url}}"
 									],
@@ -444,7 +449,12 @@
 									"query": [
 										{
 											"key": "includeCourses",
-											"value": "true"
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "includeEnrollments",
+											"value": "1"
 										}
 									]
 								}
@@ -641,7 +651,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users?includeCohorts=1",
+									"raw": "{{url}}/api/v1/users?includeEnrollments=1",
 									"host": [
 										"{{url}}"
 									],
@@ -658,6 +668,11 @@
 										},
 										{
 											"key": "includeCohorts",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "includeEnrollments",
 											"value": "1"
 										},
 										{
@@ -692,7 +707,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/1?includeTeacherCourses=true&includeCohorts=true",
+									"raw": "{{url}}/api/v1/users/1?includeEnrollments=1",
 									"host": [
 										"{{url}}"
 									],
@@ -705,11 +720,17 @@
 									"query": [
 										{
 											"key": "includeTeacherCourses",
-											"value": "true"
+											"value": "true",
+											"disabled": true
 										},
 										{
 											"key": "includeCohorts",
-											"value": "true"
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "includeEnrollments",
+											"value": "1"
 										}
 									]
 								}
