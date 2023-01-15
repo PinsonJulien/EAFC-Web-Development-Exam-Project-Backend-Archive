@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(60)
+            /*
             ->has(
                 Formation::factory()
                 ->count(2)
@@ -26,7 +27,7 @@ class UserSeeder extends Seeder
                 'studentFormations'
             )
             ->hasStudentCourses(3)
-            ->hasCohorts(3)
+            */
             ->create();
     }
 }

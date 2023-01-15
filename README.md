@@ -60,6 +60,8 @@ None... yet !
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
 
+don't allow adding the same person to the same cohort twice (via the respective custom Request)
+
 - Filters and sorting
 Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
   - sorting
@@ -73,7 +75,8 @@ Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering
     
 # Useful commands to generate new content
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
-- refresh migration : `php artisan migrate:refresh`
+- refresh migrations : `php artisan migrate:refresh`
+- reset migrations : `php artisan migrate:reset`
 - generate resource : `php artisan make:resource V1\NameResource`
 - generate collection : `php artisan make:resource V1\NameCollection`
 - generate request : `php artisan make:request V1\Name\StoreNameRequest`

@@ -60,19 +60,25 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class, 'address_country_id');
     }
 
-    public function studentCourses() {
-        return $this->belongsToMany(Course::class, 'user_courses');
-    }
-
-    public function studentFormations() {
-        return $this->belongsToMany(Formation::class, 'user_formations');
-    }
-
     public function teacherCourses() {
         return $this->hasMany(Course::class, 'teacher_user_id');
     }
 
     public function cohorts() {
-        return $this->belongsToMany(Cohort::class, 'user_cohorts');
+        return $this->belongsToMany(Cohort::class, 'cohort_members');
+    }
+
+    public function siteRole() {
+        return $this->belongsTo(SiteRole::class);
+    }
+
+    public function enrollments() {
+        return $this->hasMany(Enrollment::class)
+            ->with('formation');
+    }
+
+    public function grades() {
+        return $this->hasMany(Grade::class)
+            ->with('course');
     }
 }

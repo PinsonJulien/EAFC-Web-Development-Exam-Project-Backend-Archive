@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Formation;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserFormation>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Grade>
  */
-class UserFormationFactory extends Factory
+class GradeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,8 @@ class UserFormationFactory extends Factory
     {
         return [
             'user_id' => fake()->randomElement(User::query()->get('id')),
-            'formation_id' => fake()->randomElement(Formation::query()->get('id')),
+            'course_id' => fake()->randomElement(Course::query()->get('id')),
+            'score' => fake()->numberBetween(0, 100),
         ];
     }
 }

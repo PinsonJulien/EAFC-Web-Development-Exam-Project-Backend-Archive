@@ -3,9 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-use App\Models\Course;
-
 
 return new class extends Migration
 {
@@ -16,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_courses', function (Blueprint $table) {
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Course::class);
+        Schema::create('cohort_roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_courses');
+        Schema::dropIfExists('cohort_roles');
     }
 };

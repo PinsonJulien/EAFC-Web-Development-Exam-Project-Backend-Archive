@@ -22,7 +22,7 @@ class CourseResource extends JsonResource
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'formations' => FormationResource::collection($this->whenLoaded('formations')),
-            'students' => UserResource::collection($this->whenLoaded('students')),
+            'grades' => GradeResource::collection($this->whenLoaded('grades')),
         ];
     }
 }

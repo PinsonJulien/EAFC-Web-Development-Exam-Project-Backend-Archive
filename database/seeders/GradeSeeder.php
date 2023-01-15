@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserFormation;
+use App\Models\Grade;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserFormationSeeder extends Seeder
+class GradeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,8 @@ class UserFormationSeeder extends Seeder
      */
     public function run()
     {
-        UserFormation::factory()
-            ->times(10)
+        Grade::factory()
+            ->count(30)
             ->create();
     }
 }

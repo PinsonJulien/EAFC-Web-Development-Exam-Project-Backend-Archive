@@ -23,10 +23,10 @@ class Formation extends Model
     }
 
     public function courses() {
-        return $this->belongsToMany(Course::class, 'formation_courses');
+        return $this->belongsToMany(Course::class, 'formations_courses');
     }
 
-    public function students() {
-        return $this->belongsToMany(User::class, 'user_formations');
+    public function enrollments() {
+        return $this->hasMany(Enrollment::class)->with('user');
     }
 }

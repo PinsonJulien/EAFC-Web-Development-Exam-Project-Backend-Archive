@@ -15,6 +15,4 @@ class Country extends Model
         'name',
         'iso'
     ];
-
-    protected $guarded = [];
 }

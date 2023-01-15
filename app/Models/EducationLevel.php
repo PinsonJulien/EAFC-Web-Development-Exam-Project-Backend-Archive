@@ -13,8 +13,6 @@ class EducationLevel extends Model
         'name',
     ];
 
-    protected $guarded = [];
-
     public function formations() {
         return $this->hasMany(Formation::class);
     }

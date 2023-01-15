@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Formation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class CohortFactory extends Factory
     {
         return [
             'name' => fake()->sentence(3),
+            'formation_id' => fake()->randomElement(Formation::query()->get('id')),
         ];
     }
 }

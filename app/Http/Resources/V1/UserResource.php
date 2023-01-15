@@ -28,12 +28,13 @@ class UserResource extends JsonResource
             'addressCountry' => new CountryResource($this->addressCountry),
             'phone' => $this->phone,
             'picture' => $this->picture,
+            'siteRole' => new SiteRoleResource($this->siteRole),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'studentCourses' => CourseResource::collection($this->whenLoaded('studentCourses')),
             'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
-            'studentFormations' => FormationResource::collection($this->whenLoaded('studentFormations')),
             'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
+            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+            'grades' => GradeResource::collection($this->whenLoaded('grades')),
         ];
     }
 }

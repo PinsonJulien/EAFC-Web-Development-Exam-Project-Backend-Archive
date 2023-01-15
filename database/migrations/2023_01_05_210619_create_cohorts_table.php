@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Formation;
 
 return new class extends Migration
 {
@@ -16,6 +17,7 @@ return new class extends Migration
         Schema::create('cohorts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignIdFor(Formation::class);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('cohorts');
     }
 };

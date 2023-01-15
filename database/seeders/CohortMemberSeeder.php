@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CohortMember;
 use Illuminate\Database\Seeder;
 
-class UserCohortSeeder extends Seeder
+class CohortMemberSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,8 @@ class UserCohortSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CohortMember::factory()
+            ->count(10)
+            ->create();
     }
 }

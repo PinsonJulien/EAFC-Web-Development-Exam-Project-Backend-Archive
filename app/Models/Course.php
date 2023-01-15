@@ -21,10 +21,11 @@ class Course extends Model
     }
 
     public function formations() {
-        return $this->belongsToMany(Formation::class, 'formation_courses');
+        return $this->belongsToMany(Formation::class, 'formations_courses');
     }
 
-    public function students() {
-        return $this->belongsToMany(User::class, 'user_courses');
+    public function grades() {
+        return $this->hasMany(Grade::class)
+            ->with('user');
     }
 }
