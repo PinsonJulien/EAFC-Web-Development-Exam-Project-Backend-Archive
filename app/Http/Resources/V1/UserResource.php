@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             'updatedAt' => $this->updated_at,
             'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
             'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
+            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
         ];
     }
 }
