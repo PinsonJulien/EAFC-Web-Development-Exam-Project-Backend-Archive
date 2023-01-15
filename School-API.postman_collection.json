@@ -24,7 +24,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses?includeFormations=1",
+									"raw": "{{url}}/api/v1/courses",
 									"host": [
 										"{{url}}"
 									],
@@ -51,7 +51,13 @@
 										},
 										{
 											"key": "includeFormations",
-											"value": "1"
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "includeGrades",
+											"value": "1",
+											"disabled": true
 										}
 									]
 								}
@@ -70,7 +76,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses/1?includeFormations=1",
+									"raw": "{{url}}/api/v1/courses/1?includeFormations=1&includeGrades=1",
 									"host": [
 										"{{url}}"
 									],
@@ -83,6 +89,10 @@
 									"query": [
 										{
 											"key": "includeFormations",
+											"value": "1"
+										},
+										{
+											"key": "includeGrades",
 											"value": "1"
 										}
 									]
@@ -651,7 +661,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users?includeEnrollments=1",
+									"raw": "{{url}}/api/v1/users",
 									"host": [
 										"{{url}}"
 									],
@@ -673,7 +683,13 @@
 										},
 										{
 											"key": "includeEnrollments",
-											"value": "1"
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "includeGrades",
+											"value": "1",
+											"disabled": true
 										},
 										{
 											"key": "username[l]",
@@ -707,7 +723,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/1?includeEnrollments=1",
+									"raw": "{{url}}/api/v1/users/1",
 									"host": [
 										"{{url}}"
 									],
@@ -730,7 +746,13 @@
 										},
 										{
 											"key": "includeEnrollments",
-											"value": "1"
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "includeGrades",
+											"value": "1",
+											"disabled": true
 										}
 									]
 								}
