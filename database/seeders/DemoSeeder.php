@@ -30,6 +30,7 @@ class DemoSeeder extends Seeder
             CohortSeeder::class,
             CohortMemberSeeder::class,
             EnrollmentSeeder::class,
+            GradeSeeder::class,
         ]);
     }
 }

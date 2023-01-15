@@ -23,4 +23,9 @@ class Course extends Model
     public function formations() {
         return $this->belongsToMany(Formation::class, 'formations_courses');
     }
+
+    public function grades() {
+        return $this->hasMany(Grade::class)
+            ->with('user');
+    }
 }

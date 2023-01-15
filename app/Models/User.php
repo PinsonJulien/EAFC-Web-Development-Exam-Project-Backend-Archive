@@ -73,6 +73,12 @@ class User extends Authenticatable
     }
 
     public function enrollments() {
-        return $this->hasMany(Enrollment::class)->with('formation');
+        return $this->hasMany(Enrollment::class)
+            ->with('formation');
+    }
+
+    public function grades() {
+        return $this->hasMany(Grade::class)
+            ->with('course');
     }
 }
