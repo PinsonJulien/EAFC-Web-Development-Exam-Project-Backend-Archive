@@ -26,6 +26,9 @@ class CourseController extends Controller
     public function index(Request $request) {
         $courses = $this->filterRequest(new CoursesFilter(), Course::query(), $request);
         $courses = $this->includeRequestedRelations($courses, $request, $this->relations);
+        foreach ($request->attributes->get('sortParams') as $param) {
+            $courses->orderBy(...$param);
+        }
 
         return new CourseCollection($courses->paginate()->appends($request->query()));
     }
