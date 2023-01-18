@@ -11,27 +11,12 @@ use App\Http\Resources\V1\CourseResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class CourseController extends V1Controller //Controller
 {
-    protected array $relations = ['formations', 'grades',];
+    protected string $model = Course::class;
+    protected string $ressource = CourseResource::class;
 
     function __construct() {}
-
-    /**
-    * Display a listing of the courses.
-     *
-     * @param Request $request
-     * @return CourseCollection
-    */
-    public function index(Request $request) {
-        $courses = $this->filterRequest(new CoursesFilter(), Course::query(), $request);
-        $courses = $this->includeRequestedRelations($courses, $request, $this->relations);
-        foreach ($request->attributes->get('sortParams') as $param) {
-            $courses->orderBy(...$param);
-        }
-
-        return new CourseCollection($courses->paginate()->appends($request->query()));
-    }
 
     /**
     * Display the specified course.
@@ -41,7 +26,7 @@ class CourseController extends Controller
     */
     public function show(Course $course): CourseResource
     {
-        $course = $this->includeRequestedRelations($course, request(), $this->relations);
+        $course = $this->applyIncludeRelationParameters($course, request());
         return new CourseResource($course);
     }
 

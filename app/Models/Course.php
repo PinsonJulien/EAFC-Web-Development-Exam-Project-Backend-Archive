@@ -10,6 +10,8 @@ class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const relationMethods = ['teacher', 'formations','grades'];
+
     protected $fillable = [
         'name',
         'status',

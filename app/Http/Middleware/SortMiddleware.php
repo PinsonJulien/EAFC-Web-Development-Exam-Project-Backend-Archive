@@ -2,14 +2,20 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\ModelDataExtractor;
+use App\Traits\RequestInfoExtractor;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class SortMiddleware
 {
+    use RequestInfoExtractor;
+    use ModelDataExtractor;
+
     /**
      * Handle an incoming request.
      *
@@ -23,20 +29,9 @@ class SortMiddleware
         if (!$sortByQueryParam)
             return $next($request);
 
-        // Get the controller class name.
-        $routeAction = $request->route()->getAction();
-        $controller = class_basename($routeAction['controller']);
-        // removes the @function
-        $controller = strtok($controller, '@');
-        // Get the model name
-        $model = str_replace("Controller", "", $controller);
-        $model = '\App\Models\\' . $model;
+        $model = $this->getRequestModel($request);
         $model = new $model();
-
-        $modelColumns = $model
-            ->getConnection()
-            ->getSchemaBuilder()
-            ->getColumnListing($model->getTable());
+        $modelColumns = $this->getModelColumns($model);
 
         $sortParams = [];
 
@@ -51,6 +46,8 @@ class SortMiddleware
             list($order, $column) = explode('(', $sort);
             $order = trim($order);
             $column = trim(str_replace(')', '', $column));
+            // allows to use the camel case, but always retransform to snake case.
+            $column = Str::snake($column);
 
             if (!in_array($column, $modelColumns))
                 return response()->json([
