@@ -15,7 +15,7 @@ class FilterMiddleware
     use RequestInfoExtractor;
 
     /**
-     * Handle the filters query parameter
+     * Handle the filtering query parameters
      * column1[lte]=10?column1[gte]=12
      * Ensure the given columns exists and the operators match the LHS rules.
      *

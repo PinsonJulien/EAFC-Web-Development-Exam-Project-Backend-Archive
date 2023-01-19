@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\PaginationMiddleware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-abstract class V1Controller extends BaseController
+abstract class V1Controller extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -100,7 +100,7 @@ abstract class V1Controller extends BaseController
      * @return Builder|LengthAwarePaginator
      */
     protected function applyPaginationParameters(Builder $builder, Request $request): Builder|LengthAwarePaginator {
-        $parameters = $request->attributes->get('includeParams');
+        $parameters = $request->attributes->get(PaginationMiddleware::ATTRIBUTE_NAME);
         if ($parameters) {
             $builder = $builder->paginate($parameters)
                 ->appends($request->query()) ;
