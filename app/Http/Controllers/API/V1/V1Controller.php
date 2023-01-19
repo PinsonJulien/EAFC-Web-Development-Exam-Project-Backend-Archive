@@ -10,7 +10,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use App\Filters\ApiFilter;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -50,7 +49,7 @@ abstract class V1Controller extends BaseController
      * @return Builder
      */
     protected function applyFilterParameters(Builder $builder, Request $request) {
-        $parameters = $request->attributes->get('filterParams');
+        $parameters = $request->attributes->get('filtersParams');
         if ($parameters) {
             $builder = $builder->where($parameters);
         }

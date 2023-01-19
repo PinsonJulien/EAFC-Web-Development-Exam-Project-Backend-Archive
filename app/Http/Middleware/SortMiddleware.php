@@ -17,7 +17,9 @@ class SortMiddleware
     use ModelDataExtractor;
 
     /**
-     * Handle an incoming request.
+     * Handle the sortBy query parameter
+     * sortBy=asc(column1),desc(column2)
+     * Ensure the given columns exists.
      *
      * @param Request $request
      * @param  Closure(Request): (Response|RedirectResponse)  $next

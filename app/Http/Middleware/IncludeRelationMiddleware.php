@@ -16,7 +16,9 @@ class IncludeRelationMiddleware
     use ModelDataExtractor;
 
     /**
-     * Handle an incoming request.
+     * Handle the includeRelations query parameter
+     * includeRelations=relation1,relation2
+     * Ensure the given relations exist in the model.
      *
      * @param Request $request
      * @param  Closure(Request): (Response|RedirectResponse)  $next
