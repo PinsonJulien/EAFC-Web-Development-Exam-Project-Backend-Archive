@@ -19,7 +19,7 @@ abstract class V1Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected string $model = "";
-    protected string $ressource = "";
+    protected string $resource = "";
 
     /**
      * Generate a collection of a model
@@ -39,7 +39,7 @@ abstract class V1Controller extends BaseController
         if ($rows::class === Builder::class)
             $rows = $rows->get();
 
-        return $this->ressource::collection($rows);
+        return $this->resource::collection($rows);
     }
 
     /**

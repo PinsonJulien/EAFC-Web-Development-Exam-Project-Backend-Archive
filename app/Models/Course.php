@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helpers\Operators\CombinedOperators\BooleanOperators;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
+use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,11 +14,12 @@ class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public const relationMethods = ['teacher', 'formations','grades'];
+    public const relationMethods = ['formations', 'grades'];
 
     public const filterable = [
         'name' => StringOperators::class,
         'status' => BooleanOperators::class,
+        'teacher_user_id' => NumberOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
     ];

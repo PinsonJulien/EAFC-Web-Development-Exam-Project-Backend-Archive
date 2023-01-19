@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Helpers\Operators\CombinedOperators\DateOperators;
+use App\Helpers\Operators\CombinedOperators\NumberOperators;
+use App\Helpers\Operators\CombinedOperators\StringOperators;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +15,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+    public const relationMethods = ['teacherCourses', 'cohorts', 'enrollments', 'grades'];
+
+    public const filterable = [
+        'username' => StringOperators::class,
+        'email' => StringOperators::class,
+        'email_verified_at' => DateOperators::class,
+        'lastname' => StringOperators::class,
+        'firstname' => StringOperators::class,
+        'nationality_id' => NumberOperators::class,
+        'birthdate' => DateOperators::class,
+        'address' => StringOperators::class,
+        'postal_code' => StringOperators::class,
+        'address_country_id' => NumberOperators::class,
+        'phone' => StringOperators::class,
+        'created_at' => DateOperators::class,
+        'updated_at' => DateOperators::class,
+        'site_role_id' => NumberOperators::class,
+    ];
 
     /**
      * The attributes that are mass assignable.

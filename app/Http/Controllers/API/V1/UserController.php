@@ -2,43 +2,27 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Filters\V1\UsersFilter;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\User\StoreUserRequest;
-use App\Http\Resources\V1\UserCollection;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
+class UserController extends V1Controller
 {
-    protected array $relations = ['teacherCourses', 'cohorts', 'enrollments', 'grades'];
+    protected string $model = User::class;
+    protected string $resource = UserResource::class;
 
     function __construct() {}
 
     /**
-     * Display a listing of the courses.
-     *
-     * @param Request $request
-     * @return UserCollection
-    */
-    public function index(Request $request) {
-        $users = $this->filterRequest(new UsersFilter(), User::query(), $request);
-        $users = $this->includeRequestedRelations($users, $request, $this->relations);
-
-        return new UserCollection($users->paginate()->appends($request->query()));
-    }
-
-    /**
-    * Display the specified course.
+    * Display the specified user.
      *
      * @param  User $user
      * @return UserResource
     */
     public function show(User $user): UserResource
     {
-        $user = $this->includeRequestedRelations($user, request(), $this->relations);
+        $user = $this->applyIncludeRelationParameters($user, request());
         return new UserResource($user);
     }
 

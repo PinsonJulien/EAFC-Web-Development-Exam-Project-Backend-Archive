@@ -2,42 +2,26 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\Controller;
-use App\Filters\V1\CohortsFilter;
 use App\Http\Requests\V1\Cohort\StoreCohortRequest;
-use App\Http\Resources\V1\CohortCollection;
 use App\Http\Resources\V1\CohortResource;
 use App\Models\Cohort;
-use Illuminate\Http\Request;
 
-class CohortController extends Controller
+class CohortController extends V1Controller
 {
-    protected array $relations = ['members',];
+    protected string $model = Cohort::class;
+    protected string $resource = CohortResource::class;
 
     function __construct() {}
 
     /**
-     * Display a listing of the cohorts
-     *
-     * @param Request $request
-     * @return CohortCollection
-     */
-    public function index(Request $request) {
-        $cohorts = $this->filterRequest(new CohortsFilter(), Cohort::query(), $request);
-        $cohorts = $this->includeRequestedRelations($cohorts, $request, $this->relations);
-
-        return new CohortCollection($cohorts->paginate()->appends($request->query()));
-    }
-
-    /**
-     * Display the specified group.
+     * Display the specified cohort.
      *
      * @param  Cohort $cohort
      * @return CohortResource
      */
     public function show(Cohort $cohort): CohortResource
     {
-        $cohort = $this->includeRequestedRelations($cohort, request(), $this->relations);
+        $cohort = $this->applyIncludeRelationParameters($cohort, request());
         return new CohortResource($cohort);
     }
 

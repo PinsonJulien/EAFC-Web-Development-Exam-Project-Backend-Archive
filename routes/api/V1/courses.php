@@ -9,12 +9,15 @@ use App\Http\Middleware\FilterMiddleware;
 Route::prefix('courses')
     ->controller(CourseController::class)
     ->group(function() {
+
    Route::get('', 'index')
         ->middleware(FilterMiddleware::class)
         ->middleware(SortMiddleware::class)
         ->middleware(IncludeRelationMiddleware::class);
 
-   Route::get('{course}', 'show');
+   Route::get('{course}', 'show')
+       ->middleware(IncludeRelationMiddleware::class);
+
    Route::post('', 'store');
    Route::delete('{course}', 'destroy');
 });
