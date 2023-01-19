@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\FilterMiddleware;
+use App\Http\Middleware\IncludeRelationMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
+use App\Http\Middleware\SortMiddleware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -49,7 +52,7 @@ abstract class V1Controller extends Controller
      * @return Builder
      */
     protected function applyFilterParameters(Builder $builder, Request $request) {
-        $parameters = $request->attributes->get('filtersParams');
+        $parameters = $request->attributes->get(FilterMiddleware::ATTRIBUTE_NAME);
         if ($parameters) {
             $builder = $builder->where($parameters);
         }
@@ -64,7 +67,7 @@ abstract class V1Controller extends Controller
      * @return Builder
      */
     protected function applySortParameters(Builder $builder, Request $request) {
-        $parameters = $request->attributes->get('sortParams');
+        $parameters = $request->attributes->get(SortMiddleware::ATTRIBUTE_NAME);
         if ($parameters) {
             foreach ($parameters as $parameter) {
                 $builder = $builder->orderBy(...$parameter);
@@ -81,7 +84,7 @@ abstract class V1Controller extends Controller
      * @return Builder|Model
      */
     protected function applyIncludeRelationParameters(Builder|Model $builderOrModel, Request $request): Builder|Model {
-        $parameters = $request->attributes->get('includeRelationParams');
+        $parameters = $request->attributes->get(IncludeRelationMiddleware::ATTRIBUTE_NAME);
         if ($parameters) {
             foreach ($parameters as $parameter) {
                 $builderOrModel = ($builderOrModel::class === Builder::class)

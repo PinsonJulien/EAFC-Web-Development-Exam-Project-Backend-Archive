@@ -16,6 +16,9 @@ class SortMiddleware
     use RequestInfoExtractor;
     use ModelDataExtractor;
 
+    protected const QUERY_PARAMETER_NAME = "sortBy";
+    public const ATTRIBUTE_NAME = self::QUERY_PARAMETER_NAME.'Parameter';
+
     /**
      * Handle the sortBy query parameter
      * sortBy=asc(column1),desc(column2)
@@ -27,7 +30,7 @@ class SortMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $sortByQueryParam = $request->query("sortBy");
+        $sortByQueryParam = $request->query(self::QUERY_PARAMETER_NAME);
         if (!$sortByQueryParam)
             return $next($request);
 
@@ -59,7 +62,7 @@ class SortMiddleware
             $sortParams[] = [$column, $order];
         }
 
-        $request->attributes->add(['sortParams' => $sortParams]);
+        $request->attributes->add([self::ATTRIBUTE_NAME => $sortParams]);
 
         return $next($request);
     }

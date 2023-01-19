@@ -14,6 +14,8 @@ class FilterMiddleware
 {
     use RequestInfoExtractor;
 
+    public const ATTRIBUTE_NAME = 'filterParameter';
+
     /**
      * Handle the filtering query parameters
      * column1[lte]=10?column1[gte]=12
@@ -58,7 +60,7 @@ class FilterMiddleware
             }
         }
 
-        $request->attributes->add(['filtersParams' => $filtersParams]);
+        $request->attributes->add([self::ATTRIBUTE_NAME => $filtersParams]);
 
         return $next($request);
     }

@@ -15,6 +15,9 @@ class IncludeRelationMiddleware
     use RequestInfoExtractor;
     use ModelDataExtractor;
 
+    protected const QUERY_PARAMETER_NAME = "includeRelations";
+    public const ATTRIBUTE_NAME = self::QUERY_PARAMETER_NAME.'Parameter';
+
     /**
      * Handle the includeRelations query parameter
      * includeRelations=relation1,relation2
@@ -26,7 +29,7 @@ class IncludeRelationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $includeRelationsQueryParam = $request->query("includeRelations");
+        $includeRelationsQueryParam = $request->query(self::QUERY_PARAMETER_NAME);
         if (!$includeRelationsQueryParam)
             return $next($request);
 
@@ -51,7 +54,7 @@ class IncludeRelationMiddleware
             $includeRelationParams[] = $include;
         }
 
-        $request->attributes->add(['includeRelationParams' => $includeRelationParams]);
+        $request->attributes->add([self::ATTRIBUTE_NAME => $includeRelationParams]);
 
         return $next($request);
     }
