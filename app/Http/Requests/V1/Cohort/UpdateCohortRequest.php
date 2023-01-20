@@ -4,7 +4,7 @@ namespace App\Http\Requests\V1\Cohort;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCohortRequest extends FormRequest
+class UpdateCohortRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,18 @@ class StoreCohortRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => ['required', 'string'],
             'formationId' => ['required', 'integer', 'exists:formations,id'],
         ];
+
+        if ($this->method() === 'PATCH') {
+            $rules = array_map(function($rule) {
+                return array_merge($rule, ['sometimes']);
+            }, $rules);
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation()

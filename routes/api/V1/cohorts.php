@@ -7,7 +7,6 @@ use App\Http\Middleware\IncludeRelationMiddleware;
 use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
-
 Route::prefix('cohorts')
     ->controller(CohortController::class)
     ->group(function() {
@@ -22,4 +21,10 @@ Route::prefix('cohorts')
         ->middleware(IncludeRelationMiddleware::class);
 
     Route::post('', 'store');
+
+    Route::put('{cohort}', 'update');
+
+    Route::patch('{cohort}', 'update');
+
+    Route::delete('{cohort}', 'destroy');
 });

@@ -28,7 +28,8 @@ class CourseController extends V1Controller
     }
 
     /**
-     * Insert a new course using the request data, returns the created course.
+     * Insert a new course using the request data.
+     * Returns the created course.
      *
      * @param StoreCourseRequest $request
      * @return CourseResource
@@ -39,7 +40,8 @@ class CourseController extends V1Controller
     }
 
     /**
-     * Update the specified course using the request data, returns the updated course.
+     * Update the specified course using the request data.
+     * Returns the updated course.
      * Works for both PUT and PATCH requests.
      *
      * @param UpdateCourseRequest $request
@@ -48,12 +50,17 @@ class CourseController extends V1Controller
      */
     public function update(UpdateCourseRequest $request, Course $course): CourseResource
     {
-        $course->update($request->all());
+        $data = $request->all();
+        if ($request->method() === 'PATCH')
+            $data = array_filter($data);
+
+        $course->update($data);
         return new CourseResource($course);
     }
 
     /**
      * Delete the specified course.
+     * Returns a 204 status.
      *
      * @param DestroyCourseRequest $request
      * @param Course $course

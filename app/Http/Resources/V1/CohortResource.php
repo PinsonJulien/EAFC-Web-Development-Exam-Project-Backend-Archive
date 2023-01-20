@@ -19,6 +19,7 @@ class CohortResource extends JsonResource
             'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'formation' => new FormationResource($this->formation),
             'members' => CohortMemberResource::collection($this->whenLoaded('members')),
         ];
     }

@@ -22,7 +22,12 @@ class Cohort extends Model
 
     protected $fillable = [
         'name',
+        'formation_id'
     ];
+
+    public function formation() {
+        return $this->belongsTo(Formation::class);
+    }
 
     public function members() {
         return $this->hasMany(CohortMember::class);

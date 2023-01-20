@@ -4,7 +4,7 @@ namespace App\Http\Requests\V1\Cohort;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCohortRequest extends FormRequest
+class DestroyCohortRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,7 @@ class StoreCohortRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'formationId' => ['required', 'integer', 'exists:formations,id'],
+            //
         ];
-    }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'formation_id' => $this->formationId,
-        ]);
     }
 }
