@@ -8,13 +8,16 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response as ResponseHttpErrors;
 
 class FilterMiddleware
 {
     use RequestInfoExtractor;
 
-    public const ATTRIBUTE_NAME = 'filterParameter';
+    protected const QUERY_PARAMETER_NAME = "filter";
+    public const ATTRIBUTE_NAME = self::QUERY_PARAMETER_NAME.'Parameter';
 
     /**
      * Handle the filtering query parameters
@@ -46,10 +49,24 @@ class FilterMiddleware
             foreach ($query as $operator => $value) {
                 $operatorClass = $operators->findByAbbreviation($operator);
 
-                if (!$operatorClass)
-                    return response()->json([
-                        'error' => 'filters: Invalid operator ['.$operator.'] for the column ['.$column.'].'
-                    ], 400);
+                $validator = Validator::make(
+                    [
+                        self::QUERY_PARAMETER_NAME => $operatorClass,
+                    ],
+                    [
+                        self::QUERY_PARAMETER_NAME => ['required:'],
+                    ],
+                    [
+                        'required' => 'The operator ['.$operator.'] does not exist for the column ['.$column.']'
+                    ]
+                );
+
+                if ($validator->fails())
+                    return response()->json(
+                        [
+                            "message" => $validator->messages()->first(),
+                            "errors" => $validator->messages()
+                        ], ResponseHttpErrors::HTTP_UNPROCESSABLE_ENTITY);
 
                 // Example : ['name', '=', 'value']
                 $filtersParams[] = [

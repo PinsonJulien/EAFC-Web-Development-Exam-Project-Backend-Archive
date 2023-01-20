@@ -9,6 +9,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\Response as ResponseHttpErrors;
 
 class IncludeRelationMiddleware
 {
@@ -46,10 +49,24 @@ class IncludeRelationMiddleware
         $includes = explode(',', $includeRelationsQueryParam);
 
         foreach ($includes as $include) {
-            if (!in_array($include, $modelRelations))
-                return response()->json([
-                    'error' => 'includeRelation: Invalid relation name ['.$include.'].'
-                ], 400);
+            $validator = Validator::make(
+                [
+                    self::QUERY_PARAMETER_NAME => $include,
+                ],
+                [
+                    self::QUERY_PARAMETER_NAME => Rule::in($modelRelations),
+                ],
+                [
+                    'in' => 'The [:input] relation does not exist.'
+                ]
+            );
+
+            if ($validator->fails())
+                return response()->json(
+                    [
+                        "message" => $validator->messages()->first(),
+                        "errors" => $validator->messages()
+                    ], ResponseHttpErrors::HTTP_UNPROCESSABLE_ENTITY);
 
             $includeRelationParams[] = $include;
         }
