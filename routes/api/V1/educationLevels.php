@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SortMiddleware;
 use App\Http\Middleware\IncludeRelationMiddleware;
 use App\Http\Middleware\FilterMiddleware;
+use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('educationLevels')
     ->controller(EducationLevelController::class)
@@ -13,9 +14,11 @@ Route::prefix('educationLevels')
     Route::get('', 'index')
         ->middleware(FilterMiddleware::class)
         ->middleware(SortMiddleware::class)
-        ->middleware(IncludeRelationMiddleware::class);
+        ->middleware(IncludeRelationMiddleware::class)
+        ->middleware(PaginationMiddleware::class);
 
-    Route::get('{educationLevel}', 'show')
+
+        Route::get('{educationLevel}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
 
     Route::post('', 'store');
