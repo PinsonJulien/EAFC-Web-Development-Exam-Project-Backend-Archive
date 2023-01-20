@@ -30,6 +30,10 @@ class Course extends Model
         'teacher_user_id'
     ];
 
+    protected $casts = [
+        'status' => 'boolean'
+    ];
+
     public function teacher() {
         return $this->belongsTo(User::class, 'teacher_user_id');
     }

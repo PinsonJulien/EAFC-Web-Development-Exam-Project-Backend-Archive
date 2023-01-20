@@ -21,5 +21,10 @@ Route::prefix('courses')
        ->middleware(IncludeRelationMiddleware::class);
 
    Route::post('', 'store');
+
+   Route::put('{course}', 'update');
+
+   Route::patch('{course}', 'update');
+
    Route::delete('{course}', 'destroy');
 });

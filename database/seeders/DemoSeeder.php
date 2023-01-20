@@ -20,8 +20,8 @@ class DemoSeeder extends Seeder
             EducationLevelSeeder::class,
             StatusSeeder::class,
 
-            // Administrator
-            // todo
+            // todo Administrator
+            // todo also add users for each roles, they have the role as their username.
 
             // Fake data for demo purpose.
             CountrySeeder::class,
