@@ -35,6 +35,11 @@
 									],
 									"query": [
 										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
 											"key": "status[eq]",
 											"value": "1",
 											"disabled": true
@@ -45,18 +50,18 @@
 											"disabled": true
 										},
 										{
-											"key": "name[l]",
-											"value": "D%",
+											"key": "sortBy",
+											"value": "asc(name)",
 											"disabled": true
 										},
 										{
-											"key": "includeFormations",
-											"value": "1",
+											"key": "includeRelations",
+											"value": "formations",
 											"disabled": true
 										},
 										{
-											"key": "includeGrades",
-											"value": "1",
+											"key": "pagination",
+											"value": "15",
 											"disabled": true
 										}
 									]
@@ -76,7 +81,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/courses/1?includeFormations=1&includeGrades=1",
+									"raw": "{{url}}/api/v1/courses/1",
 									"host": [
 										"{{url}}"
 									],
@@ -88,12 +93,9 @@
 									],
 									"query": [
 										{
-											"key": "includeFormations",
-											"value": "1"
-										},
-										{
-											"key": "includeGrades",
-											"value": "1"
+											"key": "includeRelations",
+											"value": "formations",
+											"disabled": true
 										}
 									]
 								}
@@ -201,6 +203,16 @@
 											"key": "name[l]",
 											"value": "D%",
 											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name),desc(iso)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
+											"disabled": true
 										}
 									]
 								}
@@ -284,7 +296,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/educationLevels?name[eq]=Master&includeFormations=true",
+									"raw": "{{url}}/api/v1/educationLevels",
 									"host": [
 										"{{url}}"
 									],
@@ -296,16 +308,23 @@
 									"query": [
 										{
 											"key": "name[eq]",
-											"value": "Master"
-										},
-										{
-											"key": "status[eq]",
-											"value": "1",
+											"value": "Master",
 											"disabled": true
 										},
 										{
-											"key": "includeFormations",
-											"value": "true"
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "formations",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
+											"disabled": true
 										}
 									]
 								}
@@ -324,7 +343,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/educationLevels/1?includeFormations=true",
+									"raw": "{{url}}/api/v1/educationLevels/1",
 									"host": [
 										"{{url}}"
 									],
@@ -336,8 +355,9 @@
 									],
 									"query": [
 										{
-											"key": "includeFormations",
-											"value": "true"
+											"key": "includeRelations",
+											"value": "formations",
+											"disabled": true
 										}
 									]
 								}
@@ -395,7 +415,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations?includeEnrollments=1",
+									"raw": "{{url}}/api/v1/formations",
 									"host": [
 										"{{url}}"
 									],
@@ -405,15 +425,6 @@
 										"formations"
 									],
 									"query": [
-										{
-											"key": "includeCourses",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeEnrollments",
-											"value": "1"
-										},
 										{
 											"key": "name[neq]",
 											"value": "Prof. Elyssa Weissnat",
@@ -427,6 +438,21 @@
 										{
 											"key": "educationLevelId[eq]",
 											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(name)",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "courses,enrollments",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
 											"disabled": true
 										}
 									]
@@ -446,7 +472,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations/1?includeEnrollments=1",
+									"raw": "{{url}}/api/v1/formations/1",
 									"host": [
 										"{{url}}"
 									],
@@ -458,13 +484,9 @@
 									],
 									"query": [
 										{
-											"key": "includeCourses",
-											"value": "true",
+											"key": "includeRelations",
+											"value": "courses,enrollments",
 											"disabled": true
-										},
-										{
-											"key": "includeEnrollments",
-											"value": "1"
 										}
 									]
 								}
@@ -548,7 +570,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts?includeMembers=1",
+									"raw": "{{url}}/api/v1/cohorts",
 									"host": [
 										"{{url}}"
 									],
@@ -559,18 +581,29 @@
 									],
 									"query": [
 										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
 											"key": "name[l]",
 											"value": "D%",
 											"disabled": true
 										},
 										{
-											"key": "includeMembers",
-											"value": "1"
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "members",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
+											"disabled": true
 										}
 									]
 								}
@@ -589,7 +622,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/1?includeMembers=1",
+									"raw": "{{url}}/api/v1/cohorts/1",
 									"host": [
 										"{{url}}"
 									],
@@ -601,8 +634,9 @@
 									],
 									"query": [
 										{
-											"key": "includeMembers",
-											"value": "1"
+											"key": "includeRelations",
+											"value": "members",
+											"disabled": true
 										}
 									]
 								}
@@ -672,26 +706,6 @@
 									],
 									"query": [
 										{
-											"key": "includeTeacherCourses",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeCohorts",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "includeEnrollments",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "includeGrades",
-											"value": "1",
-											"disabled": true
-										},
-										{
 											"key": "username[l]",
 											"value": "%mr%",
 											"disabled": true
@@ -704,6 +718,21 @@
 										{
 											"key": "status[eq]",
 											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(username)",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "teacherCourses,cohorts,enrollments,grades",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
 											"disabled": true
 										}
 									]
@@ -735,23 +764,8 @@
 									],
 									"query": [
 										{
-											"key": "includeTeacherCourses",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeCohorts",
-											"value": "true",
-											"disabled": true
-										},
-										{
-											"key": "includeEnrollments",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "includeGrades",
-											"value": "1",
+											"key": "includeRelations",
+											"value": "teacherCourses,cohorts,enrollments,grades",
 											"disabled": true
 										}
 									]
@@ -892,8 +906,18 @@
 											"disabled": true
 										},
 										{
-											"key": "includeUsers",
-											"value": "1",
+											"key": "includeRelations",
+											"value": "users",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
 											"disabled": true
 										}
 									]
@@ -913,7 +937,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/siteRoles/1?includeUsers=1",
+									"raw": "{{url}}/api/v1/siteRoles/1",
 									"host": [
 										"{{url}}"
 									],
@@ -925,8 +949,9 @@
 									],
 									"query": [
 										{
-											"key": "includeUsers",
-											"value": "1"
+											"key": "includeRelations",
+											"value": "users",
+											"disabled": true
 										}
 									]
 								}
@@ -1028,6 +1053,16 @@
 										{
 											"key": "createdAt[gt]",
 											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
 											"disabled": true
 										}
 									]
@@ -1156,6 +1191,16 @@
 										{
 											"key": "createdAt[gt]",
 											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(name)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "1",
 											"disabled": true
 										}
 									]
