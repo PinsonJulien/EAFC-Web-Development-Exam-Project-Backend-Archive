@@ -22,36 +22,20 @@ This repository is part of the web development project of my bachelor degree in 
 ## How to serve the project
 Run `php artisan serve`
 
-## Known issues
-None... yet !
-
-## Objectives
-- Setting up :
-  - models
-  - seeders
-  - factories
-  - controllers
-  - routes
-- Routes should be secured.
-
 ## Ideas
 - Calendar to deal with courses and formations being available multiple times (instead of updating each entry)
 - Tokens must have 24h limit of validity
-- Order by for each fields on all getAll's;
 
 ## Possible improvements
 - Dynamic api routing
   - get folders
   - path is name of the folder with a first lowercase
   - include routes from inside the folder
-- Controllers
-  - Allow to specify a number of elements per page.
-
-- Role seeder -> for each create users with the role;
-
-- Rework the user seeder to reuse the same set of create courses over the formations and users.
+- Improve seeders
 
 ## Todo
+- Todo's in the source code.
+- Users : Allow to update the picture, delete the previous one.
 - formations/addCourse (post ?)
 - formations/removeCourse (delete ?)
 - groups
@@ -59,16 +43,7 @@ None... yet !
   - user_group (user_id, group_id)
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
-
-don't allow adding the same person to the same cohort twice (via the respective custom Request)
-
-- Filters and sorting
-Using https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
-  - sorting
-    - sortBy
-  - filtering
-    - filterBy
-    - It could be possible to filter at least the count of many-to-many relations
+- don't allow adding the same person to the same cohort twice (via the respective custom Request)
 
 - Courses
   - when assigning a group to a course, only create grades for students.
