@@ -23,6 +23,7 @@ class CountryController extends V1Controller
     */
     public function show(Country $country): CountryResource
     {
+        $country = $this->applyIncludeRelationParameters($country, request());
         return new CountryResource($country);
     }
 

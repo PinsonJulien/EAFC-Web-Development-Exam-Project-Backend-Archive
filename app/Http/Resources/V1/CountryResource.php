@@ -18,6 +18,8 @@ class CountryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'iso' => $this->iso,
+            'nationalityUsers' => UserResource::collection($this->whenLoaded('nationalityUsers')),
+            'addressUsers' => UserResource::collection($this->whenLoaded('addressUsers')),
         ];
     }
 }
