@@ -7,6 +7,8 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\IncludeRelationMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 use App\Http\Middleware\SortMiddleware;
+use App\Traits\CSVUtils;
+use App\Traits\ModelDataExtractor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -16,16 +18,20 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 abstract class V1Controller extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use ModelDataExtractor;
+    use CSVUtils;
 
     protected string $model = "";
     protected string $resource = "";
 
     /**
-     * Generate a collection of a model
+     * Returns a collection of all values of the controller model.
+     * Accepted request parameters : filtering, sorting, including relations, pagination
      *
      * @param Request $request
      * @return ResourceCollection
@@ -43,6 +49,54 @@ abstract class V1Controller extends Controller
             $rows = $rows->get();
 
         return $this->resource::collection($rows);
+    }
+
+    /**
+     * Returns a stream to download the exported data.
+     * Accepted request parameters : filtering, sorting, extension
+     * Available extensions : CSV, JSON
+     *
+     * @param Request $request
+     * @return StreamedResponse
+     */
+    public function export(Request $request): StreamedResponse {
+        $datas = $this->model::query();
+        $datas = $this->applyFilterParameters($datas, $request);
+        $datas = $this->applySortParameters($datas, $request);
+        $datas = $datas->get();
+
+        $extension = $request->get('extension');
+        $fileName = class_basename($this->model).".".$extension;
+
+        // Return a generated streamed file depending on the extension.
+        return response()->streamDownload(function() use ($extension, $datas) {
+            switch ($extension) {
+                case 'json':
+                    echo $datas->toJson();
+                    break;
+
+                case 'csv':
+                    // Print all the columns
+                    $columns = $this->getModelColumns(new $this->model());
+
+                    $formattedColumns = array_map(function($column) {
+                        return $this->formatForCSV($column);
+                    }, $columns);
+
+                    echo implode(',', $formattedColumns)."\r\n";
+
+                    // Print all the data for each column.
+                    foreach ($datas as $data) {
+                        $rows = array_map(function($column) use ($data) {
+                            return $this->formatForCSV($data[$column]);
+                        }, $columns);
+
+                        echo implode(',', $rows)."\r\n";
+                    }
+
+                    break;
+            }
+        }, $fileName);
     }
 
     /**

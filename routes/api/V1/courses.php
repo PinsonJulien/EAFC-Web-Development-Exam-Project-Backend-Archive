@@ -17,6 +17,10 @@ Route::prefix('courses')
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
+   Route::get('/export', 'export')
+       ->middleware(FilterMiddleware::class)
+       ->middleware(SortMiddleware::class);
+
    Route::get('{course}', 'show')
        ->middleware(IncludeRelationMiddleware::class);
 

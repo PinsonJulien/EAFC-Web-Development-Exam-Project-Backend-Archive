@@ -34,6 +34,7 @@ Run `php artisan serve`
 - Improve seeders
 
 ## Todo
+- Export: Should deleted_at be included ? If yes, should export method ask the model to include deleted ?
 - Todo's in the source code.
 - Users : Allow to update the picture, delete the previous one.
 - formations/addCourse (post ?)
