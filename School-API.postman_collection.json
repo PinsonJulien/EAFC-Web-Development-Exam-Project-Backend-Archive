@@ -70,6 +70,59 @@
 							"response": []
 						},
 						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/courses/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"courses",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "status[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "by id",
 							"request": {
 								"method": "GET",
@@ -323,6 +376,59 @@
 							"response": []
 						},
 						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "%aus%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name),desc(iso)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "by id",
 							"request": {
 								"method": "GET",
@@ -535,6 +641,49 @@
 										{
 											"key": "pagination",
 											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/educationLevels/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"educationLevels",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "Master",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
 											"disabled": true
 										}
 									]
@@ -762,6 +911,59 @@
 										{
 											"key": "pagination",
 											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/formations/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"formations",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[neq]",
+											"value": "Prof. Elyssa Weissnat",
+											"disabled": true
+										},
+										{
+											"key": "status[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "educationLevelId[eq]",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
 											"disabled": true
 										}
 									]
@@ -1037,6 +1239,54 @@
 							"response": []
 						},
 						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "by id",
 							"request": {
 								"method": "GET",
@@ -1272,6 +1522,59 @@
 										{
 											"key": "pagination",
 											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/users/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"export"
+									],
+									"query": [
+										{
+											"key": "username[l]",
+											"value": "%mr%",
+											"disabled": true
+										},
+										{
+											"key": "educationLevelId[eq]",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "status[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(username)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
 											"disabled": true
 										}
 									]
@@ -1691,6 +1994,54 @@
 							"response": []
 						},
 						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/siteRoles/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"siteRoles",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "users",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "by id",
 							"request": {
 								"method": "GET",
@@ -1908,6 +2259,54 @@
 							"response": []
 						},
 						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "by id",
 							"request": {
 								"method": "GET",
@@ -2110,6 +2509,54 @@
 										{
 											"key": "pagination",
 											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/statuses/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
 											"disabled": true
 										}
 									]
