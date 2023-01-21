@@ -18,9 +18,14 @@ Route::prefix('siteRoles')
         ->middleware(PaginationMiddleware::class);
 
 
-        Route::get('{siteRole}', 'show')
+    Route::get('{siteRole}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
 
     Route::post('', 'store');
+
+    Route::put('{siteRole}', 'update');
+
+    Route::patch('{siteRole}', 'update');
+
     Route::delete('{siteRole}', 'destroy');
 });
