@@ -18,5 +18,10 @@ Route::prefix('cohortRoles')
     Route::get('{cohortRole}', 'show');
 
     Route::post('', 'store');
+
+    Route::put('{cohortRole}', 'update');
+
+    Route::patch('{cohortRole}', 'update');
+
     Route::delete('{cohortRole}', 'destroy');
 });
