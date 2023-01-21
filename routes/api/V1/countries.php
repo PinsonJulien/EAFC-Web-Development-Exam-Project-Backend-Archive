@@ -15,6 +15,10 @@ Route::prefix('countries')
         ->middleware(SortMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
+    Route::get('/export', 'export')
+        ->middleware(FilterMiddleware::class)
+        ->middleware(SortMiddleware::class);
+
     Route::get('{country}', 'show');
 
     Route::post('', 'store');

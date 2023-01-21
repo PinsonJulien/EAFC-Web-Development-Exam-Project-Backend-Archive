@@ -9,13 +9,21 @@ trait ModelDataExtractor
 {
     /**
      * Returns the model table columns.
+     * Hidden properties removed by default.
      *
      * @param Model $model
+     * @param bool $includeHidden
      * @return array
      */
-    protected function getModelColumns(Model $model): array {
+    protected function getModelColumns(Model $model, bool $includeHidden = false): array {
         $tableName = $model->getTable();
-        return Schema::getColumnListing($tableName);
+        $columns = Schema::getColumnListing($tableName);
+
+        // Remove all hidden properties.
+        if (!$includeHidden)
+            $columns = array_diff($columns, $model->getHidden());
+
+        return $columns;
     }
 
     /**

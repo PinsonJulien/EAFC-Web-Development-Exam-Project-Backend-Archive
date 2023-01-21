@@ -17,6 +17,10 @@ Route::prefix('educationLevels')
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
+    Route::get('/export', 'export')
+        ->middleware(FilterMiddleware::class)
+        ->middleware(SortMiddleware::class);
+
     Route::get('{educationLevel}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
 

@@ -17,6 +17,9 @@ Route::prefix('siteRoles')
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
+    Route::get('/export', 'export')
+        ->middleware(FilterMiddleware::class)
+        ->middleware(SortMiddleware::class);
 
     Route::get('{siteRole}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
