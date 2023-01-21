@@ -16,7 +16,7 @@ class CourseController extends V1Controller
     function __construct() {}
 
     /**
-     * Returns the specified course
+     * Returns the specified Course.
      *
      * @param  Course $course
      * @return CourseResource
@@ -28,8 +28,8 @@ class CourseController extends V1Controller
     }
 
     /**
-     * Insert a new course using the request data.
-     * Returns the created course.
+     * Insert a new Course using the request data.
+     * Returns the created Course.
      *
      * @param StoreCourseRequest $request
      * @return CourseResource
@@ -40,8 +40,8 @@ class CourseController extends V1Controller
     }
 
     /**
-     * Update the specified course using the request data.
-     * Returns the updated course.
+     * Update the specified Course using the request data.
+     * Returns the updated Course.
      * Works for both PUT and PATCH requests.
      *
      * @param UpdateCourseRequest $request
@@ -59,7 +59,7 @@ class CourseController extends V1Controller
     }
 
     /**
-     * Delete the specified course.
+     * Delete the specified Course.
      * Returns a 204 status.
      *
      * @param DestroyCourseRequest $request

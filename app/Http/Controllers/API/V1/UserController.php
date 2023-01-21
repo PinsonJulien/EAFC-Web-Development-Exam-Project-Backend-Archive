@@ -39,4 +39,7 @@ class UserController extends V1Controller
 
         return new UserResource(User::create($data));
     }
+
+    // todo User cannot edit their own role. (logged user != user we're try to change)
+
 }

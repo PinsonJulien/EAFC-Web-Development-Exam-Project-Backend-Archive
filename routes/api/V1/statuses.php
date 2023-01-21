@@ -15,8 +15,13 @@ Route::prefix('statuses')
         ->middleware(SortMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
-        Route::get('{status}', 'show');
+    Route::get('{status}', 'show');
 
     Route::post('', 'store');
+
+    Route::put('{status}', 'update');
+
+    Route::patch('{status}', 'update');
+
     Route::delete('{status}', 'destroy');
 });
