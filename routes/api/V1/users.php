@@ -17,9 +17,14 @@ Route::prefix('users')
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
-
-        Route::get('{user}', 'show')
+    Route::get('{user}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
 
     Route::post('', 'store');
+
+    Route::put('{user}', 'update');
+
+    Route::patch('{user}', 'update');
+
+    Route::delete('{user}', 'destroy');
 });

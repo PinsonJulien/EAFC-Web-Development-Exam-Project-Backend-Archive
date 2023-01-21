@@ -27,4 +27,21 @@ class SiteRole extends Model
     public function users() {
         return $this->hasMany(User::class);
     }
+
+    // Constants of all roles.
+    public const USER = 1;
+    public const SECRETARY = 2;
+    public const ADMINISTRATOR = 3;
+
+    public function isUser(): bool {
+        return $this->id === self::USER;
+    }
+
+    public function isSecretary(): bool {
+        return $this->id === self::SECRETARY;
+    }
+
+    public function isAdministrator(): bool {
+        return $this->id === self::ADMINISTRATOR;
+    }
 }

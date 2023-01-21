@@ -5,7 +5,7 @@ namespace App\Http\Requests\V1\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,8 +14,6 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // todo Do not allow to set the siteRoleId if not logged in. Must be admin.
-        // prohibited_if https://laravel.com/docs/9.x/validation#rule-prohibited-if
         return true;
     }
 
@@ -26,7 +24,7 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'username' => ['required', 'string', 'unique:users,username'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(8)],
@@ -41,6 +39,14 @@ class StoreUserRequest extends FormRequest
             'picture' => ['nullable', 'image'],
             'siteRoleId' => ['sometimes','required', 'integer', 'exists:site_roles,id,deleted_at,NULL'],
         ];
+
+        if ($this->method() === 'PATCH') {
+            $rules = array_map(function($rule) {
+                return array_merge($rule, ['sometimes']);
+            }, $rules);
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation()
@@ -51,5 +57,16 @@ class StoreUserRequest extends FormRequest
             'postal_code' => $this->postalCode,
             'site_role_id' => $this->siteRoleId,
         ]);
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        // Todo Cannot update delete if it's the only admin.
     }
 }

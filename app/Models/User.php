@@ -53,6 +53,17 @@ class User extends Authenticatable
         'address_country_id',
         'phone',
         'picture',
+        'site_role_id'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'birthdate' => 'date',
+        'email_verified_at' => 'datetime',
     ];
 
     /**
@@ -63,15 +74,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function nationality() {
