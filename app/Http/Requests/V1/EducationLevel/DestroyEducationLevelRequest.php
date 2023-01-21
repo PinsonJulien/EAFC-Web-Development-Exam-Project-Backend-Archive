@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1\Country;
+namespace App\Http\Requests\V1\EducationLevel;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCountryRequest extends FormRequest
+class DestroyEducationLevelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class StoreCountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'iso' => ['required', 'string', 'alpha', 'size:2'],
+            //
         ];
     }
 }

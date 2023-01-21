@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\V1\Country;
+namespace App\Http\Requests\V1\EducationLevel;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCountryRequest extends FormRequest
+class UpdateEducationLevelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,16 @@ class StoreCountryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => ['required', 'string'],
-            'iso' => ['required', 'string', 'alpha', 'size:2'],
         ];
+
+        if ($this->method() === 'PATCH') {
+            $rules = array_map(function($rule) {
+                return array_merge($rule, ['sometimes']);
+            }, $rules);
+        }
+
+        return $rules;
     }
 }

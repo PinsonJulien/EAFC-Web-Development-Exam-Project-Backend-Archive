@@ -17,9 +17,14 @@ Route::prefix('educationLevels')
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
-
-        Route::get('{educationLevel}', 'show')
+    Route::get('{educationLevel}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
 
     Route::post('', 'store');
+
+    Route::put('{educationLevel}', 'update');
+
+    Route::patch('{educationLevel}', 'update');
+
+    Route::delete('{educationLevel}', 'destroy');
 });
