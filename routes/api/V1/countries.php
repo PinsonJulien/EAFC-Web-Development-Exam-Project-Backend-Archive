@@ -18,4 +18,10 @@ Route::prefix('countries')
     Route::get('{country}', 'show');
 
     Route::post('', 'store');
+
+    Route::put('{country}', 'update');
+
+    Route::patch('{country}', 'update');
+
+    Route::delete('{country}', 'destroy');
 });
