@@ -24,8 +24,8 @@ class FormationResource extends JsonResource
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'courses' => CourseResource::collection($this->whenLoaded('courses')),
-            'students' => UserResource::collection($this->whenLoaded('students')),
             'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+            'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
         ];
     }
 }

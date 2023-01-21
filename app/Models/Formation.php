@@ -14,7 +14,7 @@ class Formation extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public const relationMethods = ['courses', 'enrollments',];
+    public const relationMethods = ['courses', 'enrollments', 'cohorts'];
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -50,5 +50,9 @@ class Formation extends Model
 
     public function enrollments() {
         return $this->hasMany(Enrollment::class)->with('user');
+    }
+
+    public function cohorts() {
+        return $this->hasMany(Cohort::class);
     }
 }
