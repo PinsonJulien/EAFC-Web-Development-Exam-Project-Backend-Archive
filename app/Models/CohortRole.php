@@ -12,6 +12,8 @@ class CohortRole extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const relationMethods = ['cohortMembers'];
+
     public const filterable = [
         'name' => StringOperators::class,
         'created_at' => DateOperators::class,
@@ -21,4 +23,8 @@ class CohortRole extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function cohortMembers() {
+        return $this->hasMany(CohortMember::class);
+    }
 }

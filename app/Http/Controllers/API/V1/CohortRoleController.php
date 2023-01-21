@@ -23,6 +23,7 @@ class CohortRoleController extends V1Controller
      */
     public function show(CohortRole $cohortRole): CohortRoleResource
     {
+        $cohortRole = $this->applyIncludeRelationParameters($cohortRole, request());
         return new CohortRoleResource($cohortRole);
     }
 
