@@ -7,6 +7,7 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\IncludeRelationMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 use App\Http\Middleware\SortMiddleware;
+use App\Http\Requests\V1\ExportRequest;
 use App\Traits\CSVUtils;
 use App\Traits\ModelDataExtractor;
 use Illuminate\Database\Eloquent\Model;
@@ -55,17 +56,19 @@ abstract class V1Controller extends Controller
      * Returns a stream to download the exported data.
      * Accepted request parameters : filtering, sorting, extension
      * Available extensions : CSV, JSON
+     * CSV is returned by default.
      *
-     * @param Request $request
+     * @param ExportRequest $request
      * @return StreamedResponse
      */
-    public function export(Request $request): StreamedResponse {
+    public function export(ExportRequest $request): StreamedResponse {
         $datas = $this->model::query();
         $datas = $this->applyFilterParameters($datas, $request);
         $datas = $this->applySortParameters($datas, $request);
         $datas = $datas->get();
 
-        $extension = $request->get('extension');
+        // CSV by default
+        $extension = $request->get('extension') ?? 'csv';
         $fileName = class_basename($this->model).".".$extension;
 
         // Return a generated streamed file depending on the extension.
