@@ -25,7 +25,7 @@ class StoreCohortRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'formationId' => ['required', 'integer', 'exists:formations,id'],
+            'formationId' => ['required', 'integer', 'exists:formations,id,deleted_at,NULL'],
         ];
     }
 

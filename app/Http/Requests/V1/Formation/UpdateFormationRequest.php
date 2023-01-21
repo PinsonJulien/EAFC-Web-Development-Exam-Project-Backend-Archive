@@ -4,7 +4,7 @@ namespace App\Http\Requests\V1\Formation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFormationRequest extends FormRequest
+class UpdateFormationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,21 @@ class StoreFormationRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => ['required', 'string'],
             'status' => ['required', 'boolean'],
             'startDate' => ['nullable', 'date'],
             'endDate' => ['nullable', 'date'],
             'educationLevelId' => ['nullable', 'integer', 'exists:education_levels,id,deleted_at,NULL'],
         ];
+
+        if ($this->method() === 'PATCH') {
+            $rules = array_map(function($rule) {
+                return array_merge($rule, ['sometimes']);
+            }, $rules);
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation()

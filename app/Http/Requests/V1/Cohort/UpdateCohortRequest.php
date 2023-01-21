@@ -25,7 +25,7 @@ class UpdateCohortRequest extends FormRequest
     {
         $rules = [
             'name' => ['required', 'string'],
-            'formationId' => ['required', 'integer', 'exists:formations,id'],
+            'formationId' => ['required', 'integer', 'exists:formations,id,deleted_at,NULL'],
         ];
 
         if ($this->method() === 'PATCH') {

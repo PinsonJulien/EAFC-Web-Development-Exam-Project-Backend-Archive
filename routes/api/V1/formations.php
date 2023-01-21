@@ -17,9 +17,14 @@ Route::prefix('formations')
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
-        Route::get('{formation}', 'show')
+    Route::get('{formation}', 'show')
         ->middleware(IncludeRelationMiddleware::class);
 
     Route::post('', 'store');
+
+    Route::put('{formation}', 'update');
+
+    Route::patch('{formation}', 'update');
+
     Route::delete('{formation}', 'destroy');
 });

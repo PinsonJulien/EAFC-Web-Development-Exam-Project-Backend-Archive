@@ -26,7 +26,7 @@ class UpdateCourseRequest extends FormRequest
         $rules = [
             'name' => ['required', 'string'],
             'status' => ['required', 'boolean'],
-            'teacherUserId' => ['nullable', 'integer', 'exists:users,id']
+            'teacherUserId' => ['nullable', 'integer', 'exists:users,id,deleted_at,NULL']
         ];
 
         if ($this->method() === 'PATCH') {

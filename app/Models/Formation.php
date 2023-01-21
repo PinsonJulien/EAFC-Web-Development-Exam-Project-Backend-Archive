@@ -34,6 +34,12 @@ class Formation extends Model
         'education_level_id',
     ];
 
+    protected $casts = [
+        'status' => 'boolean',
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
     public function educationLevel() {
         return $this->belongsTo(EducationLevel::class);
     }
