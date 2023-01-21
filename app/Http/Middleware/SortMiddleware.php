@@ -2,17 +2,16 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Responses\Errors\ValidatorErrorResponse;
 use App\Traits\ModelDataExtractor;
 use App\Traits\RequestInfoExtractor;
 use Closure;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Symfony\Component\HttpFoundation\Response as ResponseHttpErrors;
 
 class SortMiddleware
 {
@@ -29,7 +28,7 @@ class SortMiddleware
      *
      * @param Request $request
      * @param  Closure(Request): (Response|RedirectResponse)  $next
-     * @return Response|RedirectResponse|JsonResponse
+     * @return Response|RedirectResponse|ValidatorErrorResponse
      */
     public function handle(Request $request, Closure $next)
     {
@@ -60,11 +59,7 @@ class SortMiddleware
             );
 
             if ($validator->fails())
-                return response()->json(
-                    [
-                        "message" => $validator->messages()->first(),
-                        "errors" => $validator->messages()
-                    ], ResponseHttpErrors::HTTP_UNPROCESSABLE_ENTITY);
+                return new ValidatorErrorResponse($validator);
 
             list($order, $column) = explode('(', $sort);
             $order = trim($order);
@@ -85,11 +80,7 @@ class SortMiddleware
             );
 
             if ($validator->fails())
-                return response()->json(
-                    [
-                        "message" => $validator->messages()->first(),
-                        "errors" => $validator->messages()
-                    ], ResponseHttpErrors::HTTP_UNPROCESSABLE_ENTITY);
+                return new ValidatorErrorResponse($validator);
 
             $sortParams[] = [$column, $order];
         }
