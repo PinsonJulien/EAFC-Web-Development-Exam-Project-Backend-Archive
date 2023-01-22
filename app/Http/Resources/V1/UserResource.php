@@ -35,6 +35,7 @@ class UserResource extends JsonResource
             'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
             'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
             'grades' => GradeResource::collection($this->whenLoaded('grades')),
+            'memberships' => CohortMemberResource::collection($this->whenLoaded('memberships')),
         ];
     }
 }

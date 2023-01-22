@@ -25,6 +25,7 @@ class CohortRole extends Model
     ];
 
     public function cohortMembers() {
-        return $this->hasMany(CohortMember::class);
+        return $this->hasMany(CohortMember::class)
+            ->with(['cohort', 'user']);
     }
 }

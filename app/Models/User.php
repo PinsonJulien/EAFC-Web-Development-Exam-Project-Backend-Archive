@@ -16,7 +16,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    public const relationMethods = ['teacherCourses', 'cohorts', 'enrollments', 'grades'];
+    public const relationMethods = ['teacherCourses', 'cohorts', 'enrollments', 'grades', 'memberships'];
 
     public const filterable = [
         'username' => StringOperators::class,
@@ -90,6 +90,11 @@ class User extends Authenticatable
 
     public function cohorts() {
         return $this->belongsToMany(Cohort::class, 'cohort_members');
+    }
+
+    public function memberships() {
+        return $this->hasMany(CohortMember::class)
+            ->with('cohort');
     }
 
     public function siteRole() {
