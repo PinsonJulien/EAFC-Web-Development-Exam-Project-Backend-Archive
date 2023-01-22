@@ -7,9 +7,12 @@ use App\Http\Requests\V1\Formation\StoreFormationRequest;
 use App\Http\Requests\V1\Formation\UpdateFormationRequest;
 use App\Http\Resources\V1\Formation\FormationResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Errors\NotFoundErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
+use App\Models\Course;
 use App\Models\Formation;
 use App\Models\FormationCourse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
@@ -76,15 +79,23 @@ class FormationController extends V1Controller
         return $this->commonDestroy($request, $formation);
     }
 
-    /** Relations **/
+    /** Relation methods **/
 
-    public function storeCourse(StoreCourseFormationRequest $request, Formation $formation) {
+    /**
+     * Insert a specific Course to the specified Formation using the pivot table.
+     *
+     * @param StoreCourseFormationRequest $request
+     * @param Formation $formation
+     * @return ConflictErrorResponse|JsonResponse
+     */
+    public function storeCourse(StoreCourseFormationRequest $request, Formation $formation): ConflictErrorResponse|JsonResponse
+    {
         $courseId = $request->get('course_id');
 
         if ($formation->courses->contains($courseId)) {
             $message = "The course [".$courseId."] is already related to the formation [".$formation->id."].";
             $errors = [
-                'courseId' => $message,
+                'course' => $message,
             ];
 
             return new ConflictErrorResponse($message, $errors);
@@ -94,5 +105,29 @@ class FormationController extends V1Controller
 
         $resource = new FormationResource($formation->loadMissing('courses'));
         return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
+    }
+
+    /**
+     * Remove a specific Course in the specified Formation using the pivot table.
+     *
+     * @param Request $request
+     * @param Formation $formation
+     * @param Course $course
+     * @return NotFoundErrorResponse|NoContentSuccessResponse
+     */
+    public function destroyCourse(Request $request, Formation $formation, Course $course): NotFoundErrorResponse|NoContentSuccessResponse
+    {
+        if (!$formation->courses->contains($course)) {
+            $message = "The course [".$course->id."] was not found for the formation [".$formation->id."].";
+            $errors = [
+                'course' => $message,
+            ];
+
+            return new NotFoundErrorResponse($message, $errors);
+        }
+
+        $formation->courses()->detach($course);
+
+        return new NoContentSuccessResponse();
     }
 }
