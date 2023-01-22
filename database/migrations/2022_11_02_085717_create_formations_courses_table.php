@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('formations_courses', function (Blueprint $table) {
             $table->foreignIdFor(Formation::class);
             $table->foreignIdFor(Course::class);
+            $table->timestamps();
             $table->softDeletes();
         });
     }
