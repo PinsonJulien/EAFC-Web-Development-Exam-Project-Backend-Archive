@@ -10,6 +10,852 @@
 			"name": "V1",
 			"item": [
 				{
+					"name": "Cohorts",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "cohortMembers",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts",
+										"1"
+									],
+									"query": [
+										{
+											"key": "includeRelations",
+											"value": "cohortMembers",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "formationId",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "formationId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "formationId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohorts/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohorts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cohort roles",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "cohortMembers",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"1"
+									],
+									"query": [
+										{
+											"key": "includeRelations",
+											"value": "cohortMembers",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/cohortRoles/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cohortRoles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Countries",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "%aus%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name),desc(iso)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "nationalityUsers,addressUsers",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[l]",
+											"value": "%aus%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "name[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(name),desc(iso)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"1"
+									],
+									"query": [
+										{
+											"key": "includeRelations",
+											"value": "nationalityUsers,addressUsers",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Belgium\",\r\n    \"iso\": \"BE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/countries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "iso",
+											"value": "aa",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/countries/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "iso",
+											"value": "aa",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/countries/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/countries/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"countries",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Courses",
 					"item": [
 						{
@@ -312,296 +1158,6 @@
 										"api",
 										"v1",
 										"courses",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Countries",
-					"item": [
-						{
-							"name": "all",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/countries",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries"
-									],
-									"query": [
-										{
-											"key": "name[l]",
-											"value": "%aus%",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "name[l]",
-											"value": "D%",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "asc(name),desc(iso)",
-											"disabled": true
-										},
-										{
-											"key": "pagination",
-											"value": "2",
-											"disabled": true
-										},
-										{
-											"key": "includeRelations",
-											"value": "nationalityUsers,addressUsers",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "export",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/countries/export",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries",
-										"export"
-									],
-									"query": [
-										{
-											"key": "name[l]",
-											"value": "%aus%",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "name[l]",
-											"value": "D%",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "asc(name),desc(iso)",
-											"disabled": true
-										},
-										{
-											"key": "extension",
-											"value": "json",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "by id",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/countries/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries",
-										"1"
-									],
-									"query": [
-										{
-											"key": "includeRelations",
-											"value": "nationalityUsers,addressUsers",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Belgium\",\r\n    \"iso\": \"BE\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/countries",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										},
-										{
-											"key": "iso",
-											"value": "aa",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/countries/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										},
-										{
-											"key": "iso",
-											"value": "aa",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/countries/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/countries/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"countries",
 										"1"
 									]
 								}
@@ -1195,7 +1751,7 @@
 					]
 				},
 				{
-					"name": "Cohorts",
+					"name": "Site roles",
 					"item": [
 						{
 							"name": "all",
@@ -1209,19 +1765,19 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts",
+									"raw": "{{url}}/api/v1/siteRoles",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts"
+										"siteRoles"
 									],
 									"query": [
 										{
-											"key": "name[l]",
-											"value": "D%",
+											"key": "name[eq]",
+											"value": "1",
 											"disabled": true
 										},
 										{
@@ -1230,13 +1786,13 @@
 											"disabled": true
 										},
 										{
-											"key": "sortBy",
-											"value": "asc(name)",
+											"key": "includeRelations",
+											"value": "users",
 											"disabled": true
 										},
 										{
-											"key": "includeRelations",
-											"value": "members",
+											"key": "sortBy",
+											"value": "asc(name)",
 											"disabled": true
 										},
 										{
@@ -1261,20 +1817,20 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/export",
+									"raw": "{{url}}/api/v1/siteRoles/export",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts",
+										"siteRoles",
 										"export"
 									],
 									"query": [
 										{
-											"key": "name[l]",
-											"value": "D%",
+											"key": "name[eq]",
+											"value": "1",
 											"disabled": true
 										},
 										{
@@ -1283,8 +1839,8 @@
 											"disabled": true
 										},
 										{
-											"key": "sortBy",
-											"value": "asc(name)",
+											"key": "includeRelations",
+											"value": "users",
 											"disabled": true
 										},
 										{
@@ -1309,20 +1865,20 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/1",
+									"raw": "{{url}}/api/v1/siteRoles/1",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts",
+										"siteRoles",
 										"1"
 									],
 									"query": [
 										{
 											"key": "includeRelations",
-											"value": "members",
+											"value": "users",
 											"disabled": true
 										}
 									]
@@ -1342,29 +1898,49 @@
 									}
 								],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										},
-										{
-											"key": "formationId",
-											"value": "2",
-											"type": "text"
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts",
+									"raw": "{{url}}/api/v1/siteRoles",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts"
+										"siteRoles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/siteRoles/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"siteRoles",
+										"1"
 									]
 								}
 							},
@@ -1386,25 +1962,20 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "test",
-											"type": "text"
-										},
-										{
-											"key": "formationId",
-											"value": "1",
+											"value": "test2",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/1",
+									"raw": "{{url}}/api/v1/siteRoles/1",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts",
+										"siteRoles",
 										"1"
 									]
 								}
@@ -1429,24 +2000,191 @@
 											"key": "name",
 											"value": "test",
 											"type": "text"
-										},
-										{
-											"key": "formationId",
-											"value": "1",
-											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/1",
+									"raw": "{{url}}/api/v1/siteRoles/2",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts",
+										"siteRoles",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Statuses",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/statuses",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(name)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "enrollments",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/statuses/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses",
+										"export"
+									],
+									"query": [
+										{
+											"key": "name[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "desc(name)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/statuses/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses",
 										"1"
+									],
+									"query": [
+										{
+											"key": "includeRelations",
+											"value": "enrollments",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/statuses",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses"
 									]
 								}
 							},
@@ -1464,14 +2202,86 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/cohorts/1",
+									"raw": "{{url}}/api/v1/statuses/1",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"v1",
-										"cohorts",
+										"statuses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/statuses/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/statuses/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"statuses",
 										"1"
 									]
 								}
@@ -1527,7 +2337,7 @@
 										},
 										{
 											"key": "includeRelations",
-											"value": "teacherCourses,cohorts,enrollments,grades,memberships",
+											"value": "teacherCourses,enrollments,grades,cohortMembers",
 											"disabled": true
 										},
 										{
@@ -1605,7 +2415,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/1",
+									"raw": "{{url}}/api/v1/users/10",
 									"host": [
 										"{{url}}"
 									],
@@ -1613,12 +2423,12 @@
 										"api",
 										"v1",
 										"users",
-										"1"
+										"10"
 									],
 									"query": [
 										{
 											"key": "includeRelations",
-											"value": "teacherCourses,cohorts,enrollments,grades,memberships",
+											"value": "teacherCourses,enrollments,grades,cohortMembers",
 											"disabled": true
 										}
 									]
@@ -1941,804 +2751,6 @@
 										"api",
 										"v1",
 										"users",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Site roles",
-					"item": [
-						{
-							"name": "all",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles"
-									],
-									"query": [
-										{
-											"key": "name[eq]",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "includeRelations",
-											"value": "users",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "asc(name)",
-											"disabled": true
-										},
-										{
-											"key": "pagination",
-											"value": "2",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "export",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles/export",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles",
-										"export"
-									],
-									"query": [
-										{
-											"key": "name[eq]",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "includeRelations",
-											"value": "users",
-											"disabled": true
-										},
-										{
-											"key": "extension",
-											"value": "json",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "by id",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles",
-										"1"
-									],
-									"query": [
-										{
-											"key": "includeRelations",
-											"value": "users",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"test\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles/4",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles",
-										"4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test2",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/siteRoles/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"siteRoles",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Cohort roles",
-					"item": [
-						{
-							"name": "all",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles"
-									],
-									"query": [
-										{
-											"key": "name[eq]",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "asc(name)",
-											"disabled": true
-										},
-										{
-											"key": "pagination",
-											"value": "2",
-											"disabled": true
-										},
-										{
-											"key": "includeRelations",
-											"value": "cohortMembers",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "export",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles/export",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles",
-										"export"
-									],
-									"query": [
-										{
-											"key": "name[eq]",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "asc(name)",
-											"disabled": true
-										},
-										{
-											"key": "extension",
-											"value": "json",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "by id",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles",
-										"1"
-									],
-									"query": [
-										{
-											"key": "includeRelations",
-											"value": "cohortMembers",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"test\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles/4",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles",
-										"4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/cohortRoles/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"cohortRoles",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Statuses",
-					"item": [
-						{
-							"name": "all",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/statuses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses"
-									],
-									"query": [
-										{
-											"key": "name[eq]",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "desc(name)",
-											"disabled": true
-										},
-										{
-											"key": "pagination",
-											"value": "1",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "export",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/statuses/export",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses",
-										"export"
-									],
-									"query": [
-										{
-											"key": "name[eq]",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "createdAt[gt]",
-											"value": "2022-10-28T22:48:26.000000Z",
-											"disabled": true
-										},
-										{
-											"key": "sortBy",
-											"value": "desc(name)",
-											"disabled": true
-										},
-										{
-											"key": "extension",
-											"value": "json",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "by id",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/statuses/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"test\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/statuses",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/api/v1/statuses/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/statuses/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "test",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/statuses/1",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"statuses",
 										"1"
 									]
 								}
