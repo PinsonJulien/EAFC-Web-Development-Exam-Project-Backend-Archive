@@ -56,7 +56,7 @@
 										},
 										{
 											"key": "includeRelations",
-											"value": "formations",
+											"value": "formations,grades",
 											"disabled": true
 										},
 										{
@@ -147,7 +147,7 @@
 									"query": [
 										{
 											"key": "includeRelations",
-											"value": "formations",
+											"value": "formations,grades",
 											"disabled": true
 										}
 									]
@@ -369,6 +369,11 @@
 											"key": "pagination",
 											"value": "2",
 											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "nationalityUsers,addressUsers",
+											"disabled": true
 										}
 									]
 								}
@@ -449,6 +454,13 @@
 										"v1",
 										"countries",
 										"1"
+									],
+									"query": [
+										{
+											"key": "includeRelations",
+											"value": "nationalityUsers,addressUsers",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -873,7 +885,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/formations",
+									"raw": "{{url}}/api/v1/formations?includeRelations=courses,enrollments,cohorts",
 									"host": [
 										"{{url}}"
 									],
@@ -905,8 +917,7 @@
 										},
 										{
 											"key": "includeRelations",
-											"value": "courses,enrollments",
-											"disabled": true
+											"value": "courses,enrollments,cohorts"
 										},
 										{
 											"key": "pagination",
@@ -996,7 +1007,7 @@
 									"query": [
 										{
 											"key": "includeRelations",
-											"value": "courses,enrollments",
+											"value": "courses,enrollments,cohorts",
 											"disabled": true
 										}
 									]
@@ -1516,7 +1527,7 @@
 										},
 										{
 											"key": "includeRelations",
-											"value": "teacherCourses,cohorts,enrollments,grades",
+											"value": "teacherCourses,cohorts,enrollments,grades,memberships",
 											"disabled": true
 										},
 										{
@@ -1607,7 +1618,7 @@
 									"query": [
 										{
 											"key": "includeRelations",
-											"value": "teacherCourses,cohorts,enrollments,grades",
+											"value": "teacherCourses,cohorts,enrollments,grades,memberships",
 											"disabled": true
 										}
 									]
@@ -2252,6 +2263,11 @@
 											"key": "pagination",
 											"value": "2",
 											"disabled": true
+										},
+										{
+											"key": "includeRelations",
+											"value": "cohortMembers",
+											"disabled": true
 										}
 									]
 								}
@@ -2327,6 +2343,13 @@
 										"v1",
 										"cohortRoles",
 										"1"
+									],
+									"query": [
+										{
+											"key": "includeRelations",
+											"value": "cohortMembers",
+											"disabled": true
+										}
 									]
 								}
 							},
