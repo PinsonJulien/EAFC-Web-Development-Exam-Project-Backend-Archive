@@ -14,6 +14,8 @@ class Status extends Model
 
     protected $table = 'statuses';
 
+    public const relationMethods = ['enrollments',];
+
     public const filterable = [
         'name' => StringOperators::class,
         'created_at' => DateOperators::class,
@@ -23,4 +25,9 @@ class Status extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function enrollments() {
+        return $this->hasMany(Enrollment::class)
+            ->with(['user', 'formation']);
+    }
 }

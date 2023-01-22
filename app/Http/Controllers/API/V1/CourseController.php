@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\Course\DestroyCourseRequest;
 use App\Http\Requests\V1\Course\UpdateCourseRequest;
 use App\Http\Requests\V1\Course\StoreCourseRequest;
 use App\Http\Resources\V1\CourseResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -64,9 +65,10 @@ class CourseController extends V1Controller
      *
      * @param Request $request
      * @param Course $course
-     * @return \App\Http\Responses\Errors\ConflictErrorResponse|\App\Http\Responses\Successes\NoContentSuccessResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(Request $request, Course $course) {
+    public function destroy(Request $request, Course $course): NoContentSuccessResponse|ConflictErrorResponse
+    {
         return $this->commonDestroy($request, $course);
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\SiteRole\DestroySiteRoleRequest;
 use App\Http\Requests\V1\SiteRole\StoreSiteRoleRequest;
 use App\Http\Requests\V1\SiteRole\UpdateSiteRoleRequest;
 use App\Http\Resources\V1\SiteRoleResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;
+use Illuminate\Http\Request;
 
 class SiteRoleController extends V1Controller
 {
@@ -60,14 +62,13 @@ class SiteRoleController extends V1Controller
 
     /**
      * Delete the specified SiteRole.
-     * Returns a 204 status.
      *
-     * @param DestroySiteRoleRequest $request
+     * @param Request $request
      * @param SiteRole $siteRole
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroySiteRoleRequest $request, SiteRole $siteRole) {
-        $siteRole->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, SiteRole $siteRole): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        return $this->commonDestroy($request, $siteRole);
     }
 }

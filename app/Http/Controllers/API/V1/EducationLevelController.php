@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\EducationLevel\DestroyEducationLevelRequest;
 use App\Http\Requests\V1\EducationLevel\StoreEducationLevelRequest;
 use App\Http\Requests\V1\EducationLevel\UpdateEducationLevelRequest;
 use App\Http\Resources\V1\EducationLevelResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\EducationLevel;
+use Illuminate\Http\Request;
 
 class EducationLevelController extends V1Controller
 {
@@ -60,14 +62,13 @@ class EducationLevelController extends V1Controller
 
     /**
      * Delete the specified EducationLevel.
-     * Returns a 204 status.
      *
-     * @param DestroyEducationLevelRequest $request
+     * @param Request $request
      * @param EducationLevel $educationLevel
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroyEducationLevelRequest $request, EducationLevel $educationLevel) {
-        $educationLevel->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, EducationLevel $educationLevel): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        return $this->commonDestroy($request, $educationLevel);
     }
 }

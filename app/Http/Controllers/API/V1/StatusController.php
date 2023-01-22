@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\Status\DestroyStatusRequest;
 use App\Http\Requests\V1\Status\StoreStatusRequest;
 use App\Http\Requests\V1\Status\UpdateStatusRequest;
 use App\Http\Resources\V1\StatusResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Status;
+use Illuminate\Http\Request;
 
 class StatusController extends V1Controller
 {
@@ -24,6 +26,7 @@ class StatusController extends V1Controller
      */
     public function show(Status $status): StatusResource
     {
+        $status = $this->applyIncludeRelationParameters($status, request());
         return new StatusResource($status);
     }
 
@@ -60,14 +63,13 @@ class StatusController extends V1Controller
 
     /**
      * Delete the specified Status.
-     * Returns a 204 status.
      *
-     * @param DestroyStatusRequest $request
+     * @param Request $request
      * @param Status $status
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroyStatusRequest $request, Status $status) {
-        $status->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, Status $status): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        return $this->commonDestroy($request, $status);
     }
 }

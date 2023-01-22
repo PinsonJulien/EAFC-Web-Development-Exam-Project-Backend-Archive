@@ -35,6 +35,7 @@ Run `php artisan serve`
 
 ## Todo
 - Export: Should deleted_at be included ? If yes, should export method ask the model to include deleted ?
+- User: Should delete user check the foreign keys ? Should remove the picture from storage ?
 - Todo's in the source code.
 - Users : Allow to update the picture, delete the previous one.
 - formations/addCourse (post ?)

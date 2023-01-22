@@ -14,6 +14,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
+        // todo User cannot edit their own role. (logged user != user we're try to change)
         return true;
     }
 

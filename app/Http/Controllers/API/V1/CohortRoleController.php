@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\CohortRole\DestroyCohortRoleRequest;
 use App\Http\Requests\V1\CohortRole\StoreCohortRoleRequest;
 use App\Http\Requests\V1\CohortRole\UpdateCohortRoleRequest;
 use App\Http\Resources\V1\CohortRoleResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\CohortRole;
+use Illuminate\Http\Request;
 
 class CohortRoleController extends V1Controller
 {
@@ -60,14 +62,13 @@ class CohortRoleController extends V1Controller
 
     /**
      * Delete the specified CohortRole.
-     * Returns a 204 status.
      *
-     * @param DestroyCohortRoleRequest $request
+     * @param Request $request
      * @param CohortRole $cohortRole
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroyCohortRoleRequest $request, CohortRole $cohortRole) {
-        $cohortRole->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, CohortRole $cohortRole): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        return $this->commonDestroy($request, $cohortRole);
     }
 }

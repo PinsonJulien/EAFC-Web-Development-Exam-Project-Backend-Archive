@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\User\DestroyUserRequest;
 use App\Http\Requests\V1\User\StoreUserRequest;
 use App\Http\Requests\V1\User\UpdateUserRequest;
 use App\Http\Resources\V1\UserResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -74,15 +75,15 @@ class UserController extends V1Controller
 
     /**
      * Delete the specified User.
-     * Returns a 204 status.
      *
-     * @param DestroyUserRequest $request
+     * @param Request $request
      * @param User $user
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroyUserRequest $request, User $user) {
-        $user->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, User $user): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        // todo Maybe remove picture after successful delete (check if response is NoContent, return it later.)
+        return $this->commonDestroy($request, $user);
     }
 
     /**

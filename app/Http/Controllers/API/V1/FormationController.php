@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\Formation\DestroyFormationRequest;
 use App\Http\Requests\V1\Formation\StoreFormationRequest;
 use App\Http\Requests\V1\Formation\UpdateFormationRequest;
 use App\Http\Resources\V1\FormationResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Formation;
+use Illuminate\Http\Request;
 
 class FormationController extends V1Controller
 {
@@ -60,14 +62,13 @@ class FormationController extends V1Controller
 
     /**
      * Delete the specified Formation.
-     * Returns a 204 status.
      *
-     * @param DestroyFormationRequest $request
+     * @param Request $request
      * @param Formation $formation
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroyFormationRequest $request, Formation $formation) {
-        $formation->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, Formation $formation): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        return $this->commonDestroy($request, $formation);
     }
 }

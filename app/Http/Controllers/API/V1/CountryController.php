@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\Country\DestroyCountryRequest;
 use App\Http\Requests\V1\Country\StoreCountryRequest;
 use App\Http\Requests\V1\Country\UpdateCountryRequest;
 use App\Http\Resources\V1\CountryResource;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Country;
+use Illuminate\Http\Request;
 
 class CountryController extends V1Controller
 {
@@ -60,14 +62,13 @@ class CountryController extends V1Controller
 
     /**
      * Delete the specified Country.
-     * Returns a 204 status.
      *
-     * @param DestroyCountryRequest $request
+     * @param Request $request
      * @param Country $country
-     * @return \Illuminate\Http\JsonResponse
+     * @return ConflictErrorResponse|NoContentSuccessResponse
      */
-    public function destroy(DestroyCountryRequest $request, Country $country) {
-        $country->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, Country $country): NoContentSuccessResponse|ConflictErrorResponse
+    {
+        return $this->commonDestroy($request, $country);
     }
 }
