@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\Status\StoreStatusRequest;
 use App\Http\Requests\V1\Status\UpdateStatusRequest;
-use App\Http\Resources\V1\StatusResource;
+use App\Http\Resources\V1\Status\StatusResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Status;

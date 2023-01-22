@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\User\StoreUserRequest;
 use App\Http\Requests\V1\User\UpdateUserRequest;
-use App\Http\Resources\V1\UserResource;
+use App\Http\Resources\V1\User\UserResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;

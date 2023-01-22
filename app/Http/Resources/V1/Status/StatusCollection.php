@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Status;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class SiteRoleCollection extends ResourceCollection
+class StatusCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.

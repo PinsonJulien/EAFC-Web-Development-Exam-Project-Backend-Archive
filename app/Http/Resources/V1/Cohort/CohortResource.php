@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Cohort;
 
+use App\Http\Resources\V1\CohortMember\CohortMemberResource;
+use App\Http\Resources\V1\Formation\FormationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CourseResource extends JsonResource
+class CohortResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +19,10 @@ class CourseResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'status' => $this->status,
-            'teacher' => new UserResource($this->teacher),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'formations' => FormationResource::collection($this->whenLoaded('formations')),
-            'grades' => GradeResource::collection($this->whenLoaded('grades')),
+            'formation' => new FormationResource($this->formation),
+            'cohortMembers' => CohortMemberResource::collection($this->whenLoaded('cohortMembers')),
         ];
     }
 }

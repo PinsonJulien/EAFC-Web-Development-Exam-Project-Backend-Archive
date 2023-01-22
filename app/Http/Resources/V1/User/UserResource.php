@@ -1,7 +1,13 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\User;
 
+use App\Http\Resources\V1\CohortMember\CohortMemberResource;
+use App\Http\Resources\V1\Country\CountryResource;
+use App\Http\Resources\V1\Course\CourseResource;
+use App\Http\Resources\V1\Enrollment\EnrollmentResource;
+use App\Http\Resources\V1\Grade\GradeResource;
+use App\Http\Resources\V1\SiteRole\SiteRoleResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Status;
 
+use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CountryResource extends JsonResource
+class StatusResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +18,9 @@ class CountryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'iso' => $this->iso,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'nationalityUsers' => UserResource::collection($this->whenLoaded('nationalityUsers')),
-            'addressUsers' => UserResource::collection($this->whenLoaded('addressUsers')),
+            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
         ];
     }
 }

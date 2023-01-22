@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Enrollment;
 
+use App\Http\Resources\V1\Status\StatusResource;
+use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SiteRoleResource extends JsonResource
+class EnrollmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +18,12 @@ class SiteRoleResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'user' => new UserResource($this->whenLoaded('user')),
+            'formation' => new UserResource($this->whenLoaded('formation')),
+            'status' => new StatusResource($this->status),
+            'message' => $this->message,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'users' => UserResource::collection($this->whenLoaded('users')),
         ];
     }
 }

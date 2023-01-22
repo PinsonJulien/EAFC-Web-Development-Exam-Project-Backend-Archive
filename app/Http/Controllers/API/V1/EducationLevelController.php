@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\EducationLevel\StoreEducationLevelRequest;
 use App\Http\Requests\V1\EducationLevel\UpdateEducationLevelRequest;
-use App\Http\Resources\V1\EducationLevelResource;
+use App\Http\Resources\V1\EducationLevel\EducationLevelResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\EducationLevel;

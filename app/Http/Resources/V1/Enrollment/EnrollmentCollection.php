@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Enrollment;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class StatusCollection extends ResourceCollection
+class EnrollmentCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.

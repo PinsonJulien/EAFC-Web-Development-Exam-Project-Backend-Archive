@@ -1,7 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Formation;
 
+use App\Http\Resources\V1\Cohort\CohortResource;
+use App\Http\Resources\V1\Course\CourseResource;
+use App\Http\Resources\V1\EducationLevel\EducationLevelResource;
+use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FormationResource extends JsonResource

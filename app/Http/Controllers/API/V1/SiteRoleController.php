@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\SiteRole\StoreSiteRoleRequest;
 use App\Http\Requests\V1\SiteRole\UpdateSiteRoleRequest;
-use App\Http\Resources\V1\SiteRoleResource;
+use App\Http\Resources\V1\SiteRole\SiteRoleResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;

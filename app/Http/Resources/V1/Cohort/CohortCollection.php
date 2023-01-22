@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\Cohort;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CohortMemberCollection extends ResourceCollection
+class CohortCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.

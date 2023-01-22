@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\Course\UpdateCourseRequest;
 use App\Http\Requests\V1\Course\StoreCourseRequest;
-use App\Http\Resources\V1\CourseResource;
+use App\Http\Requests\V1\Course\UpdateCourseRequest;
+use App\Http\Resources\V1\Course\CourseResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Course;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\Formation\StoreFormationRequest;
 use App\Http\Requests\V1\Formation\UpdateFormationRequest;
-use App\Http\Resources\V1\FormationResource;
+use App\Http\Resources\V1\Formation\FormationResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Formation;

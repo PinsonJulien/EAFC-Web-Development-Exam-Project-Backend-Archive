@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\Country\StoreCountryRequest;
 use App\Http\Requests\V1\Country\UpdateCountryRequest;
-use App\Http\Resources\V1\CountryResource;
+use App\Http\Resources\V1\Country\CountryResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Country;

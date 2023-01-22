@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\SiteRole;
 
+use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CohortResource extends JsonResource
+class SiteRoleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +20,7 @@ class CohortResource extends JsonResource
             'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'formation' => new FormationResource($this->formation),
-            'cohortMembers' => CohortMemberResource::collection($this->whenLoaded('cohortMembers')),
+            'users' => UserResource::collection($this->whenLoaded('users')),
         ];
     }
 }

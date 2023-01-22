@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\V1\CohortRole;
 
-use App\Models\CohortRole;
+use App\Http\Resources\V1\CohortMember\CohortMemberResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CohortMemberResource extends JsonResource
+class CohortRoleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,10 @@ class CohortMemberResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => new UserResource($this->whenLoaded('user')),
-            'cohort' => new CohortResource($this->whenLoaded('cohort')),
-            'role' => new CohortRoleResource($this->role),
+            'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
+            'cohortMembers' => CohortMemberResource::collection($this->whenLoaded('cohortMembers')),
         ];
     }
 }

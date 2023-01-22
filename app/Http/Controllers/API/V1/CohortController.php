@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\Cohort\StoreCohortRequest;
 use App\Http\Requests\V1\Cohort\UpdateCohortRequest;
-use App\Http\Resources\V1\CohortResource;
+use App\Http\Resources\V1\Cohort\CohortResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Cohort;
