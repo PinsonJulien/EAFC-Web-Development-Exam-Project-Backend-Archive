@@ -10,8 +10,6 @@ class FormationCourse extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $timestamps = false;
-
     protected $fillable = [
       'formation_id',
       'course_id',

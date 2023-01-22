@@ -12,7 +12,7 @@ class Cohort extends Model
 {
     use HasFactory,  SoftDeletes;
 
-    public const relationMethods = ['members',];
+    public const relationMethods = ['cohortMembers',];
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -29,7 +29,8 @@ class Cohort extends Model
         return $this->belongsTo(Formation::class);
     }
 
-    public function members() {
-        return $this->hasMany(CohortMember::class);
+    public function cohortMembers() {
+        return $this->hasMany(CohortMember::class)
+            ->with(['user']);
     }
 }

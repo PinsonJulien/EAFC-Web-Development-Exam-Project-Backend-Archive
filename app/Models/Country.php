@@ -18,8 +18,6 @@ class Country extends Model
         'iso' => StringOperators::class,
     ];
 
-    public $timestamps = false;
-
     protected $fillable = [
         'name',
         'iso'

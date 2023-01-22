@@ -32,10 +32,9 @@ class UserResource extends JsonResource
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
-            'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
             'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
             'grades' => GradeResource::collection($this->whenLoaded('grades')),
-            'memberships' => CohortMemberResource::collection($this->whenLoaded('memberships')),
+            'cohortMembers' => CohortMemberResource::collection($this->whenLoaded('cohortMembers')),
         ];
     }
 }

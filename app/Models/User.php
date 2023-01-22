@@ -14,9 +14,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, Notifiable;
+    use HasFactory, SoftDeletes;
 
-    public const relationMethods = ['teacherCourses', 'cohorts', 'enrollments', 'grades', 'memberships'];
+    public const relationMethods = ['teacherCourses', 'enrollments', 'grades', 'cohortMembers'];
 
     public const filterable = [
         'username' => StringOperators::class,
@@ -84,21 +85,17 @@ class User extends Authenticatable
         return $this->belongsTo(Country::class, 'address_country_id');
     }
 
+    public function siteRole() {
+        return $this->belongsTo(SiteRole::class);
+    }
+
     public function teacherCourses() {
         return $this->hasMany(Course::class, 'teacher_user_id');
     }
 
-    public function cohorts() {
-        return $this->belongsToMany(Cohort::class, 'cohort_members');
-    }
-
-    public function memberships() {
+    public function cohortMembers() {
         return $this->hasMany(CohortMember::class)
             ->with('cohort');
-    }
-
-    public function siteRole() {
-        return $this->belongsTo(SiteRole::class);
     }
 
     public function enrollments() {
