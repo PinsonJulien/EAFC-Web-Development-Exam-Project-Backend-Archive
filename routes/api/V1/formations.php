@@ -31,4 +31,9 @@ Route::prefix('formations')
     Route::patch('{formation}', 'update');
 
     Route::delete('{formation}', 'destroy');
+
+    // Course related routes
+    Route::prefix('{formation}/courses')->group(function() {
+        Route::post('', 'storeCourse');
+    });
 });

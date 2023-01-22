@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\Formation\StoreCourseFormationRequest;
 use App\Http\Requests\V1\Formation\StoreFormationRequest;
 use App\Http\Requests\V1\Formation\UpdateFormationRequest;
 use App\Http\Resources\V1\Formation\FormationResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Formation;
+use App\Models\FormationCourse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class FormationController extends V1Controller
 {
@@ -70,5 +74,25 @@ class FormationController extends V1Controller
     public function destroy(Request $request, Formation $formation): NoContentSuccessResponse|ConflictErrorResponse
     {
         return $this->commonDestroy($request, $formation);
+    }
+
+    /** Relations **/
+
+    public function storeCourse(StoreCourseFormationRequest $request, Formation $formation) {
+        $courseId = $request->get('course_id');
+
+        if ($formation->courses->contains($courseId)) {
+            $message = "The course [".$courseId."] is already related to the formation [".$formation->id."].";
+            $errors = [
+                'courseId' => $message,
+            ];
+
+            return new ConflictErrorResponse($message, $errors);
+        }
+
+        $formation->courses()->attach($courseId);
+
+        $resource = new FormationResource($formation->loadMissing('courses'));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 }
