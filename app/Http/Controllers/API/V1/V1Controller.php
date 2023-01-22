@@ -8,6 +8,8 @@ use App\Http\Middleware\IncludeRelationMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 use App\Http\Middleware\SortMiddleware;
 use App\Http\Requests\V1\ExportRequest;
+use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Traits\CSVUtils;
 use App\Traits\ModelDataExtractor;
 use Illuminate\Database\Eloquent\Model;
@@ -100,6 +102,32 @@ abstract class V1Controller extends Controller
                     break;
             }
         }, $fileName);
+    }
+
+    /**
+     * Delete a specific model
+     * Ensures the model doesn't have foreign key constraints.
+     *
+     * @param Request $request
+     * @param Model $model
+     * @return NoContentSuccessResponse|ConflictErrorResponse
+     */
+    protected function commonDestroy(Request $request, Model $model): NoContentSuccessResponse|ConflictErrorResponse {
+        // Don't allow to delete if the model has any active relations.
+        $relations = $this->getModelRelations($model);
+        foreach ($relations as $relation) {
+            if ($model->$relation()->exists()) {
+                $message = "Cannot delete due to foreign key constraint.";
+                $errors = [
+                    $relation => "The model has [".$relation."] relations."
+                ];
+
+                return new ConflictErrorResponse($message, $errors);
+            }
+        }
+
+        $model->delete();
+        return new NoContentSuccessResponse();
     }
 
     /**

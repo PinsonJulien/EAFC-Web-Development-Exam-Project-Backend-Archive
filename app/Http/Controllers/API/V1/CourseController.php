@@ -7,6 +7,7 @@ use App\Http\Requests\V1\Course\UpdateCourseRequest;
 use App\Http\Requests\V1\Course\StoreCourseRequest;
 use App\Http\Resources\V1\CourseResource;
 use App\Models\Course;
+use Illuminate\Http\Request;
 
 class CourseController extends V1Controller
 {
@@ -60,14 +61,12 @@ class CourseController extends V1Controller
 
     /**
      * Delete the specified Course.
-     * Returns a 204 status.
      *
-     * @param DestroyCourseRequest $request
+     * @param Request $request
      * @param Course $course
-     * @return \Illuminate\Http\JsonResponse
+     * @return \App\Http\Responses\Errors\ConflictErrorResponse|\App\Http\Responses\Successes\NoContentSuccessResponse
      */
-    public function destroy(DestroyCourseRequest $request, Course $course) {
-        $course->delete();
-        return response()->json(null, 204);
+    public function destroy(Request $request, Course $course) {
+        return $this->commonDestroy($request, $course);
     }
 }
