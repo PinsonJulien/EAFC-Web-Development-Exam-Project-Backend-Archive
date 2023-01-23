@@ -89,10 +89,6 @@ class User extends Authenticatable
         return $this->belongsTo(SiteRole::class);
     }
 
-    public function formations() {
-        return $this->belongsToMany(Formation::class, 'enrollments');
-    }
-
     public function teacherCourses() {
         return $this->hasMany(Course::class, 'teacher_user_id');
     }

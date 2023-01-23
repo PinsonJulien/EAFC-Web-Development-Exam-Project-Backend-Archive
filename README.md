@@ -34,19 +34,28 @@ Run `php artisan serve`
 - Improve seeders
 
 ## Todo
-- Export: Should deleted_at be included ? If yes, should export method ask the model to include deleted ?
-- User: Should delete user check the foreign keys ? Should remove the picture from storage ?
 - Todo's in the source code.
+- Export: 
+  - include deleted parameter.
+
+- User:
+  - cannot delete user if they're a student. maybe use the guest siteRole to determine it ?
+    - Accepted request automatically set the user role to USER
+  - Picture:
+    - Update using the POST /user/{user}/picture 
+      - Automically delete the previous picture from the storage.
+    - Delete using the DELETE /user/{user}/picture
+  - When a user is deleted : delete their picture from storage and update model to null it.
+
 - Grades:
   - Cannot update grades with a score.
   - Cannot be deleted when there's a score.
 
-- Users : Allow to update the picture, delete the previous one.
-
 - App access
-  - Enrollment
-    - Delete : Can only be deleted by its own user and when it's in PENDING status.
-- 
+  - Policies secures all controller methods using the site_role.
+
+- Courses
+  - when assigning a group to a course, only create grades for students.
 
 - groups
   - Name, timestamps (to determine school year 20XX - 20YY) 
@@ -54,9 +63,6 @@ Run `php artisan serve`
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
 - don't allow adding the same person to the same cohort twice (via the respective custom Request)
-
-- Courses
-  - when assigning a group to a course, only create grades for students.
     
 # Useful commands to generate new content
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
