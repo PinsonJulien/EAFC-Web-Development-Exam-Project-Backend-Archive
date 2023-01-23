@@ -37,9 +37,17 @@ Run `php artisan serve`
 - Export: Should deleted_at be included ? If yes, should export method ask the model to include deleted ?
 - User: Should delete user check the foreign keys ? Should remove the picture from storage ?
 - Todo's in the source code.
+- Grades:
+  - Cannot update grades with a score.
+  - Cannot be deleted when there's a score.
+
 - Users : Allow to update the picture, delete the previous one.
-- formations/addCourse (post ?)
-- formations/removeCourse (delete ?)
+
+- App access
+  - Enrollment
+    - Delete : Can only be deleted by its own user and when it's in PENDING status.
+- 
+
 - groups
   - Name, timestamps (to determine school year 20XX - 20YY) 
   - user_group (user_id, group_id)

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Http\Responses\Errors\ValidatorErrorResponse;
 use App\Traits\RequestInfoExtractor;
 use Closure;
+use Error;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,12 +33,19 @@ class FilterMiddleware
         $model = $this->getRequestModel($request);
         $model = new $model();
 
-        if (!$model::filterable)
+        // Filterable is optional in models.
+        try {
+            $filterableColumns = $model::filterable;
+        } catch (Error $e) {
+            $filterableColumns = null;
+        }
+
+        if (!$filterableColumns)
             return $next($request);
 
         $filtersParams = [];
 
-        foreach ($model::filterable as $column => $operators) {
+        foreach ($filterableColumns as $column => $operators) {
             // Expects camel cased column names.
             $query = $request->query(Str::camel($column));
             if (!isset($query) || !is_array($query)) continue;

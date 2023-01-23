@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\V1\CohortController;
+use App\Http\Controllers\API\V1\EnrollmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SortMiddleware;
 use App\Http\Middleware\IncludeRelationMiddleware;
@@ -8,7 +8,7 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('cohorts')
-    ->controller(CohortController::class)
+    ->controller(EnrollmentController::class)
     ->group(function() {
 
     Route::get('', 'index')

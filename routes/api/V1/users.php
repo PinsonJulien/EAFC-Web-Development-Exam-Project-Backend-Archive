@@ -31,12 +31,4 @@ Route::prefix('users')
     Route::patch('{user}', 'update');
 
     Route::delete('{user}', 'destroy');
-
-    // Formation related routes, using the enrollment table.
-    Route::prefix('{user}/enrollments')->group(function() {
-        Route::post('', 'storeEnrollment');
-        Route::put('{formation}', 'updateEnrollment');
-        Route::patch('{formation}', 'updateEnrollment');
-        Route::delete('{formation}', 'destroyEnrollment');
-    });
 });
