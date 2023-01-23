@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\User\StoreUserRequest;
+use App\Http\Requests\V1\User\StoreEnrollmentUserRequest;
 use App\Http\Requests\V1\User\UpdateUserRequest;
 use App\Http\Resources\V1\User\UserResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class UserController extends V1Controller
 {
@@ -35,10 +37,10 @@ class UserController extends V1Controller
      * Insert a new User using the request data.
      * Returns the created User.
      *
-     * @param StoreUserRequest $request
+     * @param StoreEnrollmentUserRequest $request
      * @return UserResource
      */
-    public function store(StoreUserRequest $request): UserResource
+    public function store(StoreEnrollmentUserRequest $request): UserResource
     {
         $data = $request->all();
         if (!$data['site_role_id']) {
@@ -101,5 +103,34 @@ class UserController extends V1Controller
 
         $path = $picture->storePublicly('public/pictures');
         return Storage::url($path);
+    }
+
+    // Todo deletePicture()
+
+    /** Relation methods **/
+
+    public function storeEnrollment(StoreEnrollmentUserRequest $request, User $user)
+    {
+        $defaultStatus = Status::PENDING;
+        $formationId = $request->get('formation_id');
+
+        $hasPending = $user->enrollments->contains(function($enrollment) use ($formationId, $defaultStatus) {
+            return ($enrollment->formation_id == $formationId) && ($enrollment->status_id === $defaultStatus);
+        });
+
+        if ($hasPending) {
+            $message = "Could not register enrollment for the formation [".$formationId."] for the user [".$user->id."], already one pending.";
+            $errors = [
+                'enrollment' => $message,
+            ];
+
+            return new ConflictErrorResponse($message, $errors);
+        }
+
+        // Creates the enrollment through the formation relation, with a default status.
+        $user->formations()->attach($formationId, ['status_id' => $defaultStatus]);
+
+        $resource = new UserResource($user->load('enrollments'));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 }

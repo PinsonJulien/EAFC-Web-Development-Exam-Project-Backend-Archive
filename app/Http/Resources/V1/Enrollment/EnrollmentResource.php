@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\V1\Enrollment;
 
+use App\Http\Resources\V1\Formation\FormationResource;
 use App\Http\Resources\V1\Status\StatusResource;
 use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -19,7 +20,7 @@ class EnrollmentResource extends JsonResource
         return [
             'id' => $this->id,
             'user' => new UserResource($this->whenLoaded('user')),
-            'formation' => new UserResource($this->whenLoaded('formation')),
+            'formation' => new FormationResource($this->whenLoaded('formation')),
             'status' => new StatusResource($this->status),
             'message' => $this->message,
             'createdAt' => $this->created_at,

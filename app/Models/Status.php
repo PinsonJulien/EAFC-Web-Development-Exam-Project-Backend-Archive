@@ -12,6 +12,14 @@ class Status extends Model
 {
     use HasFactory, SoftDeletes;
 
+    // Constants
+    public const PENDING = 1;
+    public const APPROVED = 2;
+    public const DENIED = 3;
+    public const CANCELLED = 4;
+    public const EXPIRED = 5;
+    public const SUSPENDED = 6;
+
     protected $table = 'statuses';
 
     public const relationMethods = ['enrollments',];
