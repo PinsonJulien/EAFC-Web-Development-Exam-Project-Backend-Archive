@@ -1427,6 +1427,292 @@
 					]
 				},
 				{
+					"name": "Enrollments",
+					"item": [
+						{
+							"name": "all",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments"
+									],
+									"query": [
+										{
+											"key": "statusId[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "message[l]",
+											"value": "%et%",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(statusId)",
+											"disabled": true
+										},
+										{
+											"key": "pagination",
+											"value": "15",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "export",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments/export",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments",
+										"export"
+									],
+									"query": [
+										{
+											"key": "message[l]",
+											"value": "D%",
+											"disabled": true
+										},
+										{
+											"key": "statusId[eq]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "createdAt[gt]",
+											"value": "2022-10-28T22:48:26.000000Z",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "asc(statusId)",
+											"disabled": true
+										},
+										{
+											"key": "extension",
+											"value": "json",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "formationId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "message",
+											"value": "tests",
+											"type": "text"
+										},
+										{
+											"key": "statusId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "message",
+											"value": "test",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "statusId",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/enrollments/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"enrollments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Formations",
 					"item": [
 						{
@@ -1742,6 +2028,71 @@
 										"api",
 										"v1",
 										"formations",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add course to formation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "courseId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/formations/1/courses",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"formations",
+										"1",
+										"courses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete course to formation",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/v1/formations/1/courses/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"formations",
+										"1",
+										"courses",
 										"1"
 									]
 								}
@@ -2415,7 +2766,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/v1/users/10",
+									"raw": "{{url}}/api/v1/users/1",
 									"host": [
 										"{{url}}"
 									],
@@ -2423,7 +2774,7 @@
 										"api",
 										"v1",
 										"users",
-										"10"
+										"1"
 									],
 									"query": [
 										{
