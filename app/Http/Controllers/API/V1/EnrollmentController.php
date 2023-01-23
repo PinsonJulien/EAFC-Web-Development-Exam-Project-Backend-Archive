@@ -18,6 +18,7 @@ class EnrollmentController extends V1Controller
 {
     protected string $model = Enrollment::class;
     protected string $resource = EnrollmentResource::class;
+    protected array $joinedRelations = ['user', 'formation'];
 
     function __construct() {}
 
@@ -30,6 +31,7 @@ class EnrollmentController extends V1Controller
     public function show(Enrollment $enrollment): EnrollmentResource
     {
         $enrollment = $this->applyIncludeRelationParameters($enrollment, request());
+        $enrollment->load($this->joinedRelations);
         return new EnrollmentResource($enrollment);
     }
 
@@ -68,7 +70,7 @@ class EnrollmentController extends V1Controller
                 'user_id' => $userId,
                 'formation_id' => $formationId,
                 'status_id' => $defaultStatus,
-            ])
+            ])->load($this->joinedRelations)
         );
 
         return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
@@ -104,7 +106,8 @@ class EnrollmentController extends V1Controller
             unset($data['status_id']);
 
         $enrollment->update($data);
-        $enrollment->loadMissing(['user', 'formation']);
+        $enrollment->loadMissing($this->joinedRelations);
+
         return new EnrollmentResource($enrollment);
     }
 

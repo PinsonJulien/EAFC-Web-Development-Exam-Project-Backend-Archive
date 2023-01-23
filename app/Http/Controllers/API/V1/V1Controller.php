@@ -31,6 +31,7 @@ abstract class V1Controller extends Controller
 
     protected string $model = "";
     protected string $resource = "";
+    protected array $joinedRelations = [];
 
     /**
      * Returns a collection of all values of the controller model.
@@ -39,7 +40,8 @@ abstract class V1Controller extends Controller
      * @param Request $request
      * @return ResourceCollection
      */
-    public function index(Request $request) {
+    public function index(Request $request): ResourceCollection
+    {
         $rows = $this->model::query();
 
         $rows = $this->applyFilterParameters($rows, $request);
@@ -50,6 +52,10 @@ abstract class V1Controller extends Controller
         // If the builder was not converted to a paginator
         if ($rows::class === Builder::class)
             $rows = $rows->get();
+
+        // Load relations
+        if ($this->joinedRelations)
+            $rows = $rows->load($this->joinedRelations);
 
         return $this->resource::collection($rows);
     }
