@@ -5,15 +5,16 @@ namespace App\Models;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
+use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Enrollment extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public const relationMethods = [];
+    use HasRelationships;
 
     public const filterable = [
         'message' => StringOperators::class,
@@ -35,15 +36,18 @@ class Enrollment extends Model
         'message' => null,
     ];
 
-    public function user() {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function formation() {
+    public function formation(): BelongsTo
+    {
         return $this->belongsTo(Formation::class);
     }
 
-    public function status() {
+    public function status(): BelongsTo
+    {
         return $this->belongsTo(Status::class);
     }
 }

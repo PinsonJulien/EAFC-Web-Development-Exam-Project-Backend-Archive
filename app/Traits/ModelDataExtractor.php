@@ -25,14 +25,4 @@ trait ModelDataExtractor
 
         return $columns;
     }
-
-    /**
-     * Returns the model relations.
-     *
-     * @param Model $model
-     * @return array
-     */
-    protected function getModelRelations(Model $model): array {
-        return $model::relationMethods ?? [];
-    }
 }

@@ -12,6 +12,8 @@ use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Traits\CSVUtils;
 use App\Traits\ModelDataExtractor;
+use App\Traits\Models\HasRelationships;
+use App\Traits\TraitHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -27,6 +29,7 @@ abstract class V1Controller extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use ModelDataExtractor;
     use CSVUtils;
+    use TraitHelpers;
 
     protected string $model = "";
     protected string $resource = "";
@@ -130,18 +133,19 @@ abstract class V1Controller extends Controller
      */
     protected function commonDestroy(Request $request, Model $model): NoContentSuccessResponse|ConflictErrorResponse {
         // Don't allow to delete if the model has any active relations.
-        $relations = $this->getModelRelations($model);
-        foreach ($relations as $relation) {
-            if ($model->$relation()->exists()) {
-                $message = "Cannot delete due to foreign key constraint.";
-                $errors = [
-                    $relation => "The model has [".$relation."] relations."
-                ];
+        if (self::hasTrait($this->model, HasRelationships::class)) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            foreach ($this->model::getForeignRelationships() as $relationship) {
+                if ($model->$relationship()->exists()) {
+                    $message = "Cannot delete due to foreign key constraint.";
+                    $errors = [
+                        $relationship => "The model has [".$relationship."] relations."
+                    ];
 
-                return new ConflictErrorResponse($message, $errors);
+                    return new ConflictErrorResponse($message, $errors);
+                }
             }
         }
-
         $model->delete();
         return new NoContentSuccessResponse();
     }

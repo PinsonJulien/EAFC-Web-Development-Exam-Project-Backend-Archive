@@ -6,15 +6,18 @@ use App\Helpers\Operators\CombinedOperators\BooleanOperators;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
+use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public const relationMethods = ['formations', 'grades'];
+    use HasRelationships;
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -35,15 +38,18 @@ class Course extends Model
         'status' => 'boolean'
     ];
 
-    public function teacher() {
+    public function teacher(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'teacher_user_id');
     }
 
-    public function formations() {
+    public function formations(): BelongsToMany
+    {
         return $this->belongsToMany(Formation::class, 'formations_courses');
     }
 
-    public function grades() {
+    public function grades(): HasMany
+    {
         return $this->hasMany(Grade::class)
             ->with('user');
     }

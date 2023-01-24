@@ -4,13 +4,16 @@ namespace App\Models;
 
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
+use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Status extends Model
 {
     use HasFactory, SoftDeletes;
+    use HasRelationships;
 
     // Constants
     public const PENDING = 1;
@@ -21,8 +24,6 @@ class Status extends Model
     public const SUSPENDED = 6;
 
     protected $table = 'statuses';
-
-    public const relationMethods = ['enrollments',];
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -35,7 +36,8 @@ class Status extends Model
         'name',
     ];
 
-    public function enrollments() {
+    public function enrollments(): HasMany
+    {
         return $this->hasMany(Enrollment::class)
             ->with(['user', 'formation']);
     }

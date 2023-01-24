@@ -6,15 +6,18 @@ use App\Helpers\Operators\CombinedOperators\BooleanOperators;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
+use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Formation extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public const relationMethods = ['courses', 'enrollments', 'cohorts'];
+    use HasRelationships;
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -41,19 +44,23 @@ class Formation extends Model
         'end_date' => 'date',
     ];
 
-    public function educationLevel() {
+    public function educationLevel(): BelongsTo
+    {
         return $this->belongsTo(EducationLevel::class);
     }
 
-    public function courses() {
+    public function courses(): BelongsToMany
+    {
         return $this->belongsToMany(Course::class, 'formations_courses');
     }
 
-    public function enrollments() {
+    public function enrollments(): HasMany
+    {
         return $this->hasMany(Enrollment::class)->with('user');
     }
 
-    public function cohorts() {
+    public function cohorts(): HasMany
+    {
         return $this->hasMany(Cohort::class);
     }
 }

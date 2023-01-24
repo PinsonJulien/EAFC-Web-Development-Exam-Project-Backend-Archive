@@ -4,7 +4,9 @@ namespace App\Http\Middleware;
 
 use App\Http\Responses\Errors\ValidatorErrorResponse;
 use App\Traits\ModelDataExtractor;
+use App\Traits\Models\HasRelationships;
 use App\Traits\RequestInfoExtractor;
+use App\Traits\TraitHelpers;
 use Closure;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +18,7 @@ class IncludeRelationMiddleware
 {
     use RequestInfoExtractor;
     use ModelDataExtractor;
+    use TraitHelpers;
 
     protected const QUERY_PARAMETER_NAME = "includeRelations";
     public const ATTRIBUTE_NAME = self::QUERY_PARAMETER_NAME.'Parameter';
@@ -36,9 +39,11 @@ class IncludeRelationMiddleware
             return $next($request);
 
         $model = $this->getRequestModel($request);
-        $model = new $model();
-
-        $modelRelations = $this->getModelRelations($model);
+        // Get all model relationships.
+        if (self::hasTrait($model, HasRelationships::class)) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            $modelRelations = $model::getForeignRelationships();
+        }
 
         if (empty($modelRelations))
             return $next($request);

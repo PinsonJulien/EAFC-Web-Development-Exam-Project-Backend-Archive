@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
@@ -11,8 +14,7 @@ use App\Helpers\Operators\CombinedOperators\StringOperators;
 class Cohort extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public const relationMethods = ['cohortMembers',];
+    use HasRelationships;
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -26,11 +28,13 @@ class Cohort extends Model
         'formation_id'
     ];
 
-    public function formation() {
+    public function formation(): BelongsTo
+    {
         return $this->belongsTo(Formation::class);
     }
 
-    public function cohortMembers() {
+    public function cohortMembers(): HasMany
+    {
         return $this->hasMany(CohortMember::class)
             ->with(['user']);
     }

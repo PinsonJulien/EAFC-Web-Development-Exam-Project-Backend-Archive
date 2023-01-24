@@ -4,15 +4,16 @@ namespace App\Models;
 
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
+use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EducationLevel extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public const relationMethods = ['formations',];
+    use HasRelationships;
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -25,7 +26,8 @@ class EducationLevel extends Model
         'name',
     ];
 
-    public function formations() {
+    public function formations(): HasMany
+    {
         return $this->hasMany(Formation::class);
     }
 }
