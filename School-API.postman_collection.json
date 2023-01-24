@@ -2690,6 +2690,75 @@
 					"name": "Users",
 					"item": [
 						{
+							"name": "Picture",
+							"item": [
+								{
+									"name": "Update picture",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "picture",
+													"type": "file",
+													"src": "/C:/Users/Dinkertons/Desktop/2023-01-18 20_33_10-Window.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/users/1/picture",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"1",
+												"picture"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete picture",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/users/1/picture",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"1",
+												"picture"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "All",
 							"request": {
 								"method": "GET",
