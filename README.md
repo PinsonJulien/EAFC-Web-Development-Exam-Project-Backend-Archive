@@ -41,11 +41,6 @@ Run `php artisan serve`
     - Accepted request automatically set the user role to USER 
   - When a user is deleted : delete their picture from storage and update model to null it.
 
-- Grades:
-  - All CRUD 
-  - Cannot update grades with a score.
-  - Cannot be deleted when there's a score.
-
 - CohortMembers
   - All CRUD
 
@@ -54,7 +49,7 @@ Run `php artisan serve`
 
 - Courses
   - when assigning a group to a course, only create grades for students.
-
+ 
 - groups
   - Name, timestamps (to determine school year 20XX - 20YY) 
   - user_group (user_id, group_id)

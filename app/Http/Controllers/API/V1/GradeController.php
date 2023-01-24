@@ -6,6 +6,7 @@ use App\Http\Requests\V1\Grade\StoreGradeRequest;
 use App\Http\Requests\V1\Grade\UpdateGradeRequest;
 use App\Http\Resources\V1\Grade\GradeResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Errors\LockedErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Grade;
 use Illuminate\Http\JsonResponse;
@@ -56,15 +57,28 @@ class GradeController extends V1Controller
 
     /**
      * Update the specified Grade using the request data.
+     * The update won't proceed if the grade has a score.
      * Returns the updated Grade.
      * Works for both PUT and PATCH requests.
      *
      * @param UpdateGradeRequest $request
      * @param Grade $grade
-     * @return GradeResource
+     * @return GradeResource|LockedErrorResponse
      */
-    public function update(UpdateGradeRequest $request, Grade $grade): GradeResource
+    public function update(UpdateGradeRequest $request, Grade $grade): GradeResource|LockedErrorResponse
     {
+        // Grades with a score cannot be updated.
+        // They're meant to archive the progress of students.
+        if (isset($grade->score)) {
+            $message = "Could not update the Grade [".$grade->id."] because it has a score.";
+            $errors = [
+                'score' => $message,
+                'value' => $grade->score,
+            ];
+
+            return new LockedErrorResponse($message, $errors);
+        }
+
         $data = $request->all();
         $score = $data['score'] ?? null;
 
@@ -82,13 +96,26 @@ class GradeController extends V1Controller
 
     /**
      * Delete the specified Grade.
+     * The deletion won't proceed if the grade has a score.
      *
      * @param Request $request
      * @param Grade $grade
-     * @return ConflictErrorResponse|NoContentSuccessResponse
+     * @return NoContentSuccessResponse|LockedErrorResponse|ConflictErrorResponse
      */
-    public function destroy(Request $request, Grade $grade): NoContentSuccessResponse|ConflictErrorResponse
+    public function destroy(Request $request, Grade $grade): NoContentSuccessResponse|LockedErrorResponse|ConflictErrorResponse
     {
+        // Grades with a score cannot be deleted.
+        // They're meant to archive the progress of students.
+        if (isset($grade->score)) {
+            $message = "Could not delete the Grade [".$grade->id."] because it has a score.";
+            $errors = [
+                'score' => $message,
+                'value' => $grade->score,
+            ];
+
+            return new LockedErrorResponse($message, $errors);
+        }
+
         return $this->commonDestroy($request, $grade);
     }
 }
