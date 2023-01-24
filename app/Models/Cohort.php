@@ -10,7 +10,7 @@ use App\Helpers\Operators\CombinedOperators\StringOperators;
 
 class Cohort extends Model
 {
-    use HasFactory,  SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     public const relationMethods = ['cohortMembers',];
 
@@ -18,6 +18,7 @@ class Cohort extends Model
         'name' => StringOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
+        'deleted_at' => DateOperators::class,
     ];
 
     protected $fillable = [

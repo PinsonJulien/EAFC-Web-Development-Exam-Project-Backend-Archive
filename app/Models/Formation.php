@@ -24,6 +24,7 @@ class Formation extends Model
         'education_level_id' => NumberOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
+        'deleted_at' => DateOperators::class,
     ];
 
     protected $fillable = [

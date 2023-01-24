@@ -20,6 +20,7 @@ class Enrollment extends Model
         'status_id' => NumberOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
+        'deleted_at' => DateOperators::class,
     ];
 
     protected $fillable = [

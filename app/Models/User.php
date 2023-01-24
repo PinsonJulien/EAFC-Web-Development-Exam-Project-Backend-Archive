@@ -31,9 +31,10 @@ class User extends Authenticatable
         'postal_code' => StringOperators::class,
         'address_country_id' => NumberOperators::class,
         'phone' => StringOperators::class,
+        'site_role_id' => NumberOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
-        'site_role_id' => NumberOperators::class,
+        'deleted_at' => DateOperators::class,
     ];
 
     /**

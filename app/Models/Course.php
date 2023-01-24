@@ -22,6 +22,7 @@ class Course extends Model
         'teacher_user_id' => NumberOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
+        'deleted_at' => DateOperators::class,
     ];
 
     protected $fillable = [
