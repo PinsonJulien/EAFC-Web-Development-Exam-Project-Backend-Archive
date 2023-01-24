@@ -19,7 +19,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -70,26 +69,37 @@ abstract class V1Controller extends Controller
      * @return StreamedResponse
      */
     public function export(ExportRequest $request): StreamedResponse {
-        $datas = $this->model::query();
-        $datas = $this->applyFilterParameters($datas, $request);
-        $datas = $this->applySortParameters($datas, $request);
-        $datas = $datas->get();
-
-        // CSV by default
+        $includeDeleted = $request->get('includeDeleted') ?? false;
         $extension = $request->get('extension') ?? 'csv';
+
+        $rows = $this->model::query();
+        $rows = $this->applyFilterParameters($rows, $request);
+        $rows = $this->applySortParameters($rows, $request);
+
+        if ($includeDeleted) {
+            $rows = $rows->withTrashed();
+        }
+
+        $rows = $rows->get();
+
+        // Hide the deleted_at attribute if the deleted models aren't included.
+        if (!$includeDeleted)
+            $rows = $rows->makeHidden(['deleted_at']);
+
         $fileName = class_basename($this->model).".".$extension;
 
         // Return a generated streamed file depending on the extension.
-        return response()->streamDownload(function() use ($extension, $datas) {
+        return response()->streamDownload(function() use ($extension, $rows) {
             switch ($extension) {
                 case 'json':
-                    echo $datas->toJson();
+                    echo $rows->toJson();
                     break;
 
                 case 'csv':
                     // Print all the columns
-                    $columns = $this->getModelColumns(new $this->model());
+                    $columns = array_keys($rows->first()->toArray());
 
+                    // Format the columns to be valid CSV.
                     $formattedColumns = array_map(function($column) {
                         return $this->formatForCSV($column);
                     }, $columns);
@@ -97,9 +107,9 @@ abstract class V1Controller extends Controller
                     echo implode(',', $formattedColumns)."\r\n";
 
                     // Print all the data for each column.
-                    foreach ($datas as $data) {
-                        $rows = array_map(function($column) use ($data) {
-                            return $this->formatForCSV($data[$column]);
+                    foreach ($rows as $row) {
+                        $rows = array_map(function($column) use ($row) {
+                            return $this->formatForCSV($row[$column]);
                         }, $columns);
 
                         echo implode(',', $rows)."\r\n";

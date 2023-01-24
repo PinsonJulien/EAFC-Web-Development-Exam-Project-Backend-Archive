@@ -26,6 +26,7 @@ class ExportRequest extends FormRequest
     {
         return [
             'extension' => ['sometimes','required', 'string', Rule::in(['csv', 'json'])],
+            'includeDeleted' => ['sometimes', 'required', 'boolean'],
         ];
     }
 }

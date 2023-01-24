@@ -35,9 +35,6 @@ Run `php artisan serve`
 
 ## Todo
 - Todo's in the source code.
-- Export: 
-  - include deleted parameter.
-
 - User:
   - cannot delete user if they're a student. maybe use the guest siteRole to determine it ?
     - Accepted request automatically set the user role to USER
@@ -63,11 +60,12 @@ Run `php artisan serve`
   - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
   - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
 - don't allow adding the same person to the same cohort twice (via the respective custom Request)
-    
-# Useful commands to generate new content
+
+## Contribution tools
+### Useful commands to work with
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
 - refresh migrations : `php artisan migrate:refresh`
 - reset migrations : `php artisan migrate:reset`
-- generate resource : `php artisan make:resource V1\NameResource`
-- generate collection : `php artisan make:resource V1\NameCollection`
+- generate resource : `php artisan make:resource V1\Name\NameResource`
+- generate collection : `php artisan make:resource V1\Name\NameCollection`
 - generate request : `php artisan make:request V1\Name\StoreNameRequest`
