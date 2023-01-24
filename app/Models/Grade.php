@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\Operators\CombinedOperators\DateOperators;
+use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Traits\Models\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +14,30 @@ class Grade extends Model
 {
     use HasFactory, SoftDeletes;
     use HasRelationships;
+
+    public const filterable = [
+        'score' => NumberOperators::class,
+        'user_id' => NumberOperators::class,
+        'course_id' => NumberOperators::class,
+        'created_at' => DateOperators::class,
+        'updated_at' => DateOperators::class,
+        'deleted_at' => DateOperators::class,
+    ];
+
+    protected $fillable = [
+        'user_id',
+        'course_id',
+        'score'
+    ];
+
+    protected $casts = [
+        'score' => 'integer',
+    ];
+
+    // Default values.
+    protected $attributes = [
+        'score' => null,
+    ];
 
     public function user(): BelongsTo
     {
