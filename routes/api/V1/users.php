@@ -31,4 +31,10 @@ Route::prefix('users')
     Route::patch('{user}', 'update');
 
     Route::delete('{user}', 'destroy');
+
+    // Picture routes
+    Route::prefix('{user}/picture')->group(function() {
+        Route::post('', 'storePicture');
+        Route::delete('', 'destroyPicture');
+    });
 });

@@ -9,6 +9,7 @@ use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use App\Http\Resources\V1\Grade\GradeResource;
 use App\Http\Resources\V1\SiteRole\SiteRoleResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class UserResource extends JsonResource
 {
@@ -33,7 +34,7 @@ class UserResource extends JsonResource
             'postalCode' => $this->postal_code,
             'addressCountry' => new CountryResource($this->addressCountry),
             'phone' => $this->phone,
-            'picture' => $this->picture,
+            'picture' => Storage::url($this->picture),
             'siteRole' => new SiteRoleResource($this->siteRole),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,

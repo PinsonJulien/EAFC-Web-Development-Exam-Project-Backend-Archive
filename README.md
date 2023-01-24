@@ -14,6 +14,7 @@ This repository is part of the web development project of my bachelor degree in 
 - run `composer install`
 - Copy the `.env.config` file to `.env`.
 - Fill the environment variables.
+- Make the sure the .env has `FILESYSTEM_DRIVER=public` this will ensure the files are properly saved.
 - Run `php artisan key:generate` (this will fill the `APP_KEY` environment variable).
 - Run `php artisan migrate` command.
 - For demo purpose you can run `php artisan db:seed --class=DemoSeeder` to populate the database.
@@ -37,16 +38,16 @@ Run `php artisan serve`
 - Todo's in the source code.
 - User:
   - cannot delete user if they're a student. maybe use the guest siteRole to determine it ?
-    - Accepted request automatically set the user role to USER
-  - Picture:
-    - Update using the POST /user/{user}/picture 
-      - Automically delete the previous picture from the storage.
-    - Delete using the DELETE /user/{user}/picture
+    - Accepted request automatically set the user role to USER 
   - When a user is deleted : delete their picture from storage and update model to null it.
 
 - Grades:
+  - All CRUD 
   - Cannot update grades with a score.
   - Cannot be deleted when there's a score.
+
+- CohortMembers
+  - All CRUD
 
 - App access
   - Policies secures all controller methods using the site_role.

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\User\StorePictureUserRequest;
 use App\Http\Requests\V1\User\StoreUserRequest;
 use App\Http\Requests\V1\User\UpdateUserRequest;
 use App\Http\Resources\V1\User\UserResource;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends V1Controller
 {
+    public const PICTURE_STORAGE_PATH = 'pictures';
+
     protected string $model = User::class;
     protected string $resource = UserResource::class;
 
@@ -86,9 +89,42 @@ class UserController extends V1Controller
         return $this->commonDestroy($request, $user);
     }
 
+    // Todo destroyPicture(), storePicture
+
+    /** Picture methods **/
+
+    /**
+     * Change the picture of a specified User.
+     * The previous picture is deleted from the storage and the new one is registered.
+     *
+     * @param StorePictureUserRequest $request
+     * @param User $user
+     * @return UserResource
+     */
+    public function storePicture(StorePictureUserRequest $request, User $user)
+    {
+        $this->replacePicture($request, $user);
+        return new UserResource($user);
+    }
+
+    /**
+     * Delete the picture of a specified User.
+     *
+     * @param Request $request
+     * @param User $user
+     * @return NoContentSuccessResponse
+     */
+    public function destroyPicture(Request $request, User $user): NoContentSuccessResponse
+    {
+        // Delete the picture
+        $this->replacePicture($request, $user);
+        return new NoContentSuccessResponse();
+    }
+
     /**
      * Save a picture that is attached to the request.
-     * Return the url or null.
+     * Return the path of the stored picture.
+     * Return null if nothing was attached.
      *
      * @param Request $request
      * @return string|null
@@ -99,9 +135,31 @@ class UserController extends V1Controller
         if (!$picture)
             return null;
 
-        $path = $picture->storePublicly('public/pictures');
-        return Storage::url($path);
+        return $picture->storePublicly(self::PICTURE_STORAGE_PATH);
     }
 
-    // Todo destroyPicture(), storePicture
+    /**
+     * Replace the picture of a given User using the request.
+     * Will delete the picture of a user if the request was not filled.
+     *
+     * @param User $user
+     * @param Request $request
+     * @return void
+     */
+    protected function replacePicture(Request $request, User $user): void
+    {
+        // Delete the existing picture of the user
+        $previousPicture = $user->picture;
+
+        if ($previousPicture && Storage::exists($previousPicture)) {
+            Storage::delete($previousPicture);
+        }
+
+        // If no file was included in the request, it will be null.
+        $data = [
+            'picture' => $this->savePicture($request),
+        ];
+
+        $user->update($data);
+    }
 }
