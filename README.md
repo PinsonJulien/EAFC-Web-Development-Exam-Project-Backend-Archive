@@ -43,7 +43,6 @@ Run `php artisan serve`
   - When a user is deleted : delete their picture from storage and update model to null it.
 
 - Cohort
-  - DELETE /cohorts/{cohort} : Also delete all related cohortMembers.
   - GET /cohorts/{cohort}/users : Return all users of the cohort.
   - POST /cohorts/{cohort}/users : Add user with role.
   - PUT/PATCH /cohorts/{cohort}/users/{user} : Update the role of a user.

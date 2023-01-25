@@ -62,12 +62,17 @@ class CohortController extends V1Controller
 
     /**
      * Delete the specified Cohort.
+     * This also delete all the related CohortMembers.
      *
      * @param Request $request
      * @param Cohort $cohort
-     * @return ConflictErrorResponse|NoContentSuccessResponse
+     * @return NoContentSuccessResponse
      */
     public function destroy(Request $request, Cohort $cohort) {
-        return $this->commonDestroy($request, $cohort);
+        // Delete all the CohortMembers before deleting the model.
+        $cohort->cohortMembers()->delete();
+        $cohort->delete();
+
+        return new NoContentSuccessResponse();
     }
 }
