@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\User\StorePictureUserRequest;
+use App\Http\Requests\V1\User\Picture\StorePictureUserRequest;
 use App\Http\Requests\V1\User\StoreUserRequest;
 use App\Http\Requests\V1\User\UpdateUserRequest;
 use App\Http\Resources\V1\User\UserResource;
-use App\Http\Responses\Errors\ConflictErrorResponse;
+use App\Http\Responses\Errors\UnprocessableEntityErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;
 use App\Models\User;
@@ -36,6 +36,7 @@ class UserController extends V1Controller
 
     /**
      * Insert a new User using the request data.
+     * A user will be Guest by default.
      * Returns the created User.
      *
      * @param StoreUserRequest $request
@@ -44,9 +45,8 @@ class UserController extends V1Controller
     public function store(StoreUserRequest $request): UserResource
     {
         $data = $request->all();
-        if (!$data['site_role_id']) {
-            $data['site_role_id'] = SiteRole::USER;
-        }
+
+        $data['site_role_id'] = SiteRole::GUEST;
 
         // Store the profile picture if it's uploaded.
         $data['picture'] = $this->savePicture($request);
@@ -81,15 +81,32 @@ class UserController extends V1Controller
      *
      * @param Request $request
      * @param User $user
-     * @return ConflictErrorResponse|NoContentSuccessResponse
+     * @return NoContentSuccessResponse|UnprocessableEntityErrorResponse
      */
-    public function destroy(Request $request, User $user): NoContentSuccessResponse|ConflictErrorResponse
+    public function destroy(Request $request, User $user): NoContentSuccessResponse|UnprocessableEntityErrorResponse
     {
-        // todo Maybe remove picture after successful delete (check if response is NoContent, return it later.)
-        return $this->commonDestroy($request, $user);
-    }
+        // Only guest users can be deleted.
+        if (!$user->siteRole->isGuest()) {
+            $message = "Could not delete the user [".$user->id."] because its siteRole [".$user->site_role_id."] is not Guest [".SiteRole::GUEST."].";
+            $errors = [
+                'role' => $message,
+                'value' => $user->site_role_id,
+            ];
 
-    // Todo destroyPicture(), storePicture
+            return new UnprocessableEntityErrorResponse($message, $errors);
+        }
+
+        // Delete the profile picture
+        $this->destroyPicture($request, $user);
+
+        // Delete enrollments
+        $user->enrollments()->delete();
+
+        // Delete the user
+        $user->delete();
+
+        return new NoContentSuccessResponse();
+    }
 
     /** Picture methods **/
 
@@ -148,9 +165,8 @@ class UserController extends V1Controller
      */
     protected function replacePicture(Request $request, User $user): void
     {
-        // Delete the existing picture of the user
+        // Delete the existing picture of the user, if it exists.
         $previousPicture = $user->picture;
-
         if ($previousPicture && Storage::exists($previousPicture)) {
             Storage::delete($previousPicture);
         }

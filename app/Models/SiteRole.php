@@ -15,6 +15,12 @@ class SiteRole extends Model
     use HasFactory, SoftDeletes;
     use HasRelationships;
 
+    // Constants of all roles.
+    public const GUEST = 1;
+    public const USER = 2;
+    public const SECRETARY = 3;
+    public const ADMINISTRATOR = 4;
+
     public const filterable = [
         'name' => StringOperators::class,
         'created_at' => DateOperators::class,
@@ -31,10 +37,10 @@ class SiteRole extends Model
         return $this->hasMany(User::class);
     }
 
-    // Constants of all roles.
-    public const USER = 1;
-    public const SECRETARY = 2;
-    public const ADMINISTRATOR = 3;
+    public function isGuest(): bool
+    {
+        return $this->id === self::GUEST;
+    }
 
     public function isUser(): bool {
         return $this->id === self::USER;

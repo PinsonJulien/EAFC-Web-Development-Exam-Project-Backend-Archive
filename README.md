@@ -37,10 +37,8 @@ Run `php artisan serve`
 
 ## Todo
 - Todo's in the source code.
-- User:
-  - cannot delete user if they're a student. maybe use the guest siteRole to determine it ?
-    - Accepted request automatically set the user role to USER 
-  - When a user is deleted : delete their picture from storage and update model to null it.
+- User: 
+  - Cannot update their own role.
 
 - Cohort
   - GET /cohorts/{cohort}/users : Return all users of the cohort.
@@ -51,11 +49,14 @@ Run `php artisan serve`
     - Store a new Grade for all students in the cohort, if they're not subscribed.
 
 - Enrollment
-  - Uppon approved :
+  - Upon approved :
     - Change user siteRole to [user].
     - Create automatically a cohort to the formation for the current year. New one every 1st september.
     - Add the user to this cohort with the cohort_role [student]
   - update / delete that are approved / denied should be returning [HTTP Locked].
+
+- Course :
+  - On post / update : If the user set as teacher is guest, set his role to User.
 
 - App access
   - Policies secures all controller methods using the site_role.

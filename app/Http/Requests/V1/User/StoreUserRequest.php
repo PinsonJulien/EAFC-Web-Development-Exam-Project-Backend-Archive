@@ -14,8 +14,6 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // todo Do not allow to set the siteRoleId if not logged in. Must be admin.
-        // prohibited_if https://laravel.com/docs/9.x/validation#rule-prohibited-if
         return true;
     }
 
@@ -39,7 +37,6 @@ class StoreUserRequest extends FormRequest
             'addressCountryId' => ['required', 'integer', 'exists:countries,id,deleted_at,NULL'],
             'phone' => ['required', 'string', 'max:50'],
             'picture' => ['nullable', 'image'],
-            'siteRoleId' => ['sometimes','required', 'integer', 'exists:site_roles,id,deleted_at,NULL'],
         ];
     }
 
@@ -49,7 +46,6 @@ class StoreUserRequest extends FormRequest
             'nationality_country_id' => $this->nationalityCountryId,
             'address_country_id' => $this->addressCountryId,
             'postal_code' => $this->postalCode,
-            'site_role_id' => $this->siteRoleId,
         ]);
     }
 }

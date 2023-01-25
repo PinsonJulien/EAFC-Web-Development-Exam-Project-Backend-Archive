@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Requests\V1\Formation\StoreCourseFormationRequest;
+use App\Http\Requests\V1\Formation\Courses\StoreCourseFormationRequest;
 use App\Http\Requests\V1\Formation\StoreFormationRequest;
 use App\Http\Requests\V1\Formation\UpdateFormationRequest;
 use App\Http\Resources\V1\Formation\FormationResource;
@@ -11,10 +11,8 @@ use App\Http\Responses\Errors\NotFoundErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Course;
 use App\Models\Formation;
-use App\Models\FormationCourse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class FormationController extends V1Controller

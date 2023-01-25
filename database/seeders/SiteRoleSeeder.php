@@ -16,9 +16,10 @@ class SiteRoleSeeder extends Seeder
     {
         SiteRole::insert(
             [
-                ['name' => 'user', 'id' => 1],
-                ['name' => 'secretary', 'id' => 2],
-                ['name' => 'administrator', 'id' => 3],
+                ['name' => 'guest', 'id' => 1],
+                ['name' => 'user', 'id' => 2],
+                ['name' => 'secretary', 'id' => 3],
+                ['name' => 'administrator', 'id' => 4],
             ]
         );
     }

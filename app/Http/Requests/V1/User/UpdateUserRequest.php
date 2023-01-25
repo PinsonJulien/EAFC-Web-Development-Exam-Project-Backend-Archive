@@ -14,7 +14,9 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // todo User cannot edit their own role. (logged user != user we're try to change)
+        // todo User cannot edit their own role. (logged user != user we're trying to change)
+        // prohibited_if https://laravel.com/docs/9.x/validation#rule-prohibited-if
+
         return true;
     }
 
@@ -58,16 +60,5 @@ class UpdateUserRequest extends FormRequest
             'postal_code' => $this->postalCode,
             'site_role_id' => $this->siteRoleId,
         ]);
-    }
-
-    /**
-     * Configure the validator instance.
-     *
-     * @param  \Illuminate\Validation\Validator $validator
-     * @return void
-     */
-    public function withValidator($validator)
-    {
-        // Todo Cannot update delete if it's the only admin.
     }
 }
