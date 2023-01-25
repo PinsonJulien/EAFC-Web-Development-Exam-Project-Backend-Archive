@@ -8,6 +8,8 @@ use App\Http\Resources\V1\Course\CourseResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Course;
+use App\Models\SiteRole;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends V1Controller
@@ -31,6 +33,7 @@ class CourseController extends V1Controller
 
     /**
      * Insert a new Course using the request data.
+     * Automatically set the teacher user site_role to User.
      * Returns the created Course.
      *
      * @param StoreCourseRequest $request
@@ -38,11 +41,18 @@ class CourseController extends V1Controller
      */
     public function store(StoreCourseRequest $request): CourseResource
     {
-        return new CourseResource(Course::create($request->all()));
+        $data = $request->all();
+        // Update the teacher role to User if it's null or Guest.
+        $user = User::find($data['teacher_user_id']);
+        if ($user->isSiteRoleGuest())
+            $user->changeSiteRole(SiteRole::USER);
+
+        return new CourseResource(Course::create($data));
     }
 
     /**
      * Update the specified Course using the request data.
+     * Automatically set the teacher user site_role to User.
      * Returns the updated Course.
      * Works for both PUT and PATCH requests.
      *
@@ -55,6 +65,15 @@ class CourseController extends V1Controller
         $data = $request->all();
         if ($request->method() === 'PATCH')
             $data = array_filter($data);
+
+        // Update the teacher role to User if it's null or Guest.
+        $userId = $data['teacher_user_id'] ?? null;
+        if ($userId) {
+            $user = User::find($userId);
+            if ($user->isSiteRoleGuest()) {
+                $user->changeSiteRole(SiteRole::USER);
+            }
+        }
 
         $course->update($data);
         return new CourseResource($course);

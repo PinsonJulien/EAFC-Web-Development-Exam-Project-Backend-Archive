@@ -117,4 +117,26 @@ class User extends Authenticatable
         return $this->hasMany(Grade::class)
             ->with('course');
     }
+
+    /**
+     * Change the Site Role of the User.
+     *
+     * @param int $siteRole
+     * @return void
+     */
+    public function changeSiteRole(int $siteRole) : void
+    {
+        $this->siteRole()->associate($siteRole)->save();
+    }
+
+    /**
+     * Checks if the User Site Role is guest or null.
+     *
+     * @return bool
+     */
+    public function isSiteRoleGuest(): bool
+    {
+        // users without roles are considered guests.
+        return (!$this->siteRole || $this->siteRole->isGuest());
+    }
 }

@@ -25,7 +25,6 @@ Run `php artisan serve`
 
 ## Ideas
 - Calendar to deal with courses and formations being available multiple times (instead of updating each entry)
-- Tokens must have 24h limit of validity
 
 ## Possible improvements
 - Dynamic api routing
@@ -53,13 +52,11 @@ Run `php artisan serve`
     - Change user siteRole to [user].
     - Create automatically a cohort to the formation for the current year. New one every 1st september.
     - Add the user to this cohort with the cohort_role [student]
-  - update / delete that are approved / denied should be returning [HTTP Locked].
-
-- Course :
-  - On post / update : If the user set as teacher is guest, set his role to User.
+  - update / delete that are not [pending] should be returning [HTTP Locked].
 
 - App access
-  - Policies secures all controller methods using the site_role.
+  - Policy secures all controller methods using the site_role.
+  - Tokens must have 24h limit of validity
 
 ## Contribution tools
 ### Useful commands to work with
