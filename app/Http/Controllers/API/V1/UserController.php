@@ -11,6 +11,7 @@ use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends V1Controller
@@ -46,7 +47,11 @@ class UserController extends V1Controller
     {
         $data = $request->all();
 
+        // Set the default site role of the user to Guest.
         $data['site_role_id'] = SiteRole::GUEST;
+
+        // Encrypt the password.
+        $data['password'] = Hash::make($data['password']);
 
         // Store the profile picture if it's uploaded.
         $data['picture'] = $this->savePicture($request);
@@ -71,6 +76,10 @@ class UserController extends V1Controller
         // Do not delete the role on PUT request.
         else if (!$data['site_role_id'])
             unset($data['site_role_id']);
+
+        // Encrypt the password.
+        if (isset($data['password']))
+            $data['password'] = Hash::make($data['password']);
 
         $user->update($data);
         return new UserResource($user);

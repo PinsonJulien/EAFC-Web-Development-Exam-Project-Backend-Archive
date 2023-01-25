@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\V1\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class UpdateUserRequest extends FormRequest
@@ -27,9 +29,12 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
+        $user = $this->route('user');
+        // Ignores the user own email and username.
+
         $rules = [
-            'username' => ['required', 'string', 'unique:users,username'],
-            'email' => ['required', 'email', 'unique:users,email'],
+            'username' => ['required', 'string', Rule::unique('users')->ignoreModel($user),],
+            'email' => ['required', 'email', Rule::unique('users')->ignoreModel($user)],
             'password' => ['required', 'confirmed', Password::min(8)],
             'lastname' => ['required', 'string'],
             'firstname' => ['required', 'string'],
@@ -39,7 +44,6 @@ class UpdateUserRequest extends FormRequest
             'postalCode' => ['required', 'string'],
             'addressCountryId' => ['required', 'integer', 'exists:countries,id,deleted_at,NULL'],
             'phone' => ['required', 'string', 'max:50'],
-            'picture' => ['nullable', 'image'],
             'siteRoleId' => ['sometimes','required', 'integer', 'exists:site_roles,id,deleted_at,NULL'],
         ];
 

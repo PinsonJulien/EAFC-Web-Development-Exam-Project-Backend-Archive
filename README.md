@@ -57,6 +57,11 @@ Run `php artisan serve`
 - App access
   - Policy secures all controller methods using the site_role.
   - Tokens must have 24h limit of validity
+  - See all auth requests / controllers.
+  - signUp :
+      - Auth::login($user); at the end.
+
+
 
 ## Contribution tools
 ### Useful commands to work with
