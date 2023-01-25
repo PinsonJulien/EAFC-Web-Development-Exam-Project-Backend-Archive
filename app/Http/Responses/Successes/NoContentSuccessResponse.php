@@ -4,7 +4,7 @@ namespace App\Http\Responses\Successes;
 
 class NoContentSuccessResponse extends SuccessResponse {
     /**
-     * Instanciate a reponse without content.
+     * Instantiate a response without content.
      * Typical use : Successful delete request.
      *
      * @param array $headers    []

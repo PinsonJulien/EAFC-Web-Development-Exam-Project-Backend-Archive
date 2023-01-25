@@ -31,4 +31,19 @@ Route::prefix('cohorts')
     Route::patch('{cohort}', 'update');
 
     Route::delete('{cohort}', 'destroy');
+
+    // CohortMembers
+    Route::prefix('{cohort}/users')->group(function() {
+        Route::get('', 'indexCohortMember');
+        Route::get('{user}', 'showCohortMember');
+        Route::post('', 'storeCohortMember');
+        Route::put('{user}', 'updateCohortMember');
+        Route::patch('{user}', 'updateCohortMember');
+        Route::delete('{user}', 'destroyCohortMember');
+    });
+
+    // Courses
+    Route::prefix('{cohort}/courses')->group(function () {
+       Route::post('{course}', 'storeCourse');
+    });
 });

@@ -40,12 +40,9 @@ Run `php artisan serve`
   - Cannot update their own role.
 
 - Cohort
-  - GET /cohorts/{cohort}/users : Return all users of the cohort.
-  - POST /cohorts/{cohort}/users : Add user with role.
-  - PUT/PATCH /cohorts/{cohort}/users/{user} : Update the role of a user.
-  - DELETE /cohorts/{cohort}/users/{user} : Removes a user from a cohort.
   - POST /cohorts/{cohort}/courses/{course}
     - Store a new Grade for all students in the cohort, if they're not subscribed.
+    - Returns the list of students from this cohort that are subscribed.
 
 - Enrollment
   - Upon approved :
@@ -60,6 +57,9 @@ Run `php artisan serve`
   - See all auth requests / controllers.
   - signUp :
       - Auth::login($user); at the end.
+  
+- Available for non logged :
+  - formations & course; in the resources, block some relations by role not to everything.
 
 
 
