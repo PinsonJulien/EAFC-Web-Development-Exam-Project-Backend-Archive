@@ -86,7 +86,7 @@ class UserController extends V1Controller
     public function destroy(Request $request, User $user): NoContentSuccessResponse|UnprocessableEntityErrorResponse
     {
         // Only guest users can be deleted.
-        if (!$user->siteRole->isGuest()) {
+        if (!$user->isGuestSiteRole()) {
             $message = "Could not delete the user [".$user->id."] because its siteRole [".$user->site_role_id."] is not Guest [".SiteRole::GUEST."].";
             $errors = [
                 'role' => $message,

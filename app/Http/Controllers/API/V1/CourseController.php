@@ -44,7 +44,7 @@ class CourseController extends V1Controller
         $data = $request->all();
         // Update the teacher role to User if it's null or Guest.
         $user = User::find($data['teacher_user_id']);
-        if ($user->isSiteRoleGuest())
+        if ($user->isGuestSiteRole())
             $user->changeSiteRole(SiteRole::USER);
 
         return new CourseResource(Course::create($data));
@@ -70,7 +70,7 @@ class CourseController extends V1Controller
         $userId = $data['teacher_user_id'] ?? null;
         if ($userId) {
             $user = User::find($userId);
-            if ($user->isSiteRoleGuest()) {
+            if ($user->isGuestSiteRole()) {
                 $user->changeSiteRole(SiteRole::USER);
             }
         }

@@ -134,7 +134,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isSiteRoleGuest(): bool
+    public function isGuestSiteRole(): bool
     {
         // users without roles are considered guests.
         return (!$this->siteRole || $this->siteRole->isGuest());

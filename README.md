@@ -49,7 +49,7 @@ Run `php artisan serve`
 
 - Enrollment
   - Upon approved :
-    - Change user siteRole to [user].
+    - if guest: Change user siteRole to [user].
     - Create automatically a cohort to the formation for the current year. New one every 1st september.
     - Add the user to this cohort with the cohort_role [student]
   - update / delete that are not [pending] should be returning [HTTP Locked].
