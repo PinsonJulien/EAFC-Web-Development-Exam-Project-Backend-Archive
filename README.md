@@ -33,6 +33,7 @@ Run `php artisan serve`
   - path is name of the folder with a first lowercase
   - include routes from inside the folder
 - Improve seeders
+- Reduce code repetition in controllers.
 
 ## Todo
 - Todo's in the source code.
@@ -41,21 +42,24 @@ Run `php artisan serve`
     - Accepted request automatically set the user role to USER 
   - When a user is deleted : delete their picture from storage and update model to null it.
 
-- CohortMembers
-  - All CRUD
+- Cohort
+  - DELETE /cohorts/{cohort} : Also delete all related cohortMembers.
+  - GET /cohorts/{cohort}/users : Return all users of the cohort.
+  - POST /cohorts/{cohort}/users : Add user with role.
+  - PUT/PATCH /cohorts/{cohort}/users/{user} : Update the role of a user.
+  - DELETE /cohorts/{cohort}/users/{user} : Removes a user from a cohort.
+  - POST /cohorts/{cohort}/courses/{course}
+    - Store a new Grade for all students in the cohort, if they're not subscribed.
+
+- Enrollment
+  - Uppon approved :
+    - Change user siteRole to [user].
+    - Create automatically a cohort to the formation for the current year. New one every 1st september.
+    - Add the user to this cohort with the cohort_role [student]
+  - update / delete that are approved / denied should be returning [HTTP Locked].
 
 - App access
   - Policies secures all controller methods using the site_role.
-
-- Courses
-  - when assigning a group to a course, only create grades for students.
- 
-- groups
-  - Name, timestamps (to determine school year 20XX - 20YY) 
-  - user_group (user_id, group_id)
-  - controller allows to add new user to a group, remove, (un)subscribe the whole group to a formation or course.
-  - On delete, remove all entries in user_group, maybe unsubscribe the linked users from any formation / course.
-- don't allow adding the same person to the same cohort twice (via the respective custom Request)
 
 ## Contribution tools
 ### Useful commands to work with
