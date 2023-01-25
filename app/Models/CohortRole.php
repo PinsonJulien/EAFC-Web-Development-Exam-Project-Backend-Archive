@@ -15,6 +15,11 @@ class CohortRole extends Model
     use HasFactory, SoftDeletes;
     use HasRelationships;
 
+    // Constants of all roles.
+    public const STUDENT = 1;
+    public const ASSISTANT = 2;
+    public const TEACHER = 3;
+
     public const filterable = [
         'name' => StringOperators::class,
         'created_at' => DateOperators::class,

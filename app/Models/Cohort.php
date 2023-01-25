@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
+use Illuminate\Support\Collection;
 
 class Cohort extends Model
 {
@@ -53,5 +54,18 @@ class Cohort extends Model
         $userId = $user->id ?? $user;
         return $this->cohortMembers()
             ->where('user_id', $userId)->first();
+    }
+
+    /**
+     * Returns all the students of the cohort.
+     *
+     * @return Collection
+     */
+    public function getStudents(): Collection
+    {
+        return $this->cohortMembers()
+            ->where('cohort_role_id', CohortRole::STUDENT)
+            ->with('user')
+            ->get();
     }
 }

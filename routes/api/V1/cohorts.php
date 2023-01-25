@@ -44,6 +44,6 @@ Route::prefix('cohorts')
 
     // Courses
     Route::prefix('{cohort}/courses')->group(function () {
-       Route::post('{course}', 'storeCourse');
+       Route::post('', 'storeCourse');
     });
 });

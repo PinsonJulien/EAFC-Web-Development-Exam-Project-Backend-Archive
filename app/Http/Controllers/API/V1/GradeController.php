@@ -7,6 +7,7 @@ use App\Http\Requests\V1\Grade\UpdateGradeRequest;
 use App\Http\Resources\V1\Grade\GradeResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Errors\LockedErrorResponse;
+use App\Http\Responses\Errors\UnprocessableEntityErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Grade;
 use Illuminate\Http\JsonResponse;
@@ -35,15 +36,38 @@ class GradeController extends V1Controller
 
     /**
      * Insert a new Grade using the request data.
+     * Only allows to create duplicate if the user doesn't have an ongoing grade for a course.
      * Returns the created Grade.
+     * Returns Unprocessable entity error response if there's an ongoing grade.
      *
      * @param StoreGradeRequest $request
-     * @return JsonResponse
+     * @return JsonResponse|UnprocessableEntityErrorResponse
      */
-    public function store(StoreGradeRequest $request): JsonResponse
+    public function store(StoreGradeRequest $request): JsonResponse|UnprocessableEntityErrorResponse
     {
         $userId = $request->get('user_id');
         $courseId = $request->get('course_id');
+
+        // Grades can't be created if the last score of a User for a course is:
+        // >= 50
+        // null
+        $grade = Grade::where([
+            ['user_id', '=', $userId],
+            ['course_id', '=', $courseId],
+        ])->where(
+            fn ($query) => $query->where('score', '>=', 50)->orWhereNull('score')
+        )->first();
+
+        if ($grade) {
+            $message = ($grade->score !== null)
+                ? "The user [".$userId."] has already successfully complete the course [".$courseId."]."
+                : "The user [".$userId."] has not been scored yet for the course [".$courseId."].";
+            $errors = [
+                'courseId' => $message
+            ];
+
+            return new UnprocessableEntityErrorResponse($message, $errors);
+        }
 
         $resource = new GradeResource(
             Grade::create([

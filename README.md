@@ -38,11 +38,7 @@ Run `php artisan serve`
 - Todo's in the source code.
 - User: 
   - Cannot update their own role.
-
-- Cohort
-  - POST /cohorts/{cohort}/courses/{course}
-    - Store a new Grade for all students in the cohort, if they're not subscribed.
-    - Returns the list of students from this cohort that are subscribed.
+  - Other people than owner can update the password.
 
 - Enrollment
   - Upon approved :
@@ -60,8 +56,6 @@ Run `php artisan serve`
   
 - Available for non logged :
   - formations & course; in the resources, block some relations by role not to everything.
-
-
 
 ## Contribution tools
 ### Useful commands to work with

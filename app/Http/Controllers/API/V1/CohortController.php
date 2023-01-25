@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Requests\V1\Cohort\CohortMember\StoreCohortMemberCohortRequest;
 use App\Http\Requests\V1\Cohort\CohortMember\UpdateCohortMemberCohortRequest;
+use App\Http\Requests\V1\Cohort\Course\StoreCourseCohortRequest;
 use App\Http\Requests\V1\Cohort\StoreCohortRequest;
 use App\Http\Requests\V1\Cohort\UpdateCohortRequest;
+use App\Http\Requests\V1\Grade\StoreGradeRequest;
 use App\Http\Resources\V1\Cohort\CohortResource;
 use App\Http\Resources\V1\CohortMember\CohortMemberCollection;
 use App\Http\Resources\V1\CohortMember\CohortMemberResource;
@@ -223,4 +225,32 @@ class CohortController extends V1Controller
 
     /** Course methods  **/
 
+    /**
+     * Subscribe every student from the Cohort to a specified course.
+     * Will only subscribe students that are not already subscribed.
+     * Returns the lists of all students in this cohort.
+     *
+     * @param StoreCourseCohortRequest $request
+     * @param Cohort $cohort
+     * @return JsonResponse
+     */
+    public function storeCourse(StoreCourseCohortRequest $request, Cohort $cohort): JsonResponse
+    {
+        $courseId = $request->get('course_id');
+        $students = $cohort->getStudents();
+
+        // Use the grade controller to generate new course subscriptions for each student
+        $gradeController = new GradeController();
+        $gradeRequest = new StoreGradeRequest();
+        $gradeRequest['course_id'] = $courseId;
+
+        foreach ($students as $student) {
+            $gradeRequest['user_id'] = $student->id;
+            $gradeController->store($gradeRequest);
+        }
+
+        // Returns all cohort members.
+        $collection = new CohortMemberCollection($students);
+        return $collection->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
+    }
 }

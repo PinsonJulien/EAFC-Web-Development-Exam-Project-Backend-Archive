@@ -13,6 +13,254 @@
 					"name": "Cohorts",
 					"item": [
 						{
+							"name": "Cohort members",
+							"item": [
+								{
+									"name": "all",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/users",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "by user id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/users/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"users",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "cohortRoleId",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "userId",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/users",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "cohortRoleId",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/users/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"users",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "cohortRoleId",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/users/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"users",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/users/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"users",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Course",
+							"item": [
+								{
+									"name": "Subscribe students to course",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "courseId",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/cohorts/1/courses",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"cohorts",
+												"1",
+												"courses"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "all",
 							"request": {
 								"method": "GET",
@@ -3207,16 +3455,16 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/Dinkertons/Desktop/2023-01-18 20_33_10-Window.png"
+											"src": "/C:/Users/Dinkertons/Desktop/2023-01-24 14_17_39-Window.png"
 										},
 										{
 											"key": "email",
-											"value": "mr.test@test.com",
+											"value": "mra.atesaat@testd.com",
 											"type": "text"
 										},
 										{
 											"key": "username",
-											"value": "Mr. Test",
+											"value": "aaMar. Teasata",
 											"type": "text"
 										},
 										{
@@ -3268,12 +3516,6 @@
 											"key": "phone",
 											"value": "00943641565",
 											"type": "text"
-										},
-										{
-											"key": "siteRoleId",
-											"value": "2",
-											"type": "text",
-											"disabled": true
 										}
 									]
 								},
