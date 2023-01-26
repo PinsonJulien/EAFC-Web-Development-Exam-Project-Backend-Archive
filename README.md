@@ -40,12 +40,6 @@ Run `php artisan serve`
   - Cannot update their own role.
   - Other people than owner can update the password.
 
-- Enrollment
-  - Upon approved :
-    - if guest: Change user siteRole to [user].
-    - Create automatically a cohort to the formation for the current year. New one every 1st september.
-    - Add the user to this cohort with the cohort_role [student]
-
 - App access
   - Policy secures all controller methods using the site_role.
   - Tokens must have 24h limit of validity

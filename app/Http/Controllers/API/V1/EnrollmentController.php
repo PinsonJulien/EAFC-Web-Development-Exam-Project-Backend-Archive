@@ -8,7 +8,10 @@ use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Errors\LockedErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
+use App\Models\CohortMember;
+use App\Models\CohortRole;
 use App\Models\Enrollment;
+use App\Models\SiteRole;
 use App\Models\Status;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -96,14 +99,6 @@ class EnrollmentController extends V1Controller
         $data = $request->all();
         $statusId = $data['status_id'] ?? null;
 
-        // If the status was approved
-        // try to join the user to the formation's current year cohort.
-        if ($statusId === Status::APPROVED) {
-            // todo once the CohortMembers controller is done.
-            // Could create a specific method in Cohort aswell.
-            // Should have the student role.
-        }
-
         if ($request->method() === 'PATCH')
             $data = array_filter($data);
         // Do not delete the status on PUT request.
@@ -112,6 +107,30 @@ class EnrollmentController extends V1Controller
 
         $enrollment->update($data);
         $enrollment->loadMissing($this->joinedRelations);
+
+        if ($statusId != Status::APPROVED)
+            return new EnrollmentResource($enrollment);
+
+        // If the status was approved
+        $user = $enrollment->user;
+
+        // Update User site role to User if Guest.
+        if ($user->isGuestSiteRole())
+            $user->changeSiteRole(SiteRole::USER);
+
+        // try to join the user to the formation's current year cohort.
+        $cohort = $enrollment->formation->getCurrentAcademicYearCohort();
+        $cohortMember = $cohort->findCohortMemberByUser($user);
+
+        if (!$cohortMember) {
+            // Add the user to the cohort, with the student role.
+            $cohortMember = new CohortMember([
+                'cohort_id' => $cohort->id,
+                'user_id' => $user->id,
+                'cohort_role_id' => CohortRole::STUDENT,
+            ]);
+            $cohortMember->save();
+        }
 
         return new EnrollmentResource($enrollment);
     }

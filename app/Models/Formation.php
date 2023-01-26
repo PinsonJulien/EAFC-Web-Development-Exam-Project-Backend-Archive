@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Formation extends Model
 {
@@ -62,5 +63,35 @@ class Formation extends Model
     public function cohorts(): HasMany
     {
         return $this->hasMany(Cohort::class);
+    }
+
+    /** Helpers methods. **/
+
+    /**
+     * Returns the cohort for this formation academic year.
+     * If it doesn't exist, create it.
+     * Every first september, a new one should be created.
+     *
+     * @return void
+     */
+    public function getCurrentAcademicYearCohort(): object
+    {
+        $now = Carbon::now();
+        $currentAcademicYear = ($now->month >= 9) ? $now->year : $now->year - 1;
+        $firstSeptember = Carbon::createFromDate($currentAcademicYear, 9, 1);
+
+        // Try to get existing cohort for this academic year.
+        $cohort = $this->cohorts()
+            ->where('created_at', '>=', $firstSeptember->toDateTime())
+            ->first();
+
+        if ($cohort) return $cohort;
+
+        // If it doesn't exist, create it, return it.
+        $cohort = $this->cohorts()->create([
+            'name' => $this->name . " ".$currentAcademicYear. " - ".$currentAcademicYear+1,
+        ]);
+
+        return $cohort;
     }
 }
