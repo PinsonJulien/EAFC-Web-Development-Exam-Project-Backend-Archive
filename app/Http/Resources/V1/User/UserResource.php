@@ -21,27 +21,44 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        // Checks if the picture is already a URL.
+        $picture = (filter_var($this->picture, FILTER_VALIDATE_URL))
+            ? $this->picture
+            : Storage::url($this->picture);
+
         return [
             'id' => $this->id,
-            'username' => $this->username,
-            'email' => $this->email,
-            'emailVerifiedAt' => $this->email_verified_at,
-            'lastname' => $this->lastname,
-            'firstname' => $this->firstname,
-            'nationality' => new CountryResource($this->nationality),
-            'birthdate' => $this->birthdate,
-            'address' => $this->address,
-            'postalCode' => $this->postal_code,
-            'addressCountry' => new CountryResource($this->addressCountry),
-            'phone' => $this->phone,
-            'picture' => Storage::url($this->picture),
-            'siteRole' => new SiteRoleResource($this->siteRole),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
-            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
-            'grades' => GradeResource::collection($this->whenLoaded('grades')),
-            'cohortMembers' => CohortMemberResource::collection($this->whenLoaded('cohortMembers')),
+
+            'account' => [
+                'username' => $this->username,
+                'email' => $this->email,
+                'emailVerifiedAt' => $this->email_verified_at,
+                'picture' => $picture,
+                'siteRole' => new SiteRoleResource($this->siteRole),
+            ],
+            'personal' => [
+                'identity' => [
+                    'lastname' => $this->lastname,
+                    'firstname' => $this->firstname,
+                    'nationality' => new CountryResource($this->nationality),
+                    'birthdate' => $this->birthdate,
+                ],
+                'contact' => [
+                    'phone' => $this->phone,
+                    'address' => $this->address,
+                    'postalCode' => $this->postal_code,
+                    'country' => new CountryResource($this->addressCountry),
+                ]
+            ],
+
+            'relations' => [
+                'teacherCourses' => CourseResource::collection($this->whenLoaded('teacherCourses')),
+                'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+                'grades' => GradeResource::collection($this->whenLoaded('grades')),
+                'cohortMembers' => CohortMemberResource::collection($this->whenLoaded('cohortMembers')),
+            ],
         ];
     }
 }

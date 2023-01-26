@@ -17,10 +17,14 @@ class StatusResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+
+            'name' => $this->name,
+
+            'relations' => [
+                'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+            ],
         ];
     }
 }

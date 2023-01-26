@@ -19,12 +19,13 @@ class EnrollmentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
+
             'user' => new UserResource($this->whenLoaded('user')),
             'formation' => new FormationResource($this->whenLoaded('formation')),
             'status' => new StatusResource($this->status),
             'message' => $this->message,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
         ];
     }
 }

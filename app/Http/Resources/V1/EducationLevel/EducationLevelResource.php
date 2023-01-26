@@ -17,10 +17,13 @@ class EducationLevelResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'formations' => FormationResource::collection($this->whenLoaded('formations')),
+
+            'name' => $this->name,
+            'relations' => [
+                'formations' => FormationResource::collection($this->whenLoaded('formations')),
+            ],
         ];
     }
 }

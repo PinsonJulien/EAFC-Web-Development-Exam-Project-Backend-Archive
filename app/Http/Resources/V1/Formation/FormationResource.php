@@ -20,16 +20,20 @@ class FormationResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
+
             'name' => $this->name,
             'status' => $this->status,
             'startDate' => $this->start_date,
             'endDate' => $this->end_date,
             'educationLevel' => new EducationLevelResource($this->educationLevel),
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
-            'courses' => CourseResource::collection($this->whenLoaded('courses')),
-            'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
-            'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
+
+            'relations' => [
+                'courses' => CourseResource::collection($this->whenLoaded('courses')),
+                'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
+                'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
+            ],
         ];
     }
 }

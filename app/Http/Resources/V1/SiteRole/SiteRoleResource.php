@@ -17,10 +17,14 @@ class SiteRoleResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'users' => UserResource::collection($this->whenLoaded('users')),
+
+            'name' => $this->name,
+
+            'relations' => [
+                'users' => UserResource::collection($this->whenLoaded('users')),
+            ],
         ];
     }
 }

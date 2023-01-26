@@ -19,11 +19,13 @@ class CourseResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
+
             'name' => $this->name,
             'status' => $this->status,
             'teacher' => new UserResource($this->teacher),
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+
             'formations' => FormationResource::collection($this->whenLoaded('formations')),
             'grades' => GradeResource::collection($this->whenLoaded('grades')),
         ];

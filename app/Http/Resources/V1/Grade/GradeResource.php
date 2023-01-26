@@ -18,11 +18,12 @@ class GradeResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
+
             'user' => new UserResource($this->whenLoaded('user')),
             'course' => new CourseResource($this->whenLoaded('course')),
             'score' => $this->score,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
         ];
     }
 }

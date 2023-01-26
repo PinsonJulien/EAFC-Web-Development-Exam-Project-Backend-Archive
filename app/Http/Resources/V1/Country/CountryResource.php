@@ -17,12 +17,16 @@ class CountryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'iso' => $this->iso,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
-            'nationalityUsers' => UserResource::collection($this->whenLoaded('nationalityUsers')),
-            'addressUsers' => UserResource::collection($this->whenLoaded('addressUsers')),
+
+            'name' => $this->name,
+            'iso' => $this->iso,
+
+            'relations' => [
+                'nationalityUsers' => UserResource::collection($this->whenLoaded('nationalityUsers')),
+                'addressUsers' => UserResource::collection($this->whenLoaded('addressUsers')),
+            ],
         ];
     }
 }

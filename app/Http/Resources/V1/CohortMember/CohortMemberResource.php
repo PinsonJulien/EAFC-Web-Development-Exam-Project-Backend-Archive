@@ -19,11 +19,12 @@ class CohortMemberResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
+
             'user' => new UserResource($this->whenLoaded('user')),
             'cohort' => new CohortResource($this->whenLoaded('cohort')),
             'role' => new CohortRoleResource($this->role),
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
         ];
     }
 }
