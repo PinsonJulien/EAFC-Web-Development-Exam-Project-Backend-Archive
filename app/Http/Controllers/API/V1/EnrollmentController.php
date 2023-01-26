@@ -6,7 +6,7 @@ use App\Http\Requests\V1\Enrollment\StoreEnrollmentRequest;
 use App\Http\Requests\V1\Enrollment\UpdateEnrollmentRequest;
 use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
-use App\Http\Responses\Errors\UnprocessableEntityErrorResponse;
+use App\Http\Responses\Errors\LockedErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Enrollment;
 use App\Models\Status;
@@ -78,16 +78,21 @@ class EnrollmentController extends V1Controller
 
     /**
      * Update the specified Enrollment using the request data.
+     * Cannot be updated if its status is not PENDING.
      * When an Enrollment is APPROVED, automatically create a CohortMember for the student.
      * Returns the updated Enrollment.
      * Works for both PUT and PATCH requests.
      *
      * @param UpdateEnrollmentRequest $request
      * @param Enrollment $enrollment
-     * @return EnrollmentResource
+     * @return EnrollmentResource|LockedErrorResponse
      */
-    public function update(UpdateEnrollmentRequest $request, Enrollment $enrollment): EnrollmentResource
+    public function update(UpdateEnrollmentRequest $request, Enrollment $enrollment): EnrollmentResource|LockedErrorResponse
     {
+        // Cannot update non pending enrollments.
+        if ($enrollment->status_id !== Status::PENDING)
+            return $this->generateStatusLockedResponse($enrollment->id, 'update');
+
         $data = $request->all();
         $statusId = $data['status_id'] ?? null;
 
@@ -113,26 +118,35 @@ class EnrollmentController extends V1Controller
 
     /**
      * Delete the specified Enrollment.
-     * Can only be deleted by its own user
      * Can only be deleted if the status is still PENDING.
      *
      * @param Request $request
      * @param Enrollment $enrollment
-     * @return NoContentSuccessResponse|ConflictErrorResponse|UnprocessableEntityErrorResponse
+     * @return NoContentSuccessResponse|ConflictErrorResponse|LockedErrorResponse
      */
-    public function destroy(Request $request, Enrollment $enrollment): NoContentSuccessResponse|ConflictErrorResponse|UnprocessableEntityErrorResponse
+    public function destroy(Request $request, Enrollment $enrollment): NoContentSuccessResponse|ConflictErrorResponse|LockedErrorResponse
     {
-        $defaultStatus = Status::PENDING;
-
-        if ($enrollment->status_id !== $defaultStatus) {
-            $message = "Could not delete the Enrollment [".$enrollment->id."], because the status [".$enrollment->status_id."] is not equal to [".$defaultStatus."]";
-            $errors = [
-                'status' => $message,
-            ];
-
-            return new UnprocessableEntityErrorResponse($message, $errors);
-        }
+        // Cannot delete non pending enrollments.
+        if ($enrollment->status_id !== Status::PENDING)
+            return $this->generateStatusLockedResponse($enrollment->id, 'delete');
 
         return $this->commonDestroy($request, $enrollment);
+    }
+
+    /**
+     * Generates a Locked error response for status lock.
+     *
+     * @param int $enrollmentId
+     * @param string $action
+     * @return LockedErrorResponse
+     */
+    protected function generateStatusLockedResponse(int $enrollmentId, string $action): LockedErrorResponse
+    {
+        $message = "Cannot ".$action." the Enrollment [".$enrollmentId."] because its status is not [pending]";
+        $errors = [
+            "status" => $message
+        ];
+
+        return new LockedErrorResponse($message, $errors);
     }
 }
