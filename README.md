@@ -32,13 +32,14 @@ Run `php artisan serve`
   - path is name of the folder with a first lowercase
   - include routes from inside the folder
 - Improve seeders
-- Reduce code repetition in controllers.
+- Reduce code redundancy in controllers.
 
 ## Todo
 - Todo's in the source code.
 - User: 
   - Cannot update their own role.
-  - Other people than owner can update the password.
+  - Other people than owner can't update the password.
+  - Reformat the JSON resource.
 
 - App access
   - Policy secures all controller methods using the site_role.
