@@ -8,7 +8,9 @@ use App\Http\Resources\V1\CohortRole\CohortRoleResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\CohortRole;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class CohortRoleController extends V1Controller
 {
@@ -34,11 +36,12 @@ class CohortRoleController extends V1Controller
      * Returns the created CohortRole.
      *
      * @param StoreCohortRoleRequest $request
-     * @return CohortRoleResource
+     * @return JsonResponse
      */
-    public function store(StoreCohortRoleRequest $request): CohortRoleResource
+    public function store(StoreCohortRoleRequest $request): JsonResponse
     {
-        return new CohortRoleResource(CohortRole::create($request->all()));
+        $resource = new CohortRoleResource(CohortRole::create($request->all()));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

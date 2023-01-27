@@ -8,7 +8,9 @@ use App\Http\Resources\V1\SiteRole\SiteRoleResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\SiteRole;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class SiteRoleController extends V1Controller
 {
@@ -34,11 +36,12 @@ class SiteRoleController extends V1Controller
      * Returns the created SiteRole.
      *
      * @param StoreSiteRoleRequest $request
-     * @return SiteRoleResource
+     * @return JsonResponse
      */
-    public function store(StoreSiteRoleRequest $request): SiteRoleResource
+    public function store(StoreSiteRoleRequest $request): JsonResponse
     {
-        return new SiteRoleResource(SiteRole::create($request->all()));
+        $resource = new SiteRoleResource(SiteRole::create($request->all()));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

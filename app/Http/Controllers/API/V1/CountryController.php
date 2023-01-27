@@ -8,7 +8,9 @@ use App\Http\Resources\V1\Country\CountryResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Country;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class CountryController extends V1Controller
 {
@@ -34,11 +36,12 @@ class CountryController extends V1Controller
      * Returns the created Country.
      *
      * @param StoreCountryRequest $request
-     * @return CountryResource
+     * @return JsonResponse
      */
-    public function store(StoreCountryRequest $request): CountryResource
+    public function store(StoreCountryRequest $request): JsonResponse
     {
-        return new CountryResource(Country::create($request->all()));
+        $resource = new CountryResource(Country::create($request->all()));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

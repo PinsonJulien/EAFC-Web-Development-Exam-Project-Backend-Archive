@@ -8,7 +8,9 @@ use App\Http\Resources\V1\Status\StatusResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Status;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class StatusController extends V1Controller
 {
@@ -35,11 +37,14 @@ class StatusController extends V1Controller
      * Returns the created Status.
      *
      * @param StoreStatusRequest $request
-     * @return StatusResource
+     * @return JsonResponse
      */
-    public function store(StoreStatusRequest $request): StatusResource
+    public function store(StoreStatusRequest $request): JsonResponse
     {
-        return new StatusResource(Status::create($request->all()));
+        $resource = new StatusResource(
+            Status::create($request->all())
+        );
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

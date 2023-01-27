@@ -8,7 +8,9 @@ use App\Http\Resources\V1\EducationLevel\EducationLevelResource;
 use App\Http\Responses\Errors\ConflictErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\EducationLevel;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class EducationLevelController extends V1Controller
 {
@@ -34,11 +36,14 @@ class EducationLevelController extends V1Controller
      * Returns the created EducationLevel.
      *
      * @param StoreEducationLevelRequest $request
-     * @return EducationLevelResource
+     * @return JsonResponse
      */
-    public function store(StoreEducationLevelRequest $request): EducationLevelResource
+    public function store(StoreEducationLevelRequest $request): JsonResponse
     {
-        return new EducationLevelResource(EducationLevel::create($request->all()));
+        $resource = new EducationLevelResource(
+            EducationLevel::create($request->all())
+        );
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

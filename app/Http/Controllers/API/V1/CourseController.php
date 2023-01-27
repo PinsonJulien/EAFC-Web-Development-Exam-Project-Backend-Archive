@@ -10,7 +10,9 @@ use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Course;
 use App\Models\SiteRole;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class CourseController extends V1Controller
 {
@@ -37,9 +39,9 @@ class CourseController extends V1Controller
      * Returns the created Course.
      *
      * @param StoreCourseRequest $request
-     * @return CourseResource
+     * @return JsonResponse
      */
-    public function store(StoreCourseRequest $request): CourseResource
+    public function store(StoreCourseRequest $request): JsonResponse
     {
         $data = $request->all();
         // Update the teacher role to User if it's null or Guest.
@@ -47,7 +49,8 @@ class CourseController extends V1Controller
         if ($user->isGuestSiteRole())
             $user->changeSiteRole(SiteRole::USER);
 
-        return new CourseResource(Course::create($data));
+        $resource = new CourseResource(Course::create($data));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

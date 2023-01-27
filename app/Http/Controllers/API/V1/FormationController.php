@@ -39,11 +39,12 @@ class FormationController extends V1Controller
      * Returns the created Formation.
      *
      * @param StoreFormationRequest $request
-     * @return FormationResource
+     * @return JsonResponse
      */
-    public function store(StoreFormationRequest $request): FormationResource
+    public function store(StoreFormationRequest $request): JsonResponse
     {
-        return new FormationResource(Formation::create($request->all()));
+        $resource = new FormationResource(Formation::create($request->all()));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**

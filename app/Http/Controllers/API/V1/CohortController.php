@@ -45,11 +45,12 @@ class CohortController extends V1Controller
      * Returns the created cohort.
      *
      * @param StoreCohortRequest $request
-     * @return CohortResource
+     * @return JsonResponse
      */
-    public function store(StoreCohortRequest $request): CohortResource
+    public function store(StoreCohortRequest $request): JsonResponse
     {
-        return new CohortResource(Cohort::create($request->all()));
+        $resource = new CohortResource(Cohort::create($request->all()));
+        return $resource->response()->setStatusCode(HTTPResponse::HTTP_CREATED);
     }
 
     /**
