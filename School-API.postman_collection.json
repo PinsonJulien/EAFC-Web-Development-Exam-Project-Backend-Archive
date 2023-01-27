@@ -10,6 +10,228 @@
 			"name": "V1",
 			"item": [
 				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{xsrf-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/Dinkertons/Desktop/2023-01-24 14_17_39-Window.png"
+										},
+										{
+											"key": "email",
+											"value": "test@test.com",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "Mr.Test",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Testtest",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "Testtest",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "Jean",
+											"type": "text"
+										},
+										{
+											"key": "firstname",
+											"value": "Yves",
+											"type": "text"
+										},
+										{
+											"key": "nationalityCountryId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "birthdate",
+											"value": "1950-5-30",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Red turtle street, 5",
+											"type": "text"
+										},
+										{
+											"key": "postalCode",
+											"value": "98310",
+											"type": "text"
+										},
+										{
+											"key": "addressCountryId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "00943641565",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/auth/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{xsrf-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "test@test.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Testtest",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{xsrf-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/auth/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const url = pm.variables.get('url');",
+									"",
+									"pm.sendRequest({",
+									"    url: `${url}/sanctum/csrf-cookie`,",
+									"    method: 'GET'",
+									"}, function(error, response, { cookies }) {",
+									"    if (!error) {",
+									"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'));",
+									"    }",
+									"})"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
 					"name": "Cohorts",
 					"item": [
 						{
@@ -1130,6 +1352,11 @@
 										"key": "Accept",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "XSRF-TOKEN",
+										"value": "eyJpdiI6Im1RaDc5MWZ1cEFqcUZmTkpYY1V1bVE9PSIsInZhbHVlIjoiZ25tR3hhTlY5dmI1SjZzZkdzOTBISUtvd2ltUlJuRCtNZENqTnV0QkNONlhWUWx1SXoxb1k0eGdPU0FTTm41dXlKYksvOXJvazFjc1ZPcGxOMEVRVHljeUVHUGF2MmVqMlBubExLS3VYUTdVaVNNT1pNNnFDZlNrRVpLYlZiNEIiLCJtYWMiOiI5MzNhMDBlZWQ5OTI2NzcwNmI1MWFmNjU2YTMwMzEyMzAzYjViNDkwOWQ3NDdjZjk2MzFjMWQ5Y2JiMWU1Y2QwIiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6ImZVd0g4Y3pOaWI1cnhPME5xQUxJT1E9PSIsInZhbHVlIjoia3F2RGNYd0EwVkFxdnVJVUpXcFRWZHExc1Z1OGllUjBGSWtKU2xhR1pPdGxRRE5NVCt3NTlna2lINzhyZi9QR2pKK05scjZEMEFNT0ZORi82WFpGU1FNQm9aVHRLTklUNlpMWU0zOUdCVzRKTGNianovN05ReFVzOWZxRHEwV0MiLCJtYWMiOiI3ZTllYTQ1N2JjMDA4ZTNkMmE5ZTM3NmU4OWQ5YmIwYWU1Y2Q0MThmZDc1NDUzODg1Yjg4NTIyZjk4NzU2YTMyIiwidGFnIjoiIn0%3D",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -1900,6 +2127,13 @@
 										{
 											"key": "statusId",
 											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "statusId",
+											"value": "2",
+											"description": "accepted",
 											"type": "text"
 										}
 									]
@@ -3836,8 +4070,11 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "X-XSRF-TOKEN",
@@ -3866,12 +4103,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/login",
+							"raw": "{{url}}/api/user",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"login"
+								"api",
+								"user"
 							]
 						}
 					},

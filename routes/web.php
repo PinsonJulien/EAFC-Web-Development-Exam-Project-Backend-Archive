@@ -13,8 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return ['Laravel' => app()->version()];
-});
-
-require __DIR__.'/auth.php';
+Route::group([], __DIR__ . '/web/V1/V1.php');

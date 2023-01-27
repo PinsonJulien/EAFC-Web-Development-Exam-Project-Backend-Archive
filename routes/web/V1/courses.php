@@ -8,6 +8,7 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('courses')
+    ->middleware('auth:sanctum')
     ->controller(CourseController::class)
     ->group(function() {
 
