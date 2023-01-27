@@ -2,19 +2,23 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Responses\Errors\ConflictErrorResponse;
 use Closure;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
     /**
-     * Handle an incoming request.
+     * Returns a Conflict error if there's already a logged User.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @param Request $request
+     * @param  Closure(Request): (Response|RedirectResponse)  $next
      * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @return Response|JsonResponse
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
@@ -22,12 +26,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return response()->json(
-                    [
-                        'status' => 200,
-                        'message' => 'Passed the guard'
-                    ]
-                , 200);
+                // If the user is authenticated, returns HTTP error.
+                $message = "A session already exists for this user.";
+                $errors = [
+                    'session' => $message
+                ];
+
+                return new ConflictErrorResponse($message, $errors);
             }
         }
 

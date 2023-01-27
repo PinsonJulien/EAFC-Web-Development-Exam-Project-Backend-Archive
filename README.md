@@ -33,13 +33,14 @@ Run `php artisan serve`
   - include routes from inside the folder
 - Improve seeders
 - Reduce code redundancy in controllers.
+- Improve controllers by using observers on models.
+- models should also return errors whenever a resource is locked for example.
 
 ## Todo
 - Todo's in the source code.
 - User: 
   - Cannot update their own role.
   - Other people than owner can't update the password.
-  - Reformat the JSON resource.
 
 - App access
   - Policy secures all controller methods using the site_role.
