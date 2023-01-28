@@ -7,6 +7,7 @@ use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
 use App\Traits\Models\HasRelationships;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -45,6 +46,28 @@ class Formation extends Model
         'end_date' => 'date',
     ];
 
+    /**
+     * Observe the Formation CRUD methods and perform actions accordingly.
+     *
+     * @return void
+     */
+    public static function boot(): void
+    {
+        parent::boot();
+
+        static::deleting(function (Formation $formation) {
+            // Cannot delete if there's existing cohorts.
+            if ($formation->cohorts()->exists())
+                throw new Exception("This formation cannot be deleted because it has Cohort relations.");
+
+            // Delete all the FormationCourse entries.
+            $formation->formationCourses()->delete();
+
+            // Delete all the enrollments.
+            $formation->enrollments()->delete();
+        });
+    }
+
     public function educationLevel(): BelongsTo
     {
         return $this->belongsTo(EducationLevel::class);
@@ -53,6 +76,11 @@ class Formation extends Model
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'formations_courses');
+    }
+
+    public function formationCourses(): HasMany
+    {
+        return $this->hasMany(FormationCourse::class);
     }
 
     public function enrollments(): HasMany

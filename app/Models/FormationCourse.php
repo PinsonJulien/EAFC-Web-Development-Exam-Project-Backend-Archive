@@ -13,6 +13,8 @@ class FormationCourse extends Model
     use HasFactory, SoftDeletes;
     use HasRelationships;
 
+    protected $table = 'formations_courses';
+
     protected $fillable = [
       'formation_id',
       'course_id',

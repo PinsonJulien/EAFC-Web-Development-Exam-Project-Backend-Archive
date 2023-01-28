@@ -11,6 +11,7 @@ use App\Http\Responses\Errors\NotFoundErrorResponse;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
 use App\Models\Course;
 use App\Models\Formation;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
@@ -71,11 +72,22 @@ class FormationController extends V1Controller
      *
      * @param Request $request
      * @param Formation $formation
-     * @return ConflictErrorResponse|NoContentSuccessResponse
+     * @return NoContentSuccessResponse|ConflictErrorResponse
      */
     public function destroy(Request $request, Formation $formation): NoContentSuccessResponse|ConflictErrorResponse
     {
-        return $this->commonDestroy($request, $formation);
+        try {
+            $formation->delete();
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+            $errors = [
+                'ForeignKeyConstraint' =>  $message
+            ];
+
+            return new ConflictErrorResponse($message, $errors);
+        }
+
+        return new NoContentSuccessResponse;
     }
 
     /** Relation methods **/
