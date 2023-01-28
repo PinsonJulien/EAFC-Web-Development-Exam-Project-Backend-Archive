@@ -169,4 +169,14 @@ class User extends Authenticatable
     {
         return $this->siteRole->isAdministrator();
     }
+
+    /**
+     * Checks if the User Site Role is Banned.
+     *
+     * @return bool
+     */
+    public function isBannedSiteRole(): bool
+    {
+        return $this->siteRole->isBanned();
+    }
 }

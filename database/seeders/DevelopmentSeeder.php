@@ -11,6 +11,7 @@ use Database\Seeders\Faked\FormationSeeder;
 use Database\Seeders\Faked\GradeSeeder;
 use Database\Seeders\Faked\UserSeeder;
 use Database\Seeders\User\AdministratorSiteRoleUserSeeder;
+use Database\Seeders\User\BannedSiteRoleUserSeeder;
 use Database\Seeders\User\GuestSiteRoleUserSeeder;
 use Database\Seeders\User\SecretarySiteRoleUserSeeder;
 use Database\Seeders\User\UserSiteRoleUserSeeder;
@@ -34,6 +35,7 @@ class DevelopmentSeeder extends Seeder
             SecretarySiteRoleUserSeeder::class,
             UserSiteRoleUserSeeder::class,
             GuestSiteRoleUserSeeder::class,
+            BannedSiteRoleUserSeeder::class,
 
             // Fake data
             CountrySeeder::class,

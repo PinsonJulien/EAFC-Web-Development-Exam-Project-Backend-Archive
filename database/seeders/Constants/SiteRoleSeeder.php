@@ -20,6 +20,7 @@ class SiteRoleSeeder extends Seeder
                 ['name' => 'user', 'id' => 2],
                 ['name' => 'secretary', 'id' => 3],
                 ['name' => 'administrator', 'id' => 4],
+                ['name' => 'banned', 'id' => 5],
             ]
         );
     }

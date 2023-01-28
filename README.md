@@ -29,6 +29,7 @@ This repository is part of the web development project of my bachelor degree in 
   - User: user@site.com ; user
   - Secretary: secretary@site.com ; secretary
   - Administrator: administrator@site.com ; administrator
+  - Banned: banned@site.com ; banned
 
 ## How to serve the application
 Run `php artisan serve`

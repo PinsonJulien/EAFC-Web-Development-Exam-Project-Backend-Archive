@@ -20,6 +20,7 @@ class SiteRole extends Model
     public const USER = 2;
     public const SECRETARY = 3;
     public const ADMINISTRATOR = 4;
+    public const BANNED = 5;
 
     public const filterable = [
         'name' => StringOperators::class,
@@ -76,5 +77,14 @@ class SiteRole extends Model
      */
     public function isAdministrator(): bool {
         return $this->id === self::ADMINISTRATOR;
+    }
+
+    /**
+     * Determine if this role is Banned
+     *
+     * @return bool
+     */
+    public function isBanned(): bool {
+        return $this->id === self::BANNED;
     }
 }
