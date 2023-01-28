@@ -37,6 +37,7 @@ class UserResource extends JsonResource
                 'emailVerifiedAt' => $this->email_verified_at,
                 'picture' => $picture,
                 'siteRole' => new SiteRoleResource($this->siteRole),
+                'lastLogin' => $this->last_login,
             ],
             'personal' => [
                 'identity' => [

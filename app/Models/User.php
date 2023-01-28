@@ -37,6 +37,7 @@ class User extends Authenticatable
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
         'deleted_at' => DateOperators::class,
+        'last_login' => DateOperators::class,
     ];
 
     /**
@@ -57,7 +58,8 @@ class User extends Authenticatable
         'address_country_id',
         'phone',
         'picture',
-        'site_role_id'
+        'site_role_id',
+        'last_login'
     ];
 
     /**
@@ -68,6 +70,7 @@ class User extends Authenticatable
     protected $casts = [
         'birthdate' => 'date',
         'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
     ];
 
     /**

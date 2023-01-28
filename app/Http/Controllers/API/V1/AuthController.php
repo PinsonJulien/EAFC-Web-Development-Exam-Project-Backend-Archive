@@ -6,6 +6,7 @@ use App\Http\Requests\V1\Auth\LoginAuthRequest;
 use App\Http\Requests\V1\User\StoreUserRequest;
 use App\Http\Resources\V1\User\UserResource;
 use App\Http\Responses\Successes\NoContentSuccessResponse;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,7 +16,6 @@ use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class AuthController extends V1Controller
 {
-
     /**
      * Register a new user using the UserController store method.
      * Will automatically log in the new user.
@@ -27,6 +27,10 @@ class AuthController extends V1Controller
     public function register(StoreUserRequest $request): JsonResponse
     {
         $userController = new UserController();
+        $request->merge([
+            'last_login' => Carbon::now()
+        ]);
+
         $userResource = $userController->store($request);
 
         $user = $userResource->resource;
@@ -51,7 +55,12 @@ class AuthController extends V1Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        return new UserResource($request->user());
+        $user = $request->user();
+
+        $user->last_login = Carbon::now();
+        $user->save();
+
+        return new UserResource($user);
     }
 
     /**

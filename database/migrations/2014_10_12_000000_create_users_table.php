@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->timestamp('last_login')->nullable();
             $table->rememberToken();
 
             // Personal data
@@ -37,6 +38,7 @@ return new class extends Migration
             $table->string('picture')->nullable();
 
             $table->foreignIdFor(SiteRole::class);
+
 
             $table->timestamps();
             $table->softDeletes();
