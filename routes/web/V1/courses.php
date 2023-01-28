@@ -8,7 +8,7 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('courses')
-    ->middleware('auth:sanctum')
+//    ->middleware('auth')
     ->controller(CourseController::class)
     ->group(function() {
 
@@ -25,9 +25,11 @@ Route::prefix('courses')
    Route::get('{course}', 'show')
        ->middleware(IncludeRelationMiddleware::class);
 
-   Route::post('', 'store');
+   Route::post('', 'store')
+       ->middleware('can:create,course');
 
-   Route::put('{course}', 'update');
+   Route::put('{course}', 'update')
+       ->middleware('can:update,course');
 
    Route::patch('{course}', 'update');
 

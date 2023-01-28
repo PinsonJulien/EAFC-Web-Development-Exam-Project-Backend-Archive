@@ -32,24 +32,48 @@ class SiteRole extends Model
         'name',
     ];
 
+    /** Relation methods */
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
     }
 
+    /** Helper methods */
+
+    /**
+     * Determine if this role is Guest.
+     *
+     * @return bool
+     */
     public function isGuest(): bool
     {
         return $this->id === self::GUEST;
     }
 
+    /**
+     * Determine if this role is User.
+     *
+     * @return bool
+     */
     public function isUser(): bool {
         return $this->id === self::USER;
     }
 
+    /**
+     * Determine if this role is Secretary
+     *
+     * @return bool
+     */
     public function isSecretary(): bool {
         return $this->id === self::SECRETARY;
     }
 
+    /**
+     * Determine if this role is Administrator
+     *
+     * @return bool
+     */
     public function isAdministrator(): bool {
         return $this->id === self::ADMINISTRATOR;
     }

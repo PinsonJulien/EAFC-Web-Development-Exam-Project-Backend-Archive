@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Faked;
 
-use App\Models\CohortMember;
+use App\Models\Grade;
 use Illuminate\Database\Seeder;
 
-class CohortMemberSeeder extends Seeder
+class GradeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class CohortMemberSeeder extends Seeder
      */
     public function run()
     {
-        CohortMember::factory()
-            ->count(10)
+        Grade::factory()
+            ->count(30)
             ->create();
     }
 }

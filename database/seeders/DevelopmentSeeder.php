@@ -16,14 +16,14 @@ use Database\Seeders\User\SecretarySiteRoleUserSeeder;
 use Database\Seeders\User\UserSiteRoleUserSeeder;
 use Illuminate\Database\Seeder;
 
-class DemoSeeder extends Seeder
+class DevelopmentSeeder extends Seeder
 {
     /**
-     * Seed the database with fake data for demo purpose.
+     * Seed the database with fake data for the development environment.
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
         $this->call([
             // constants

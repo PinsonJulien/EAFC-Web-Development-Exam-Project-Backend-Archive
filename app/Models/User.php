@@ -139,4 +139,34 @@ class User extends Authenticatable
         // users without roles are considered guests.
         return (!$this->siteRole || $this->siteRole->isGuest());
     }
+
+    /**
+     * Checks if the User Site Role is User.
+     *
+     * @return bool
+     */
+    public function isUserSiteRole(): bool
+    {
+        return $this->siteRole->isUser();
+    }
+
+    /**
+     * Checks if the User Site Role is Secretary.
+     *
+     * @return bool
+     */
+    public function isSecretarySiteRole(): bool
+    {
+        return $this->siteRole->isSecretary();
+    }
+
+    /**
+     * Checks if the User Site Role is Administrator.
+     *
+     * @return bool
+     */
+    public function isAdministratorSiteRole(): bool
+    {
+        return $this->siteRole->isAdministrator();
+    }
 }

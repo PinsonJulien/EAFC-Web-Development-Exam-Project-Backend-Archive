@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Constants;
 
 use App\Models\SiteRole;
 use Illuminate\Database\Seeder;
@@ -8,11 +8,11 @@ use Illuminate\Database\Seeder;
 class SiteRoleSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the database with all the Site Roles
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         SiteRole::insert(
             [

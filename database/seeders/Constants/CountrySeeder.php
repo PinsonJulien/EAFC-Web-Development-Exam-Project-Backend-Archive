@@ -1,32 +1,27 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Constants;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Country;
+use Illuminate\Database\Seeder;
 
 class CountrySeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the database with all the Countries.
      *
      * @return void
      */
     public function run()
     {
         Country::factory()
-            ->count(25)
-            ->create();
-
-        /*Country::insert(
-            [
+            ->createMany([
                 ['name' => 'Belgium', 'iso' => 'BE'],
                 ['name' => 'France', 'iso' => 'FR'],
                 ['name' => 'Netherlands', 'iso' => 'NL'],
                 ['name' => 'Germany', 'iso' => 'DE'],
                 ['name' => 'Spain', 'iso' => 'ES'],
-            ]
-        );*/
+                ['name' => 'Italy', 'iso' => 'IT'],
+            ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Constants;
 
 use App\Models\CohortRole;
 use Illuminate\Database\Seeder;
@@ -8,11 +8,11 @@ use Illuminate\Database\Seeder;
 class CohortRoleSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the database with all the CohortRoles
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         CohortRole::insert(
             [

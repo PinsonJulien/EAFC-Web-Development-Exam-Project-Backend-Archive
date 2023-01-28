@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Faked;
 
-use App\Models\FormationCourse;
+use App\Models\CohortMember;
 use Illuminate\Database\Seeder;
 
-class FormationCourseSeeder extends Seeder
+class CohortMemberSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class FormationCourseSeeder extends Seeder
      */
     public function run()
     {
-        FormationCourse::factory()
-            ->times(10)
+        CohortMember::factory()
+            ->count(10)
             ->create();
     }
 }

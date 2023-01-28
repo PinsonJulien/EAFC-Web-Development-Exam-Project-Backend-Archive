@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Faked;
 
 use App\Models\Enrollment;
 use Illuminate\Database\Seeder;

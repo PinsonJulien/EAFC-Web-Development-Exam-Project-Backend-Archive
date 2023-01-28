@@ -45,14 +45,17 @@ Run `php artisan serve`
 - App access
   - Policy secures all controller methods using the site_role.
   - Tokens must have 24h limit of validity
-  - See all auth requests / controllers.
-  - signUp :
-      - Auth::login($user); at the end.
   
 - Available for non logged :
   - formations & course; in the resources, block some relations by role not to everything.
 
 ## Contribution tools
+
+### Seeding for all the environments
+- Demo : `php artisan db:seed --class=DemoSeeder`
+- Development : `php artisan db:seed --class=DevelopmentSeeder`
+- Production : `php artisan db:seed --class=ProductionSeeder`
+
 ### Useful commands to work with
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
 - refresh migrations : `php artisan migrate:refresh`

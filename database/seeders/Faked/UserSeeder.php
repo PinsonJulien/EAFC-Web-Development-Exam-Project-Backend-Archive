@@ -1,12 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Faked;
 
-use App\Models\Course;
-use App\Models\Formation;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
