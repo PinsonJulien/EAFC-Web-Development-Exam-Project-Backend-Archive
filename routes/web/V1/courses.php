@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\CourseController;
+use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SortMiddleware;
 use App\Http\Middleware\IncludeRelationMiddleware;
@@ -13,25 +14,30 @@ Route::prefix('courses')
     ->group(function() {
 
    Route::get('', 'index')
+        ->can('viewAny', Course::class)
         ->middleware(FilterMiddleware::class)
         ->middleware(SortMiddleware::class)
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
    Route::get('/export', 'export')
+       ->can('viewAny', Course::class)
        ->middleware(FilterMiddleware::class)
        ->middleware(SortMiddleware::class);
 
    Route::get('{course}', 'show')
+       ->can('view', 'course')
        ->middleware(IncludeRelationMiddleware::class);
 
    Route::post('', 'store')
-       ->middleware('can:create,course');
+       ->can('create', Course::class);
 
    Route::put('{course}', 'update')
-       ->middleware('can:update,course');
+       ->can('update', 'course');
 
-   Route::patch('{course}', 'update');
+   Route::patch('{course}', 'update')
+       ->can('update', 'course');
 
-   Route::delete('{course}', 'destroy');
+   Route::delete('{course}', 'destroy')
+       ->can('delete', 'course');
 });
