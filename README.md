@@ -4,50 +4,35 @@
 
 This repository is part of the web development project of my bachelor degree in Business Computing.
 
-## How to setup the project
-### Database requirements
+## Minimal requirements
+- PHP 8.0
+- MySQL 5.7.36
+- Composer 2.3.10
+
+### Database configuration
 - Make sure your mysql database:
     - Is using `InnoDB` as the engine.
     - Has `default-row-format` set to `dynamic`.
 
-### First launch
+## Initial setup
 - run `composer install`
 - Copy the `.env.config` file to `.env`.
-- Fill the environment variables.
+- Replace environment variables that do not fit your database configuration.
 - Make the sure the .env has `FILESYSTEM_DRIVER=public` this will ensure the files are properly saved.
-- Run `php artisan key:generate` (this will fill the `APP_KEY` environment variable).
-- Run `php artisan migrate` command.
-- For demo purpose you can run `php artisan db:seed --class=DemoSeeder` to populate the database.
-- If you store files locally, run : `php artisan storage:link` to create a symbolic link between "public/storage" and "storage/app/public"
+- Run `php artisan key:generate` (this will fill the `APP_KEY` .env variable).
+- Run : `php artisan storage:link` to create a symbolic link between "public/storage" and "storage/app/public"
+- Run `php artisan migrate` command to generate all the tables.
 
-## How to serve the project
+## Prepare for the demo
+- Run `php artisan db:seed --class=DemoSeeder` to populate the database.
+- Each SiteRole has an initial User, you can log yourself using these credentials (email ; password)
+  - Guest: guest@site.com ; guest
+  - User: user@site.com ; user
+  - Secretary: secretary@site.com ; secretary
+  - Administrator: administrator@site.com ; administrator
+
+## How to serve the application
 Run `php artisan serve`
-
-## Ideas
-- Calendar to deal with courses and formations being available multiple times (instead of updating each entry)
-
-## Possible improvements
-- Dynamic api routing
-  - get folders
-  - path is name of the folder with a first lowercase
-  - include routes from inside the folder
-- Improve seeders
-- Reduce code redundancy in controllers.
-- Improve controllers by using observers on models.
-- models should also return errors whenever a resource is locked for example.
-
-## Todo
-- Todo's in the source code.
-- User: 
-  - Cannot update their own role.
-  - Other people than owner can't update the password.
-
-- App access
-  - Policy secures all controller methods using the site_role.
-  - Tokens must have 24h limit of validity
-  
-- Available for non logged :
-  - formations & course; in the resources, block some relations by role not to everything.
 
 ## Contribution tools
 
@@ -63,3 +48,32 @@ Run `php artisan serve`
 - generate resource : `php artisan make:resource V1\Name\NameResource`
 - generate collection : `php artisan make:resource V1\Name\NameCollection`
 - generate request : `php artisan make:request V1\Name\StoreNameRequest`
+- generate policy : `php artisan make:policy NamePolicy --model=Name`
+
+## Project current state
+
+### Ideas
+- Calendar to deal with courses and formations being available multiple times (instead of updating each entry)
+
+### Possible improvements
+- Dynamic api routing
+  - get folders
+  - path is name of the folder with a first lowercase
+  - include routes from inside the folder
+- Improve seeders
+- Reduce code redundancy in controllers.
+- Improve controllers by using observers on models.
+- models should also return errors whenever a resource is locked for example.
+
+### Todo
+- Todo's in the source code.
+- User: 
+  - Cannot update their own role.
+  - Other people than owner can't update the password.
+
+- App access
+  - Policy secures all controller methods using the site_role.
+  - Tokens must have 24h limit of validity
+  
+- Available for non logged :
+  - formations & course; in the resources, block some relations by role not to everything.
