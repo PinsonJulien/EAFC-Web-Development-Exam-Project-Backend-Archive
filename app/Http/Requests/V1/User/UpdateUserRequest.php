@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\V1\User;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -16,9 +15,6 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        // todo User cannot edit their own role. (logged user != user we're trying to change)
-        // prohibited_if https://laravel.com/docs/9.x/validation#rule-prohibited-if
-
         return true;
     }
 
@@ -35,7 +31,13 @@ class UpdateUserRequest extends FormRequest
         $rules = [
             'username' => ['required', 'string', Rule::unique('users')->ignoreModel($user),],
             'email' => ['required', 'email', Rule::unique('users')->ignoreModel($user)],
-            'password' => ['required', 'confirmed', Password::min(8)],
+            // Must own the changed account of change password.
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(8),
+                Rule::prohibitedIf(fn () => ($user->id != $this->user()->id)),
+            ],
             'lastname' => ['required', 'string'],
             'firstname' => ['required', 'string'],
             'nationalityCountryId' => ['required', 'integer', 'exists:countries,id,deleted_at,NULL'],
@@ -44,7 +46,14 @@ class UpdateUserRequest extends FormRequest
             'postalCode' => ['required', 'string'],
             'addressCountryId' => ['required', 'integer', 'exists:countries,id,deleted_at,NULL'],
             'phone' => ['required', 'string', 'max:50'],
-            'siteRoleId' => ['sometimes','required', 'integer', 'exists:site_roles,id,deleted_at,NULL'],
+            'siteRoleId' => [
+                'sometimes',
+                'required',
+                'integer',
+                'exists:site_roles,id,deleted_at,NULL',
+                // Must be admin AND not own the updated model.
+                Rule::prohibitedIf(fn () => (!$this->user()->isAdministratorSiteRole()) || ($user->id == $this->user()->id)),
+            ],
         ];
 
         if ($this->method() === 'PATCH') {

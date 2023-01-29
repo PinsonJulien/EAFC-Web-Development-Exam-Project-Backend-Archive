@@ -75,9 +75,7 @@ Most of these consists of details I have in mind to improve the project and howe
 
 ### Todo
 - Todo's in the source code.
-- User: 
-  - Cannot update their own role.
-  - Other people than owner can't update the password.
+- User:
   - {user}/export using the controller method, but with only the said user.
     - generic singleExport() method ?
 
