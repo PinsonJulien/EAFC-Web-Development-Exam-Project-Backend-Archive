@@ -18,7 +18,7 @@ class EnrollmentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -30,7 +30,8 @@ class EnrollmentPolicy
      */
     public function view(User $user, Enrollment $enrollment): bool
     {
-        return true;
+        // Must own the resource, or be admin/secretary
+        return ($user->id == $enrollment->user_id) || $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +65,7 @@ class EnrollmentPolicy
      */
     public function update(User $user, Enrollment $enrollment): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +77,8 @@ class EnrollmentPolicy
      */
     public function delete(User $user, Enrollment $enrollment): bool
     {
-        return true;
+        // Must own the resource, or be admin
+        return ($user->id == $enrollment->user_id) || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +90,7 @@ class EnrollmentPolicy
      */
     public function restore(User $user, Enrollment $enrollment): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +102,6 @@ class EnrollmentPolicy
      */
     public function forceDelete(User $user, Enrollment $enrollment): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
