@@ -52,7 +52,7 @@ class CohortRolePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +64,7 @@ class CohortRolePolicy
      */
     public function update(User $user, CohortRole $cohortRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +76,7 @@ class CohortRolePolicy
      */
     public function delete(User $user, CohortRole $cohortRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +88,7 @@ class CohortRolePolicy
      */
     public function restore(User $user, CohortRole $cohortRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +100,6 @@ class CohortRolePolicy
      */
     public function forceDelete(User $user, CohortRole $cohortRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
