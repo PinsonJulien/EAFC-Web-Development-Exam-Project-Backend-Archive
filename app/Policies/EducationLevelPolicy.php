@@ -52,7 +52,7 @@ class EducationLevelPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +64,7 @@ class EducationLevelPolicy
      */
     public function update(User $user, EducationLevel $educationLevel): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +76,7 @@ class EducationLevelPolicy
      */
     public function delete(User $user, EducationLevel $educationLevel): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +88,7 @@ class EducationLevelPolicy
      */
     public function restore(User $user, EducationLevel $educationLevel): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +100,6 @@ class EducationLevelPolicy
      */
     public function forceDelete(User $user, EducationLevel $educationLevel): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
