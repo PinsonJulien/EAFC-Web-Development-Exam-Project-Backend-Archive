@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Str;
 
 class UserPolicy
@@ -67,8 +66,11 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
+        $request = request();
+
         // Only administrators can create accounts with a base role.
-        if (!$user->isAdministratorSiteRole() && request()->has(Str::camel('site_role_id')))
+        $siteRoleParameter = 'site_role_id';
+        if (!$user->isAdministratorSiteRole() && ($request->has(Str::camel($siteRoleParameter)) || $request->has($siteRoleParameter)))
             return false;
 
         return true;
@@ -83,14 +85,16 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
+        $request = request();
         $isModelOwned = ($user->id == $model->id);
 
         // If the user is the same as the updated model, don't allow to update its own role.
-        if ($isModelOwned && request()->has(Str::camel('site_role_id')))
+        $siteRoleParameter = 'site_role_id';
+        if ($isModelOwned && ($request->has(Str::camel($siteRoleParameter)) || $request->has($siteRoleParameter)))
             return false;
 
         // If the user is not the same as the update model, don't allow to update the password.
-        if (!$isModelOwned && request()->has('password'))
+        if (!$isModelOwned && $request->has('password'))
             return false;
 
         // The owner can update their own information
@@ -102,7 +106,7 @@ class UserPolicy
      *
      * @param User $user
      * @param User $model
-     * @return Response|bool
+     * @return bool
      */
     public function delete(User $user, User $model): bool
     {
