@@ -38,6 +38,17 @@ class CoursePolicy
     }
 
     /**
+     * Determine whether the user can export any models.
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function exportAny(User $user): bool
+    {
+        return $user->isAdministratorSiteRole();
+    }
+
+    /**
      * Determine whether the user can create models.
      *
      * @param User $user
@@ -57,6 +68,7 @@ class CoursePolicy
      */
     public function update(User $user, Course $course): bool
     {
+        var_dump(request()); die;
         return $user->isAdministratorSiteRole();
     }
 

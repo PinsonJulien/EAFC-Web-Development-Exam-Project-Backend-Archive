@@ -21,7 +21,7 @@ Route::prefix('courses')
         ->middleware(PaginationMiddleware::class);
 
    Route::get('/export', 'export')
-       ->can('viewAny', Course::class)
+       ->can('exportAny', Course::class)
        ->middleware(FilterMiddleware::class)
        ->middleware(SortMiddleware::class);
 

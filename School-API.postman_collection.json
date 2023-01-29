@@ -10,228 +10,6 @@
 			"name": "V1",
 			"item": [
 				{
-					"name": "Auth",
-					"item": [
-						{
-							"name": "register",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "X-XSRF-TOKEN",
-										"value": "{{xsrf-token}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "picture",
-											"type": "file",
-											"src": "/C:/Users/Dinkertons/Desktop/2023-01-24 14_17_39-Window.png"
-										},
-										{
-											"key": "email",
-											"value": "test@test.com",
-											"type": "text"
-										},
-										{
-											"key": "username",
-											"value": "Mr.Test",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "Testtest",
-											"type": "text"
-										},
-										{
-											"key": "password_confirmation",
-											"value": "Testtest",
-											"type": "text"
-										},
-										{
-											"key": "lastname",
-											"value": "Jean",
-											"type": "text"
-										},
-										{
-											"key": "firstname",
-											"value": "Yves",
-											"type": "text"
-										},
-										{
-											"key": "nationalityCountryId",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "birthdate",
-											"value": "1950-5-30",
-											"type": "text"
-										},
-										{
-											"key": "address",
-											"value": "Red turtle street, 5",
-											"type": "text"
-										},
-										{
-											"key": "postalCode",
-											"value": "98310",
-											"type": "text"
-										},
-										{
-											"key": "addressCountryId",
-											"value": "1",
-											"type": "text"
-										},
-										{
-											"key": "phone",
-											"value": "00943641565",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/auth/register",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"register"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "login",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "X-XSRF-TOKEN",
-										"value": "{{xsrf-token}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "test@test.com",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "Testtest",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/auth/login",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "logout",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "X-XSRF-TOKEN",
-										"value": "{{xsrf-token}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/v1/auth/logout",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"logout"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"const url = pm.variables.get('url');",
-									"",
-									"pm.sendRequest({",
-									"    url: `${url}/sanctum/csrf-cookie`,",
-									"    method: 'GET'",
-									"}, function(error, response, { cookies }) {",
-									"    if (!error) {",
-									"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'));",
-									"    }",
-									"})"
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					]
-				},
-				{
 					"name": "Cohorts",
 					"item": [
 						{
@@ -1498,12 +1276,28 @@
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Accept",
 										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{xsrf-token}}",
 										"type": "text"
 									}
 								],
@@ -1568,6 +1362,11 @@
 										{
 											"key": "teacherUserId",
 											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "X-XSRF-TOKEN",
+											"value": "{{xsrf-token}}",
 											"type": "text"
 										}
 									]
@@ -1658,6 +1457,26 @@
 								}
 							},
 							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					]
 				},
@@ -2446,6 +2265,26 @@
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const url = pm.variables.get('url');\r",
+											"\r",
+											"pm.sendRequest({\r",
+											"    url: `${url}/sanctum/csrf-cookie`,\r",
+											"    method: 'GET'\r",
+											"}, function(error, response, { cookies }) {\r",
+											"    if (!error) {\r",
+											"        pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'));\r",
+											"    }\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2480,12 +2319,37 @@
 						},
 						{
 							"name": "Delete",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"const url = pm.variables.get('url');\r",
+											"\r",
+											"pm.sendRequest({\r",
+											"    url: `${url}/sanctum/csrf-cookie`,\r",
+											"    method: 'GET'\r",
+											"}, function(error, response, { cookies }) {\r",
+											"    if (!error) {\r",
+											"        pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'));\r",
+											"    }\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [
 									{
 										"key": "Accept",
 										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{xsrf-token}}",
 										"type": "text"
 									}
 								],
@@ -3674,6 +3538,17 @@
 						},
 						{
 							"name": "create",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3723,7 +3598,7 @@
 										},
 										{
 											"key": "nationalityCountryId",
-											"value": "20",
+											"value": "1",
 											"type": "text"
 										},
 										{
@@ -3844,8 +3719,7 @@
 										{
 											"key": "siteRoleId",
 											"value": "3",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										}
 									]
 								},
@@ -3881,22 +3755,26 @@
 										{
 											"key": "email",
 											"value": "mar.test@test.com",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "username",
 											"value": "Mr. Test",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
 											"value": "Testtest",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password_confirmation",
 											"value": "Testtest",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "lastname",
@@ -3910,7 +3788,7 @@
 										},
 										{
 											"key": "nationalityCountryId",
-											"value": "20",
+											"value": "1",
 											"type": "text"
 										},
 										{
@@ -3940,13 +3818,13 @@
 										},
 										{
 											"key": "siteRoleId",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/users/1",
+									"raw": "{{url}}/api/v1/users/4",
 									"host": [
 										"{{url}}"
 									],
@@ -3954,7 +3832,7 @@
 										"api",
 										"v1",
 										"users",
-										"1"
+										"4"
 									]
 								}
 							},
@@ -3987,6 +3865,299 @@
 							"response": []
 						}
 					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const url = pm.variables.get('url');",
+							"",
+							"pm.request.headers.add({ ",
+							"    key: \"Accept\",",
+							"    value: \"application/json\" ",
+							"});",
+							"",
+							"if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(pm.request.method)) {",
+							"",
+							"    // Get the XSRF token",
+							"    pm.sendRequest({",
+							"        url: `${url}/sanctum/csrf-cookie`,",
+							"        method: 'GET'",
+							"    }, function(error, response, { cookies }) {",
+							"        if (!error) {",
+							"            pm.collectionVariables.set('xsrf-token', cookies.get('XSRF-TOKEN'));",
+							"",
+							"            pm.request.headers.add({ ",
+							"                key: \"X-XSRF-TOKEN\",",
+							"                value: pm.collectionVariables.get('xsrf-token')",
+							"            });",
+							"        }",
+							"    });",
+							"",
+							"}"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "/C:/Users/Dinkertons/Desktop/2023-01-24 14_17_39-Window.png"
+								},
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "Mr.Test",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Testtest",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "Testtest",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Jean",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "Yves",
+									"type": "text"
+								},
+								{
+									"key": "nationalityCountryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "1950-5-30",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Red turtle street, 5",
+									"type": "text"
+								},
+								{
+									"key": "postalCode",
+									"value": "98310",
+									"type": "text"
+								},
+								{
+									"key": "addressCountryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "00943641565",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "administrator@site.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "administrator",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "secretary@site.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "secretary",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "user@site.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "user",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "guest@site.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "guest",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
