@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class UserController extends V1Controller
 {
@@ -36,7 +37,16 @@ class UserController extends V1Controller
         return new UserResource($user);
     }
 
-    public function singleExport(ExportRequest $request, User $user)
+    /**
+     * Returns a stream to download the specified user data.
+     * Available extensions : CSV, JSON
+     * CSV is returned by default.
+     *
+     * @param ExportRequest $request
+     * @param User $user
+     * @return StreamedResponse
+     */
+    public function singleExport(ExportRequest $request, User $user): StreamedResponse
     {
         $extension = $request->get('extension') ?? 'csv';
 
