@@ -52,7 +52,7 @@ class CountryPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +64,7 @@ class CountryPolicy
      */
     public function update(User $user, Country $country): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +76,7 @@ class CountryPolicy
      */
     public function delete(User $user, Country $country): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +88,7 @@ class CountryPolicy
      */
     public function restore(User $user, Country $country): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +100,6 @@ class CountryPolicy
      */
     public function forceDelete(User $user, Country $country): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }

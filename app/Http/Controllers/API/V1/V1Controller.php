@@ -134,7 +134,7 @@ abstract class V1Controller extends Controller
     protected function commonDestroy(Request $request, Model $model): NoContentSuccessResponse|ConflictErrorResponse {
         // Don't allow to delete if the model has any active relations.
         if (self::hasTrait($this->model, HasRelationships::class)) {
-            /** @noinspection PhpUndefinedMethodInspection */
+            /** @noinspection PhpUndefinedMethodInspection */ // No other way to avoid IDE error.
             foreach ($this->model::getForeignRelationships() as $relationship) {
                 if ($model->$relationship()->exists()) {
                     $message = "Cannot delete due to foreign key constraint.";
