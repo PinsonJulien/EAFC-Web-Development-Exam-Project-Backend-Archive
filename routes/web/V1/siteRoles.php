@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\SiteRoleController;
+use App\Models\SiteRole;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SortMiddleware;
 use App\Http\Middleware\IncludeRelationMiddleware;
@@ -12,23 +13,30 @@ Route::prefix('siteRoles')
     ->group(function() {
 
     Route::get('', 'index')
+        ->can('viewAny', SiteRole::class)
         ->middleware(FilterMiddleware::class)
         ->middleware(SortMiddleware::class)
         ->middleware(IncludeRelationMiddleware::class)
         ->middleware(PaginationMiddleware::class);
 
     Route::get('/export', 'export')
+        ->can('exportAny', SiteRole::class)
         ->middleware(FilterMiddleware::class)
         ->middleware(SortMiddleware::class);
 
     Route::get('{siteRole}', 'show')
+        ->can('view', 'siteRole')
         ->middleware(IncludeRelationMiddleware::class);
 
-    Route::post('', 'store');
+    Route::post('', 'store')
+        ->can('create', SiteRole::class);
 
-    Route::put('{siteRole}', 'update');
+    Route::put('{siteRole}', 'update')
+        ->can('update', 'siteRole');
 
-    Route::patch('{siteRole}', 'update');
+    Route::patch('{siteRole}', 'update')
+        ->can('update', 'siteRole');
 
-    Route::delete('{siteRole}', 'destroy');
+    Route::delete('{siteRole}', 'destroy')
+        ->can('delete', 'siteRole');
 });

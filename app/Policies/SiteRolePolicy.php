@@ -18,7 +18,7 @@ class SiteRolePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class SiteRolePolicy
      */
     public function view(User $user, SiteRole $siteRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -52,7 +52,7 @@ class SiteRolePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +64,7 @@ class SiteRolePolicy
      */
     public function update(User $user, SiteRole $siteRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +76,7 @@ class SiteRolePolicy
      */
     public function delete(User $user, SiteRole $siteRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +88,7 @@ class SiteRolePolicy
      */
     public function restore(User $user, SiteRole $siteRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +100,6 @@ class SiteRolePolicy
      */
     public function forceDelete(User $user, SiteRole $siteRole): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
