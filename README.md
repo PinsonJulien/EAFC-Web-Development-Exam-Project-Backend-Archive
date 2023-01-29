@@ -72,12 +72,9 @@ Most of these consists of details I have in mind to improve the project and howe
 - Make the application /api route only. The Laravel Passport will however not be able to work with sessions. 
   For this project however, I had to work with sessions, not tokens (?)
 - Roles-based authorization should have been dynamic, possibly, allow a granular field by field limitation.
+- If token are implemented they must have 24h limit of validity.
 
 ### Todo
 - App access
-  - Policy secures all controller methods using the site_role.
-  - Tokens must have 24h limit of validity*
   - Middleware to deal with banned users.
-  
-- Available for non logged :
-  - formations & course; in the resources, block some relations by role not to everything.
+  - Block some data in the json resources.
