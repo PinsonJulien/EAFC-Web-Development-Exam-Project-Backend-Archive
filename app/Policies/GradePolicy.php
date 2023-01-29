@@ -18,7 +18,7 @@ class GradePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class GradePolicy
      */
     public function view(User $user, Grade $grade): bool
     {
-        return true;
+        return ($user->id == $grade->user_id) || $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -52,7 +52,7 @@ class GradePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +64,7 @@ class GradePolicy
      */
     public function update(User $user, Grade $grade): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +76,7 @@ class GradePolicy
      */
     public function delete(User $user, Grade $grade): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +88,7 @@ class GradePolicy
      */
     public function restore(User $user, Grade $grade): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +100,6 @@ class GradePolicy
      */
     public function forceDelete(User $user, Grade $grade): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
