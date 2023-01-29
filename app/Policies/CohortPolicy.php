@@ -18,7 +18,8 @@ class CohortPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        // Everyone except : Guests
+        return !$user->isGuestSiteRole();
     }
 
     /**
@@ -30,7 +31,8 @@ class CohortPolicy
      */
     public function view(User $user, Cohort $cohort): bool
     {
-        return true;
+        // Everyone except : Guests
+        return !$user->isGuestSiteRole();
     }
 
     /**
@@ -52,7 +54,7 @@ class CohortPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +66,7 @@ class CohortPolicy
      */
     public function update(User $user, Cohort $cohort): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +78,7 @@ class CohortPolicy
      */
     public function delete(User $user, Cohort $cohort): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +90,7 @@ class CohortPolicy
      */
     public function restore(User $user, Cohort $cohort): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +102,6 @@ class CohortPolicy
      */
     public function forceDelete(User $user, Cohort $cohort): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }

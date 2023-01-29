@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\CohortMember;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -18,19 +17,20 @@ class CohortMemberPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        // Everyone except : Guests
+        return !$user->isGuestSiteRole();
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param User $user
-     * @param CohortMember $cohortMember
      * @return bool
      */
-    public function view(User $user, CohortMember $cohortMember): bool
+    public function view(User $user): bool
     {
-        return true;
+        // Everyone except : Guests
+        return !$user->isGuestSiteRole();
     }
 
     /**
@@ -52,54 +52,50 @@ class CohortMemberPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param CohortMember $cohortMember
      * @return bool
      */
-    public function update(User $user, CohortMember $cohortMember): bool
+    public function update(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param CohortMember $cohortMember
      * @return bool
      */
-    public function delete(User $user, CohortMember $cohortMember): bool
+    public function delete(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param CohortMember $cohortMember
      * @return bool
      */
-    public function restore(User $user, CohortMember $cohortMember): bool
+    public function restore(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param CohortMember $cohortMember
      * @return bool
      */
-    public function forceDelete(User $user, CohortMember $cohortMember): bool
+    public function forceDelete(User $user): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
