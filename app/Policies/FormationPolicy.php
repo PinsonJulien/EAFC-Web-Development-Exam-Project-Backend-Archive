@@ -52,7 +52,7 @@ class FormationPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -64,7 +64,7 @@ class FormationPolicy
      */
     public function update(User $user, Formation $formation): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -76,7 +76,7 @@ class FormationPolicy
      */
     public function delete(User $user, Formation $formation): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -88,7 +88,7 @@ class FormationPolicy
      */
     public function restore(User $user, Formation $formation): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 
     /**
@@ -100,6 +100,6 @@ class FormationPolicy
      */
     public function forceDelete(User $user, Formation $formation): bool
     {
-        return true;
+        return $user->isAdministratorSiteRole();
     }
 }
