@@ -74,14 +74,14 @@ Most of these consists of details I have in mind to improve the project and howe
 - Roles-based authorization should have been dynamic, possibly, allow a granular field by field limitation.
 
 ### Todo
-- Todo's in the source code.
 - User:
   - {user}/export using the controller method, but with only the said user.
     - generic singleExport() method ?
 
 - App access
   - Policy secures all controller methods using the site_role.
-  - Tokens must have 24h limit of validity
+  - Tokens must have 24h limit of validity*
+  - Middleware to deal with banned users.
   
 - Available for non logged :
   - formations & course; in the resources, block some relations by role not to everything.

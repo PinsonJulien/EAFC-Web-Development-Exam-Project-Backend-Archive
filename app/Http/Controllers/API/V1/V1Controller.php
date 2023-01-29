@@ -111,11 +111,11 @@ abstract class V1Controller extends Controller
 
                     // Print all the data for each column.
                     foreach ($rows as $row) {
-                        $rows = array_map(function($column) use ($row) {
+                        $row = array_map(function($column) use ($row) {
                             return $this->formatForCSV($row[$column]);
                         }, $columns);
 
-                        echo implode(',', $rows)."\r\n";
+                        echo implode(',', $row)."\r\n";
                     }
 
                     break;

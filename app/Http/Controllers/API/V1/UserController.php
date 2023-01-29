@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\V1\ExportRequest;
 use App\Http\Requests\V1\User\Picture\StorePictureUserRequest;
 use App\Http\Requests\V1\User\StoreUserRequest;
 use App\Http\Requests\V1\User\UpdateUserRequest;
@@ -33,6 +34,44 @@ class UserController extends V1Controller
     {
         $user = $this->applyIncludeRelationParameters($user, request());
         return new UserResource($user);
+    }
+
+    public function singleExport(ExportRequest $request, User $user)
+    {
+        $extension = $request->get('extension') ?? 'csv';
+
+        $user->makeHidden(['deleted_at']);
+
+        $fileName = class_basename($this->model).".".$extension;
+
+        // Return a generated streamed file depending on the extension.
+        return response()->streamDownload(function() use ($extension, $user) {
+            switch ($extension) {
+                case 'json':
+                    echo $user->toJson();
+                    break;
+
+                case 'csv':
+                    // Print all the columns
+                    $columns = array_keys($user->toArray());
+
+                    // Format the columns to be valid CSV.
+                    $formattedColumns = array_map(function($column) {
+                        return $this->formatForCSV($column);
+                    }, $columns);
+
+                    echo implode(',', $formattedColumns)."\r\n";
+
+                    // Print the user data
+                    $row = array_map(function($column) use ($user) {
+                        return $this->formatForCSV($user[$column]);
+                    }, $columns);
+
+                    echo implode(',', $row)."\r\n";
+
+                    break;
+            }
+        }, $fileName);
     }
 
     /**

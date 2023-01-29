@@ -28,6 +28,9 @@ Route::prefix('users')
         ->can('view', 'user')
         ->middleware(IncludeRelationMiddleware::class);
 
+    Route::get('{user}/export', 'singleExport')
+        ->can('export', 'user');
+
     Route::post('', 'store')
         ->can('create', User::class);
 
