@@ -9,7 +9,6 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('courses')
-//    ->middleware('auth')
     ->controller(CourseController::class)
     ->group(function() {
 

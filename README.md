@@ -52,6 +52,7 @@ Developers can import the `postman_collection.json` at the root of the project i
 - generate collection : `php artisan make:resource V1\Name\NameCollection`
 - generate request : `php artisan make:request V1\Name\StoreNameRequest`
 - generate policy : `php artisan make:policy NamePolicy --model=Name`
+- generate middleware : `php artisan make:middleware NameMiddleware`
 
 ## Project current state
 
@@ -76,5 +77,5 @@ Most of these consists of details I have in mind to improve the project and howe
 
 ### Todo
 - App access
-  - Middleware to deal with banned users.
   - Block some data in the json resources.
+  - Fixing issue on guest available resource being forbidden.

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RestrictedMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([], __DIR__ . '/web/V1/V1.php');
+Route::prefix('')
+    // Site-wide forbidden access to banned users.
+    ->middleware(RestrictedMiddleware::class)
+    ->group(function () {
+
+    Route::group([], __DIR__ . '/web/V1/V1.php');
+});

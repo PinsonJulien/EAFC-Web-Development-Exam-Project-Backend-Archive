@@ -15,7 +15,7 @@ class PaginationMiddleware
 
     /**
      * Handle the pagination query parameter
-     * pagination=15
+     * example: pagination=15
      *
      * @param  Request  $request
      * @param  Closure(Request): (Response|RedirectResponse)  $next

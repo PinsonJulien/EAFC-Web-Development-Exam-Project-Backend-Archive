@@ -26,7 +26,6 @@ use App\Policies\GradePolicy;
 use App\Policies\SiteRolePolicy;
 use App\Policies\StatusPolicy;
 use App\Policies\UserPolicy;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -61,10 +60,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        ResetPassword::createUrlUsing(function ($notifiable, $token) {
+        /*ResetPassword::createUrlUsing(function ($notifiable, $token) {
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
-        });
-
-        //
+        });*/
     }
 }
