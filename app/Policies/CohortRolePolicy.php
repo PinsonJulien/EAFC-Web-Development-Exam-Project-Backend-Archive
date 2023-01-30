@@ -18,7 +18,7 @@ class CohortRolePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class CohortRolePolicy
      */
     public function view(User $user, CohortRole $cohortRole): bool
     {
-        return true;
+        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
     }
 
     /**

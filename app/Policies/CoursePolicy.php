@@ -15,10 +15,10 @@ class CoursePolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param User $user
+     * @param User|null $user
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         // Everyone can see courses.
         return true;
@@ -27,11 +27,11 @@ class CoursePolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param User $user
+     * @param User|null $user
      * @param Course $course
      * @return bool
      */
-    public function view(User $user, Course $course): bool
+    public function view(?User $user, Course $course): bool
     {
         // Everyone can see courses.
         return true;

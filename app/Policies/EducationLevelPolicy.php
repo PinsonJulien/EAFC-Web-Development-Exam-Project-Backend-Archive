@@ -13,10 +13,10 @@ class EducationLevelPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param User $user
+     * @param User|null $user
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -24,11 +24,11 @@ class EducationLevelPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param User $user
+     * @param User|null $user
      * @param EducationLevel $educationLevel
      * @return bool
      */
-    public function view(User $user, EducationLevel $educationLevel): bool
+    public function view(?User $user, EducationLevel $educationLevel): bool
     {
         return true;
     }

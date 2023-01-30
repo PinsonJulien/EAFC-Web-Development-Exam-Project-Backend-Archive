@@ -13,10 +13,10 @@ class FormationPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param User $user
+     * @param User|null $user
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -24,11 +24,11 @@ class FormationPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param User $user
+     * @param User|null $user
      * @param Formation $formation
      * @return bool
      */
-    public function view(User $user, Formation $formation): bool
+    public function view(?User $user, Formation $formation): bool
     {
         return true;
     }

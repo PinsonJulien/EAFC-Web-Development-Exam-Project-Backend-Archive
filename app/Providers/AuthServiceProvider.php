@@ -17,10 +17,12 @@ use App\Models\Status;
 use App\Models\User;
 use App\Policies\CohortMemberPolicy;
 use App\Policies\CohortPolicy;
+use App\Policies\CohortRolePolicy;
 use App\Policies\CountryPolicy;
 use App\Policies\CoursePolicy;
 use App\Policies\EducationLevelPolicy;
 use App\Policies\EnrollmentPolicy;
+use App\Policies\FormationCoursePolicy;
 use App\Policies\FormationPolicy;
 use App\Policies\GradePolicy;
 use App\Policies\SiteRolePolicy;
@@ -36,19 +38,19 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        CohortMember::class => CohortMemberPolicy::class,
-        Cohort::class => CohortPolicy::class,
-        CohortRole::class => CohortRole::class,
-        Country::class => CountryPolicy::class,
-        Course::class => CoursePolicy::class,
-        EducationLevel::class => EducationLevelPolicy::class,
-        Enrollment::class => EnrollmentPolicy::class,
-        Formation::class => FormationPolicy::class,
-        FormationCourse::class => FormationCourse::class,
-        Grade::class => GradePolicy::class,
-        SiteRole::class => SiteRolePolicy::class,
-        Status::class => StatusPolicy::class,
-        User::class => UserPolicy::class,
+        CohortMember::class     => CohortMemberPolicy::class,
+        Cohort::class           => CohortPolicy::class,
+        CohortRole::class       => CohortRolePolicy::class,
+        Country::class          => CountryPolicy::class,
+        Course::class           => CoursePolicy::class,
+        EducationLevel::class   => EducationLevelPolicy::class,
+        Enrollment::class       => EnrollmentPolicy::class,
+        Formation::class        => FormationPolicy::class,
+        FormationCourse::class  => FormationCoursePolicy::class,
+        Grade::class            => GradePolicy::class,
+        SiteRole::class         => SiteRolePolicy::class,
+        Status::class           => StatusPolicy::class,
+        User::class             => UserPolicy::class,
     ];
 
     /**

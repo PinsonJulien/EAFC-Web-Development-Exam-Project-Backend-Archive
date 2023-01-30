@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('')
     // Site-wide forbidden access to banned users.
+    // Yes that means you cannot even log out. That's completely intended.
     ->middleware(RestrictedMiddleware::class)
     ->group(function () {
 

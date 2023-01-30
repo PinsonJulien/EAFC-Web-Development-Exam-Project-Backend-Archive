@@ -13,10 +13,10 @@ class CountryPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param User $user
+     * @param User|null $user
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -24,11 +24,11 @@ class CountryPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param User $user
+     * @param User|null $user
      * @param Country $country
      * @return bool
      */
-    public function view(User $user, Country $country): bool
+    public function view(?User $user, Country $country): bool
     {
         return true;
     }

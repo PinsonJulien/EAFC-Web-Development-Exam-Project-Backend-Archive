@@ -78,4 +78,3 @@ Most of these consists of details I have in mind to improve the project and howe
 ### Todo
 - App access
   - Block some data in the json resources.
-  - Fixing issue on guest available resource being forbidden.
