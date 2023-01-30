@@ -15,6 +15,9 @@ class SiteRoleResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $request->user() ?? null;
+        $isAuthorizedRole = $user && $user->isAdministratorSiteRole();
+
         return [
             'id' => $this->id,
             'createdAt' => $this->created_at,
@@ -22,9 +25,9 @@ class SiteRoleResource extends JsonResource
 
             'name' => $this->name,
 
-            'relations' => [
+            'relations' => $this->when($isAuthorizedRole, [
                 'users' => UserResource::collection($this->whenLoaded('users')),
-            ],
+            ]),
         ];
     }
 }

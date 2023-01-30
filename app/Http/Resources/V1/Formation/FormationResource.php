@@ -18,6 +18,9 @@ class FormationResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $request->user() ?? null;
+        $isAuthorizedRole = $user && ($user->isAdministratorSiteRole() || $user->isSecretarySiteRole());
+
         return [
             'id' => $this->id,
             'createdAt' => $this->created_at,
@@ -31,8 +34,12 @@ class FormationResource extends JsonResource
 
             'relations' => [
                 'courses' => CourseResource::collection($this->whenLoaded('courses')),
-                'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
-                'cohorts' => CohortResource::collection($this->whenLoaded('cohorts')),
+                'enrollments' => $this->when($isAuthorizedRole,
+                    EnrollmentResource::collection($this->whenLoaded('enrollments'))
+                ),
+                'cohorts' => $this->when($isAuthorizedRole,
+                    CohortResource::collection($this->whenLoaded('cohorts'))
+                ),
             ],
         ];
     }

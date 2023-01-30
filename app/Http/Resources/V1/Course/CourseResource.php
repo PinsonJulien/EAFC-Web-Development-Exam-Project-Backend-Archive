@@ -17,6 +17,13 @@ class CourseResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $request->user() ?? null;
+        // All the personal data can be seen when accessing their own profile.
+        // Admins and secretaries can also see all the data.
+        $isOwnUserOrAuthorizedRole = $user && (
+            ($user->id == $this->id) || $user->isAdministratorSiteRole() || $user->isSecretarySiteRole()
+        );
+
         return [
             'id' => $this->id,
             'createdAt' => $this->created_at,
@@ -26,8 +33,12 @@ class CourseResource extends JsonResource
             'status' => $this->status,
             'teacher' => new UserResource($this->teacher),
 
-            'formations' => FormationResource::collection($this->whenLoaded('formations')),
-            'grades' => GradeResource::collection($this->whenLoaded('grades')),
+            'relations' => [
+                'formations' => FormationResource::collection($this->whenLoaded('formations')),
+                'grades' => $this->when($isOwnUserOrAuthorizedRole,
+                    GradeResource::collection($this->whenLoaded('grades'))
+                ),
+            ],
         ];
     }
 }

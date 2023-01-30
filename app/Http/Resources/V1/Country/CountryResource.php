@@ -15,6 +15,9 @@ class CountryResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $request->user() ?? null;
+        $isAuthorizedRole = $user && ($user->isAdministratorSiteRole() || $user->isSecretarySiteRole());
+
         return [
             'id' => $this->id,
             'createdAt' => $this->created_at,
@@ -23,10 +26,10 @@ class CountryResource extends JsonResource
             'name' => $this->name,
             'iso' => $this->iso,
 
-            'relations' => [
+            'relations' => $this->when($isAuthorizedRole, [
                 'nationalityUsers' => UserResource::collection($this->whenLoaded('nationalityUsers')),
                 'addressUsers' => UserResource::collection($this->whenLoaded('addressUsers')),
-            ],
+            ]),
         ];
     }
 }

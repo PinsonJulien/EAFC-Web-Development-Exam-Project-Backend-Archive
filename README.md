@@ -76,5 +76,4 @@ Most of these consists of details I have in mind to improve the project and howe
 - If token are implemented they must have 24h limit of validity.
 
 ### Todo
-- App access
-  - Block some data in the json resources.
+See Possible improvements for now.

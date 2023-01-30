@@ -15,6 +15,9 @@ class StatusResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user = $request->user() ?? null;
+        $isAuthorizedRole = $user && ($user->isAdministratorSiteRole() || $user->isSecretarySiteRole());
+
         return [
             'id' => $this->id,
             'createdAt' => $this->created_at,
@@ -22,9 +25,9 @@ class StatusResource extends JsonResource
 
             'name' => $this->name,
 
-            'relations' => [
+            'relations' => $this->when($isAuthorizedRole, [
                 'enrollments' => EnrollmentResource::collection($this->whenLoaded('enrollments')),
-            ],
+            ]),
         ];
     }
 }
