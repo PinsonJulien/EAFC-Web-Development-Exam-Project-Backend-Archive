@@ -32,9 +32,12 @@ class UserResource extends JsonResource
         );
 
         // Checks if the picture is already a URL.
-        $picture = (filter_var($this->picture, FILTER_VALIDATE_URL))
-            ? $this->picture
-            : Storage::url($this->picture);
+        $picture = $this->picture;
+        if ($picture) {
+            $picture = (filter_var($picture, FILTER_VALIDATE_URL))
+                ? $this->picture
+                : Storage::url($picture);
+        }
 
         return [
             'id' => $this->id,

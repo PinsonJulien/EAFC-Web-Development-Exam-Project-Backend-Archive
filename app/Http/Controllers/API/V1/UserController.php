@@ -176,7 +176,7 @@ class UserController extends V1Controller
      * @param User $user
      * @return UserResource
      */
-    public function storePicture(StorePictureUserRequest $request, User $user)
+    public function storePicture(StorePictureUserRequest $request, User $user): UserResource
     {
         $this->replacePicture($request, $user);
         return new UserResource($user);
@@ -209,7 +209,6 @@ class UserController extends V1Controller
         $picture = $request->file('picture');
         if (!$picture)
             return null;
-
         return $picture->storePublicly(self::PICTURE_STORAGE_PATH);
     }
 
