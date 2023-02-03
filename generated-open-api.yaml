@@ -1,0 +1,2068 @@
+openapi: 3.0.0
+info:
+  title: School-API
+  version: 1.0.0
+servers:
+  - url: http://{{url}}
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: V1
+  - name: V1 > Auth
+  - name: V1 > Cohorts
+  - name: V1 > Cohorts > Cohort members
+  - name: V1 > Cohorts > Course
+  - name: V1 > Cohort roles
+  - name: V1 > Countries
+  - name: V1 > Courses
+  - name: V1 > Education levels
+  - name: V1 > Enrollments
+  - name: V1 > Formations
+  - name: V1 > Formations > Courses
+  - name: V1 > Grades
+  - name: V1 > Site roles
+  - name: V1 > Statuses
+  - name: V1 > Users
+  - name: V1 > Users > Picture
+paths:
+  /api/v1/auth/register:
+    post:
+      tags:
+        - V1 > Auth
+      summary: register
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                picture:
+                  type: string
+                  format: binary
+                email:
+                  type: string
+                  example: test@test.com
+                username:
+                  type: string
+                  example: Mr.Test
+                password:
+                  type: string
+                  example: Testtest
+                password_confirmation:
+                  type: string
+                  example: Testtest
+                lastname:
+                  type: string
+                  example: Jean
+                firstname:
+                  type: string
+                  example: Yves
+                nationalityCountryId:
+                  type: integer
+                  example: '1'
+                birthdate:
+                  type: string
+                  example: 1950-5-30
+                address:
+                  type: string
+                  example: Red turtle street, 5
+                postalCode:
+                  type: integer
+                  example: '98310'
+                addressCountryId:
+                  type: integer
+                  example: '1'
+                phone:
+                  type: integer
+                  example: '00943641565'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-XSRF-TOKEN
+          in: header
+          schema:
+            type: string
+          example: '{{xsrf-token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/auth/login:
+    post:
+      tags:
+        - V1 > Auth
+      summary: login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                email:
+                  type: string
+                  example: banned@site.com
+                password:
+                  type: string
+                  example: banned
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-XSRF-TOKEN
+          in: header
+          schema:
+            type: string
+          example: '{{xsrf-token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/auth/logout:
+    post:
+      tags:
+        - V1 > Auth
+      summary: logout
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-XSRF-TOKEN
+          in: header
+          schema:
+            type: string
+          example: '{{xsrf-token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohorts/1/users:
+    get:
+      tags:
+        - V1 > Cohorts > Cohort members
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Cohorts > Cohort members
+      summary: create
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                cohortRoleId:
+                  type: integer
+                  example: '1'
+                userId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohorts/1/users/1:
+    get:
+      tags:
+        - V1 > Cohorts > Cohort members
+      summary: by user id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Cohorts > Cohort members
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                cohortRoleId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Cohorts > Cohort members
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                cohortRoleId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Cohorts > Cohort members
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohorts/1/courses:
+    post:
+      tags:
+        - V1 > Cohorts > Course
+      summary: Subscribe students to course
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                courseId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohorts:
+    get:
+      tags:
+        - V1 > Cohorts
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Cohorts
+      summary: create
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: test
+                formationId:
+                  type: integer
+                  example: '2'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohorts/export:
+    get:
+      tags:
+        - V1 > Cohorts
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohorts/1:
+    get:
+      tags:
+        - V1 > Cohorts
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Cohorts
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                formationId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Cohorts
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                formationId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Cohorts
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohortRoles:
+    get:
+      tags:
+        - V1 > Cohort roles
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Cohort roles
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohortRoles/export:
+    get:
+      tags:
+        - V1 > Cohort roles
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/cohortRoles/1:
+    get:
+      tags:
+        - V1 > Cohort roles
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Cohort roles
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Cohort roles
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Cohort roles
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/countries:
+    get:
+      tags:
+        - V1 > Countries
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Countries
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Belgium
+                iso: BE
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/countries/export:
+    get:
+      tags:
+        - V1 > Countries
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/countries/1:
+    get:
+      tags:
+        - V1 > Countries
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Countries
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                iso:
+                  type: string
+                  example: aa
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Countries
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                iso:
+                  type: string
+                  example: aa
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Countries
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/courses:
+    get:
+      tags:
+        - V1 > Courses
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: XSRF-TOKEN
+          in: header
+          schema:
+            type: string
+          example: >-
+            eyJpdiI6Im1RaDc5MWZ1cEFqcUZmTkpYY1V1bVE9PSIsInZhbHVlIjoiZ25tR3hhTlY5dmI1SjZzZkdzOTBISUtvd2ltUlJuRCtNZENqTnV0QkNONlhWUWx1SXoxb1k0eGdPU0FTTm41dXlKYksvOXJvazFjc1ZPcGxOMEVRVHljeUVHUGF2MmVqMlBubExLS3VYUTdVaVNNT1pNNnFDZlNrRVpLYlZiNEIiLCJtYWMiOiI5MzNhMDBlZWQ5OTI2NzcwNmI1MWFmNjU2YTMwMzEyMzAzYjViNDkwOWQ3NDdjZjk2MzFjMWQ5Y2JiMWU1Y2QwIiwidGFnIjoiIn0%3D;
+            laravel_session=eyJpdiI6ImZVd0g4Y3pOaWI1cnhPME5xQUxJT1E9PSIsInZhbHVlIjoia3F2RGNYd0EwVkFxdnVJVUpXcFRWZHExc1Z1OGllUjBGSWtKU2xhR1pPdGxRRE5NVCt3NTlna2lINzhyZi9QR2pKK05scjZEMEFNT0ZORi82WFpGU1FNQm9aVHRLTklUNlpMWU0zOUdCVzRKTGNianovN05ReFVzOWZxRHEwV0MiLCJtYWMiOiI3ZTllYTQ1N2JjMDA4ZTNkMmE5ZTM3NmU4OWQ5YmIwYWU1Y2Q0MThmZDc1NDUzODg1Yjg4NTIyZjk4NzU2YTMyIiwidGFnIjoiIn0%3D
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Courses
+      summary: create
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Object oriented programming
+                status:
+                  type: integer
+                  example: '0'
+                teacherUserId:
+                  type: integer
+                  example: '2'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-XSRF-TOKEN
+          in: header
+          schema:
+            type: string
+          example: '{{xsrf-token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/courses/export:
+    get:
+      tags:
+        - V1 > Courses
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/courses/1:
+    get:
+      tags:
+        - V1 > Courses
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Courses
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                status:
+                  type: integer
+                  example: '0'
+                teacherUserId:
+                  type: integer
+                  example: '1'
+                X-XSRF-TOKEN:
+                  type: string
+                  example: '{{xsrf-token}}'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Courses
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                status:
+                  type: integer
+                  example: '0'
+                teacherUserId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Courses
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/educationLevels:
+    get:
+      tags:
+        - V1 > Education levels
+      summary: All
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Education levels
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: BAC
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/educationLevels/export:
+    get:
+      tags:
+        - V1 > Education levels
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/educationLevels/1:
+    get:
+      tags:
+        - V1 > Education levels
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Education levels
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Education levels
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Education levels
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/enrollments:
+    get:
+      tags:
+        - V1 > Enrollments
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Enrollments
+      summary: create
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                formationId:
+                  type: integer
+                  example: '1'
+                userId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/enrollments/export:
+    get:
+      tags:
+        - V1 > Enrollments
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/enrollments/1:
+    get:
+      tags:
+        - V1 > Enrollments
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Enrollments
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                message:
+                  type: string
+                  example: tests
+                statusId:
+                  type: integer
+                  description: accepted
+                  example: '2'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Enrollments
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                message:
+                  type: string
+                  example: test
+                statusId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Enrollments
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/formations/1/courses:
+    post:
+      tags:
+        - V1 > Formations > Courses
+      summary: add course to formation
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                courseId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/formations/1/courses/1:
+    delete:
+      tags:
+        - V1 > Formations > Courses
+      summary: delete course to formation
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/formations:
+    get:
+      tags:
+        - V1 > Formations
+      summary: All
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: includeRelations
+          in: query
+          schema:
+            type: string
+          example: courses,enrollments,cohorts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Formations
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Computer science degree
+                status: true
+                startDate: 1995-4-10
+                endDate: '1995-12-30'
+                educationLevelId: 1
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/formations/export:
+    get:
+      tags:
+        - V1 > Formations
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/formations/1:
+    get:
+      tags:
+        - V1 > Formations
+      summary: By id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Formations
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: X-XSRF-TOKEN
+          in: header
+          schema:
+            type: string
+          example: '{{xsrf-token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Formations
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                status:
+                  type: integer
+                  example: '0'
+                startDate:
+                  type: string
+                  example: 1995-4-11
+                endDate:
+                  type: string
+                  example: 1995-4-10
+                educationLevelId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Formations
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+                status:
+                  type: integer
+                  example: '0'
+                startDate:
+                  type: string
+                  example: 1995-4-10
+                endDate:
+                  type: string
+                  example: 1995-4-10
+                educationLevelId:
+                  type: integer
+                  example: '2'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/grades:
+    get:
+      tags:
+        - V1 > Grades
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Grades
+      summary: create
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                userId:
+                  type: integer
+                  example: '1'
+                courseId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/grades/export:
+    get:
+      tags:
+        - V1 > Grades
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/grades/1:
+    get:
+      tags:
+        - V1 > Grades
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Grades
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                score:
+                  type: integer
+                  example: '0'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Grades
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                score:
+                  type: integer
+                  example: '0'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Grades
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/siteRoles:
+    get:
+      tags:
+        - V1 > Site roles
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Site roles
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/siteRoles/export:
+    get:
+      tags:
+        - V1 > Site roles
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/siteRoles/1:
+    get:
+      tags:
+        - V1 > Site roles
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Site roles
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Site roles
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test2
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/siteRoles/2:
+    put:
+      tags:
+        - V1 > Site roles
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/statuses:
+    get:
+      tags:
+        - V1 > Statuses
+      summary: all
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Statuses
+      summary: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/statuses/export:
+    get:
+      tags:
+        - V1 > Statuses
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/statuses/1:
+    get:
+      tags:
+        - V1 > Statuses
+      summary: by id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Statuses
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Statuses
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Statuses
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: test
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/1/picture:
+    post:
+      tags:
+        - V1 > Users > Picture
+      summary: Update picture
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                picture:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Users > Picture
+      summary: Delete picture
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users:
+    get:
+      tags:
+        - V1 > Users
+      summary: All
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - V1 > Users
+      summary: create
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                picture:
+                  type: string
+                  format: binary
+                email:
+                  type: string
+                  example: mra.atesaat@testd.com
+                username:
+                  type: string
+                  example: aaMar. Teasata
+                password:
+                  type: string
+                  example: Testtest
+                password_confirmation:
+                  type: string
+                  example: Testtest
+                lastname:
+                  type: string
+                  example: Jean
+                firstname:
+                  type: string
+                  example: Yves
+                nationalityCountryId:
+                  type: integer
+                  example: '1'
+                birthdate:
+                  type: string
+                  example: 1950-5-30
+                address:
+                  type: string
+                  example: Red turtle street, 5
+                postalCode:
+                  type: integer
+                  example: '98310'
+                addressCountryId:
+                  type: integer
+                  example: '1'
+                phone:
+                  type: integer
+                  example: '00943641565'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/export:
+    get:
+      tags:
+        - V1 > Users
+      summary: export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/1/export:
+    get:
+      tags:
+        - V1 > Users
+      summary: single export
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/users/1:
+    get:
+      tags:
+        - V1 > Users
+      summary: By id
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - V1 > Users
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                email:
+                  type: string
+                  example: mr.test@test.com
+                username:
+                  type: string
+                  example: Mr. Test
+                password:
+                  type: string
+                  example: Testtest
+                password_confirmation:
+                  type: string
+                  example: Testtest
+                lastname:
+                  type: string
+                  example: Jeana
+                firstname:
+                  type: string
+                  example: Yves
+                nationalityCountryId:
+                  type: integer
+                  example: '20'
+                birthdate:
+                  type: string
+                  example: 1950-5-30
+                address:
+                  type: string
+                  example: Red turtle street, 5
+                postalCode:
+                  type: integer
+                  example: '98310'
+                addressCountryId:
+                  type: integer
+                  example: '1'
+                phone:
+                  type: integer
+                  example: '00943641565'
+                siteRoleId:
+                  type: integer
+                  example: '3'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - V1 > Users
+      summary: update
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                email:
+                  type: string
+                  example: mar.test@test.com
+                username:
+                  type: string
+                  example: Mr. Test
+                password:
+                  type: string
+                  example: Testtest
+                password_confirmation:
+                  type: string
+                  example: Testtest
+                lastname:
+                  type: string
+                  example: Jeana
+                firstname:
+                  type: string
+                  example: Yves
+                nationalityCountryId:
+                  type: integer
+                  example: '1'
+                birthdate:
+                  type: string
+                  example: 1950-5-30
+                address:
+                  type: string
+                  example: Red turtle street, 5
+                postalCode:
+                  type: integer
+                  example: '98310'
+                addressCountryId:
+                  type: integer
+                  example: '1'
+                phone:
+                  type: integer
+                  example: '00943641565'
+                siteRoleId:
+                  type: integer
+                  example: '1'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - V1 > Users
+      summary: Delete
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /sanctum/csrf-cookie:
+    get:
+      tags:
+        - default
+      summary: CSRF
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
