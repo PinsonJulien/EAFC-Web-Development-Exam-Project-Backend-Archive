@@ -49,9 +49,10 @@ class EnrollmentController extends V1Controller
      */
     public function store(StoreEnrollmentRequest $request): JsonResponse|ConflictErrorResponse
     {
+        $data = $request->all();
         $defaultStatus = Status::PENDING;
-        $userId = $request->get('user_id');
-        $formationId = $request->get('formation_id');
+        $userId = $data['user_id'];
+        $formationId = $data['formation_id'];
 
         $hasPending = Enrollment::where([
             ['user_id', '=', $userId],
