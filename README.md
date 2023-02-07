@@ -1,8 +1,17 @@
-# School Website - Backend Laravel
+# (ACHIEVED) School Website - Backend Laravel
 
-## WORK IN PROGRESS
+## Archive note
+This repository will be archived as of **08/02/2022 (D/M/Y), 9PM (UTC+1 Brussels)** for school access.
+You can find the forked repository (here)[  WRITE URL ]
 
-This repository is part of the web development project of my bachelor degree in Business Computing.
+## Context 
+This repository is part of the web development course of my bachelor degree in Business Computing, 2nd year.
+You can consult the *scope statement* (in French) in the `scope.pdf` file at root.
+
+I chose to use **Laravel 9**, scaffolded as a **REST api**.
+The usage of session being in the scope statement, the api routes are located in the `routes/web.php`.
+This means that you're required to refresh a CSRF cookie and include its value in the header parameter `X-XSRF-TOKEN` for each POST/PUT/PATCH/DELETE requests.
+CSRF cookies can be obtained using the route : `/sanctum/csrf-cookie`
 
 ## Minimal requirements
 - PHP 8.0
@@ -10,9 +19,9 @@ This repository is part of the web development project of my bachelor degree in 
 - Composer 2.3.10
 
 ### Database configuration
-- Make sure your mysql database:
-    - Is using `InnoDB` as the engine.
-    - Has `default-row-format` set to `dynamic`.
+Make sure your mysql database:
+- Is using `InnoDB` as the engine.
+- Has `default-row-format` set to `dynamic`.
 
 ## Initial setup
 - run `composer install`
@@ -25,19 +34,19 @@ This repository is part of the web development project of my bachelor degree in 
 ## Prepare for the demo
 - Run `php artisan db:seed --class=DemoSeeder` to populate the database.
 - Each SiteRole has an initial User, you can log yourself using these credentials (email ; password)
-  - Guest: guest@site.com ; guest
-  - User: user@site.com ; user
-  - Secretary: secretary@site.com ; secretary
-  - Administrator: administrator@site.com ; administrator
-  - Banned: banned@site.com ; banned
+  - Guest: **guest@site.com** ; **guest**
+  - User: **user@site.com** ; **user**
+  - Secretary: **secretary@site.com** ; **secretary**
+  - Administrator: **administrator@site.com** ; **administrator**
+  - Banned: **banned@site.com** ; **banned**
 
 ## How to serve the application
 Run `php artisan serve`
 
 ## Contribution tools
-
 ### Postman collection
 Developers can import the `postman_collection.json` at the root of the project if they want to test this application without a frontend.
+The CSRF token is automatically set in pre-request.
 
 ### Seeding for all the environments
 - Demo : `php artisan db:seed --class=DemoSeeder`
@@ -54,26 +63,37 @@ Developers can import the `postman_collection.json` at the root of the project i
 - generate policy : `php artisan make:policy NamePolicy --model=Name`
 - generate middleware : `php artisan make:middleware NameMiddleware`
 
-## Project current state
+## Project evolutions
 
 ### Ideas
 - Calendar to deal with courses and formations being available multiple times (instead of updating the formation start / end dates)
 
 ### Possible improvements
-Most of these consists of details I have in mind to improve the project and however lack the time to polish :
+Improvements to polish the application quality.
+This list contains thoughts of improvement that came across when working on the project.
 
-- Dynamic api routing
-  - get folders
-  - path is name of the folder with a first lowercase
-  - include routes from inside the folder
-- Improve seeders
-- Reduce code redundancy in controllers.
-- Improve controllers by using observers on models.
-- models should also return errors whenever a resource is locked for example, and handled by the controller.
-- Make the application /api route only. The Laravel Passport will however not be able to work with sessions. 
-  For this project however, I had to work with sessions, not tokens (?)
-- Roles-based authorization should have been dynamic, possibly, allow a granular field by field limitation.
-- If token are implemented they must have 24h limit of validity.
-
-### Todo
-See Possible improvements for now.
+- Routes
+  - Dynamic api routing
+    - get folders
+    - path is name of the folder with a first lowercase
+    - include routes from inside the folder
+  - Make the /api routes. Laravel Passport will however not be able to work with sessions. They should be replaced with tokens
+- Seeders
+  - Improve seeders with relational generations.
+- Controllers
+  - Reduce code redundancy
+  - Remove waterfall actions to model observers
+- Models
+  - Write observers
+    - Some could return errors whenever they're locked for example. These errors will be handled by the controller.
+- Roles
+  - The authorization should be more dynamic and allow granular field by field limitations.
+- Authorization
+  - roles
+    - Make a more dynamic and allow granular field by field limitation. Policies will consult the database to check the user capabilities.
+  - token
+    - If they're implemented, they must have a 24h limit of validity.
+- Documentation
+  - Provide a clean OpenAPI.yaml document.
+- Tests
+  - Write unit tests for every route.
