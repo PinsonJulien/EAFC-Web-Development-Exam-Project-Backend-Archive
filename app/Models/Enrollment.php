@@ -19,6 +19,8 @@ class Enrollment extends Model
     public const filterable = [
         'message' => StringOperators::class,
         'status_id' => NumberOperators::class,
+        'formation_id' => NumberOperators::class,
+        'user_id' => NumberOperators::class,
         'created_at' => DateOperators::class,
         'updated_at' => DateOperators::class,
         'deleted_at' => DateOperators::class,
