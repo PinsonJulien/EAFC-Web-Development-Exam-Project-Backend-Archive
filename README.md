@@ -24,11 +24,13 @@ Make sure your mysql database:
 - Has `default-row-format` set to `dynamic`.
 
 ## Initial setup
-- run `composer install`
+- Clone this repository
+- Open a terminal at root of the application.
+- Run `composer install`
 - Copy the `.env.config` file to `.env` and replace environment variables that do not fit your database configuration.
 - Make the sure the .env has `FILESYSTEM_DRIVER=public` this will ensure the files are properly saved.
-- Run `php artisan key:generate` (this will fill the `APP_KEY` .env variable).
-- Run `php artisan storage:link` to create a symbolic link between "public/storage" and "storage/app/public"
+- Run `php artisan key:generate` (this will fill the **APP_KEY** .env variable).
+- Run `php artisan storage:link` to create a **symbolic link** between *public/storage* and *storage/app/public*
 - Run `php artisan migrate` command to generate all the tables.
 
 ## Prepare for the demo
