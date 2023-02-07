@@ -1,4 +1,4 @@
-# (ACHIEVED) School Website - Backend Laravel
+# (ARCHIVED) School Website - Backend Laravel
 
 ## Archive note
 This repository will be archived as of **08/02/2022 (D/M/Y), 9PM (UTC+1 Brussels)** for school access.
