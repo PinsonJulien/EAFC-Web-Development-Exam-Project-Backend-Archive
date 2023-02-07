@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\CohortController;
+use App\Http\Middleware\RestrictedMiddleware;
 use App\Models\Cohort;
 use App\Models\CohortMember;
 use App\Models\Grade;
@@ -11,6 +12,8 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('cohorts')
+    // Forbidden access to banned users.
+    ->middleware(RestrictedMiddleware::class)
     ->controller(CohortController::class)
     ->group(function() {
 

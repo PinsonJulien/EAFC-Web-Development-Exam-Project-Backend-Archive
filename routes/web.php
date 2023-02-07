@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\RestrictedMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('')
-    // Site-wide forbidden access to banned users.
-    // Yes that means you cannot even log out. That's completely intended.
-    ->middleware(RestrictedMiddleware::class)
     ->group(function () {
 
     Route::group([], __DIR__ . '/web/V1/V1.php');

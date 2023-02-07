@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\EducationLevelController;
+use App\Http\Middleware\RestrictedMiddleware;
 use App\Models\EducationLevel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SortMiddleware;
@@ -9,6 +10,8 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('educationLevels')
+    // Forbidden access to banned users.
+    ->middleware(RestrictedMiddleware::class)
     ->controller(EducationLevelController::class)
     ->group(function() {
 

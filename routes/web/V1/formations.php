@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\FormationController;
+use App\Http\Middleware\RestrictedMiddleware;
 use App\Models\Formation;
 use App\Models\FormationCourse;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,8 @@ use App\Http\Middleware\FilterMiddleware;
 use App\Http\Middleware\PaginationMiddleware;
 
 Route::prefix('formations')
+    // Forbidden access to banned users.
+    ->middleware(RestrictedMiddleware::class)
     ->controller(FormationController::class)
     ->group(function() {
 
