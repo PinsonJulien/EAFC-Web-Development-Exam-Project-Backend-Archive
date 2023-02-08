@@ -8,6 +8,9 @@ use App\Http\Resources\V1\EducationLevel\EducationLevelResource;
 use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the Formation model to json
+ */
 class FormationResource extends JsonResource
 {
     /**

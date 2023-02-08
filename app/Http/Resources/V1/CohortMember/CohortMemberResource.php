@@ -7,6 +7,9 @@ use App\Http\Resources\V1\CohortRole\CohortRoleResource;
 use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the CohortMember model to json
+ */
 class CohortMemberResource extends JsonResource
 {
     /**

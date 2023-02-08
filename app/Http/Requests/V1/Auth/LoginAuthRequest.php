@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * V1 Request to handle the login validation
+ */
 class LoginAuthRequest extends FormRequest
 {
     /**

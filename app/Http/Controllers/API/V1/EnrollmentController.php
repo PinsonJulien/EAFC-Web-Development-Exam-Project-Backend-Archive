@@ -17,13 +17,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * Enrollment controller for the V1 of the API
+ */
 class EnrollmentController extends V1Controller
 {
     protected string $model = Enrollment::class;
     protected string $resource = EnrollmentResource::class;
     protected array $joinedRelations = ['user', 'formation'];
-
-    function __construct() {}
 
     /**
      * Returns the specified Enrollment.

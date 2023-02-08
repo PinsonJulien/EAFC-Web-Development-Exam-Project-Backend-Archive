@@ -12,6 +12,9 @@ use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
 use Illuminate\Support\Collection;
 
+/**
+ * Model to represent a Cohort
+ */
 class Cohort extends Model
 {
     use HasFactory, SoftDeletes;
@@ -29,11 +32,21 @@ class Cohort extends Model
         'formation_id'
     ];
 
+    /**
+     * Returns the joined formation
+     *
+     * @return BelongsTo
+     */
     public function formation(): BelongsTo
     {
         return $this->belongsTo(Formation::class);
     }
 
+    /**
+     * Returns all the related CohortMember's
+     *
+     * @return HasMany
+     */
     public function cohortMembers(): HasMany
     {
         return $this->hasMany(CohortMember::class)

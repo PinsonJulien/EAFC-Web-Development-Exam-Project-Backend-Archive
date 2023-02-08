@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Country;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Country PUT/PATCH validation
+ */
 class UpdateCountryRequest extends FormRequest
 {
     /**

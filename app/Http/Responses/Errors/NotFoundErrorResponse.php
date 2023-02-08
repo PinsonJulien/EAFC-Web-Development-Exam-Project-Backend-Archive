@@ -2,9 +2,12 @@
 
 namespace App\Http\Responses\Errors;
 
+/**
+ * Response class for error responses for not found errors.
+ */
 class NotFoundErrorResponse extends ErrorResponse {
     /**
-     * Instanciate a response formatted for not found.
+     * Instantiate a response formatted for not found.
      * Use case: A resource was not found.
      *
      * @param string $message

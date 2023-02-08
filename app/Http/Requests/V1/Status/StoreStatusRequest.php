@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Status;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Status POST validation
+ */
 class StoreStatusRequest extends FormRequest
 {
     /**

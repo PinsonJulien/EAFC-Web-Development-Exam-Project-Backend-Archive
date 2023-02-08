@@ -5,6 +5,9 @@ namespace App\Http\Resources\V1\SiteRole;
 use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the SiteRole model to json
+ */
 class SiteRoleResource extends JsonResource
 {
     /**

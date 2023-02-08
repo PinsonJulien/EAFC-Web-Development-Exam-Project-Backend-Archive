@@ -2,10 +2,13 @@
 
 namespace App\Http\Responses\Errors;
 
+/**
+ * Response class for error responses for unprocessable entities.
+ */
 class UnprocessableEntityErrorResponse extends ErrorResponse
 {
     /**
-     * Instanciate a response formatted for unprocessable entities.
+     * Instantiate a response formatted for unprocessable entities.
      * Use case: A resource cannot be modified due to a logical error.
      *
      * @param string $message

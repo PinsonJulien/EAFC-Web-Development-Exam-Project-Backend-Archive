@@ -7,6 +7,9 @@ use App\Http\Resources\V1\Status\StatusResource;
 use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the Enrollment model to json
+ */
 class EnrollmentResource extends JsonResource
 {
     /**

@@ -4,9 +4,12 @@ namespace App\Http\Responses\Successes;
 
 use App\Http\Responses\CommonResponse;
 
+/**
+ * Response class for success responses (200 OK)
+ */
 class SuccessResponse extends CommonResponse {
     /**
-     * Instanciate a formatted response to return successes.
+     * Instantiate a formatted response to return successes.
      *
      * @param string $message   ""
      * @param int $status       200

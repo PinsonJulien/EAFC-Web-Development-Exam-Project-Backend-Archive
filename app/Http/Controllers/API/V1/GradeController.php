@@ -14,13 +14,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * Grade controller for the V1 of the API
+ */
 class GradeController extends V1Controller
 {
     protected string $model = Grade::class;
     protected string $resource = GradeResource::class;
     protected array $joinedRelations = ['user', 'course'];
-
-    function __construct() {}
 
     /**
      * Returns the specified Grade.

@@ -14,12 +14,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * Course controller for the V1 of the API
+ */
 class CourseController extends V1Controller
 {
     protected string $model = Course::class;
     protected string $resource = CourseResource::class;
-
-    function __construct() {}
 
     /**
      * Returns the specified Course.

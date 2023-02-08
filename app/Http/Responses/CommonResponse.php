@@ -4,6 +4,9 @@ namespace App\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Response class to facilitate JSON response creation.
+ */
 class CommonResponse extends JsonResponse
 {
     /**

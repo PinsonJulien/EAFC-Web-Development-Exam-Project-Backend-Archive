@@ -5,6 +5,9 @@ namespace App\Http\Resources\V1\EducationLevel;
 use App\Http\Resources\V1\Formation\FormationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the EducationLevel model to json
+ */
 class EducationLevelResource extends JsonResource
 {
     /**

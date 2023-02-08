@@ -16,14 +16,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+/**
+ * User controller for the V1 of the API
+ */
 class UserController extends V1Controller
 {
     public const PICTURE_STORAGE_PATH = 'pictures';
 
     protected string $model = User::class;
     protected string $resource = UserResource::class;
-
-    function __construct() {}
 
     /**
      * Returns the specified User.

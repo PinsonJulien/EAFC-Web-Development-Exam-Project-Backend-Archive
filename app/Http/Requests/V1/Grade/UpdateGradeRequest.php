@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Grade;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Grade PUT/PATCH validation
+ */
 class UpdateGradeRequest extends FormRequest
 {
     /**

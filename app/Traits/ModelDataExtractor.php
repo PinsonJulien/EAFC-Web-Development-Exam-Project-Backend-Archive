@@ -5,6 +5,9 @@ namespace App\Traits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Trait to extractor data from a model.
+ */
 trait ModelDataExtractor
 {
     /**

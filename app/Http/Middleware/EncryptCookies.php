@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
+/**
+ * Middleware class that encrypt cookies
+ */
 class EncryptCookies extends Middleware
 {
     /**

@@ -14,6 +14,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+/**
+ * Middleware class to handle included relations in the query parameters.
+ */
 class IncludeRelationMiddleware
 {
     use RequestInfoExtractor;

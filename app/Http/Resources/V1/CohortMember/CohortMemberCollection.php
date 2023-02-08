@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\CohortMember;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of CohortMember to json.
+ */
 class CohortMemberCollection extends ResourceCollection
 {
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\CohortRole;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the CohortRole POST validation
+ */
 class StoreCohortRoleRequest extends FormRequest
 {
     /**

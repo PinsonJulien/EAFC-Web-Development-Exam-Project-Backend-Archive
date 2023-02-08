@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\Enrollment;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of Enrollment to json.
+ */
 class EnrollmentCollection extends ResourceCollection
 {
     /**

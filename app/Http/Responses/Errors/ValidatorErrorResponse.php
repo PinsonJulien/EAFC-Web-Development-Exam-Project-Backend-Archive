@@ -4,10 +4,13 @@ namespace App\Http\Responses\Errors;
 
 use Illuminate\Validation\Validator;
 
+/**
+ * Response class for error responses that failed a validation.
+ */
 class ValidatorErrorResponse extends ErrorResponse {
 
     /**
-     * Instanciate a response formatted using a validator.
+     * Instantiate a response formatted using a validator.
      *
      * @param Validator $validator
      * @param array $headers        []

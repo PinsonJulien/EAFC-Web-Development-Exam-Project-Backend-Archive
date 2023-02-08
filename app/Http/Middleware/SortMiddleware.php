@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
+/**
+ * Middleware class to handle sorting in the query parameters.
+ */
 class SortMiddleware
 {
     use RequestInfoExtractor;

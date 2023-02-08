@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Provider to handle the app services
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**

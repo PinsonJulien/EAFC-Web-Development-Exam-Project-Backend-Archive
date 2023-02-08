@@ -5,6 +5,9 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the CohortMember model
+ */
 class CohortMemberPolicy
 {
     use HandlesAuthorization;

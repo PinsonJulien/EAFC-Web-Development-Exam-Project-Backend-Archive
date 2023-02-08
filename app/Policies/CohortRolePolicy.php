@@ -6,6 +6,9 @@ use App\Models\CohortRole;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the CohortRole model
+ */
 class CohortRolePolicy
 {
     use HandlesAuthorization;

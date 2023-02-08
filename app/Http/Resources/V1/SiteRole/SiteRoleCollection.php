@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\SiteRole;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of SiteRole to json.
+ */
 class SiteRoleCollection extends ResourceCollection
 {
     /**

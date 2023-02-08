@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a Status
+ */
 class Status extends Model
 {
     use HasFactory, SoftDeletes;
@@ -36,6 +39,11 @@ class Status extends Model
         'name',
     ];
 
+    /**
+     * Returns all the related Enrollment's
+     *
+     * @return HasMany
+     */
     public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class)

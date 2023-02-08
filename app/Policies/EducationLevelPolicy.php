@@ -6,6 +6,9 @@ use App\Models\EducationLevel;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the EducationLevel model
+ */
 class EducationLevelPolicy
 {
     use HandlesAuthorization;

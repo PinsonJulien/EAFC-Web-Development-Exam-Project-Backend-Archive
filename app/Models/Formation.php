@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
+/**
+ * Model to represent a Formation
+ */
 class Formation extends Model
 {
     use HasFactory, SoftDeletes;
@@ -68,26 +71,51 @@ class Formation extends Model
         });
     }
 
+    /**
+     * Returns the joined EducationLevel
+     *
+     * @return BelongsTo
+     */
     public function educationLevel(): BelongsTo
     {
         return $this->belongsTo(EducationLevel::class);
     }
 
+    /**
+     * Returns all the related Course's
+     *
+     * @return BelongsToMany
+     */
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'formations_courses');
     }
 
+    /**
+     * Returns all the related FormationCourse's
+     *
+     * @return HasMany
+     */
     public function formationCourses(): HasMany
     {
         return $this->hasMany(FormationCourse::class);
     }
 
+    /**
+     * Returns all the related Enrollment's
+     *
+     * @return HasMany
+     */
     public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class)->with('user');
     }
 
+    /**
+     * Returns all the related Cohort's
+     *
+     * @return HasMany
+     */
     public function cohorts(): HasMany
     {
         return $this->hasMany(Cohort::class);
@@ -100,7 +128,7 @@ class Formation extends Model
      * If it doesn't exist, create it.
      * Every first september, a new one should be created.
      *
-     * @return void
+     * @return object
      */
     public function getCurrentAcademicYearCohort(): object
     {

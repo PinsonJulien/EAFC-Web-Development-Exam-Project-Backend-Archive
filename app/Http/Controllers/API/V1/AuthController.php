@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * Auth controller for the V1 of the API
+ */
 class AuthController extends V1Controller
 {
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\Grade;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of Grade to json.
+ */
 class GradeCollection extends ResourceCollection
 {
     /**

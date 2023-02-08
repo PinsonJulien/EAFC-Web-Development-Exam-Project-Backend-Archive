@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\Formation;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of Formation to json.
+ */
 class FormationCollection extends ResourceCollection
 {
     /**

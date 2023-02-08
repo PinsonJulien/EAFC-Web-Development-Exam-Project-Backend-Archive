@@ -6,6 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
+/**
+ * V1 Request to handle the User PUT/PATCH validation
+ */
 class UpdateUserRequest extends FormRequest
 {
     /**
@@ -65,6 +68,11 @@ class UpdateUserRequest extends FormRequest
         return $rules;
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

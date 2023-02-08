@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Helpers\Operators\CombinedOperators\DateOperators;
 use App\Helpers\Operators\CombinedOperators\NumberOperators;
 use App\Helpers\Operators\CombinedOperators\StringOperators;
@@ -15,6 +14,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a User
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
@@ -83,38 +85,73 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Returns the joined nationality Country
+     *
+     * @return BelongsTo
+     */
     public function nationality(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'nationality_country_id');
     }
 
+    /**
+     * Returns the joined address Country
+     *
+     * @return BelongsTo
+     */
     public function addressCountry(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'address_country_id');
     }
 
+    /**
+     * Returns the joined SiteRole
+     *
+     * @return BelongsTo
+     */
     public function siteRole(): BelongsTo
     {
         return $this->belongsTo(SiteRole::class);
     }
 
+    /**
+     * Returns all the related Course's where this user is a teacher.
+     *
+     * @return HasMany
+     */
     public function teacherCourses(): HasMany
     {
         return $this->hasMany(Course::class, 'teacher_user_id');
     }
 
+    /**
+     * Returns all the related CohortMember's
+     *
+     * @return HasMany
+     */
     public function cohortMembers(): HasMany
     {
         return $this->hasMany(CohortMember::class)
             ->with('cohort');
     }
 
+    /**
+     * Returns all the related Enrollment's
+     *
+     * @return HasMany
+     */
     public function enrollments(): HasMany
     {
         return $this->hasMany(Enrollment::class)
             ->with('formation');
     }
 
+    /**
+     * Returns all the related Grade's
+     *
+     * @return HasMany
+     */
     public function grades(): HasMany
     {
         return $this->hasMany(Grade::class)

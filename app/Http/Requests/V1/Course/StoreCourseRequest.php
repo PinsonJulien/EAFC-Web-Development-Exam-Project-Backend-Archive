@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Course;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Course POST validation
+ */
 class StoreCourseRequest extends FormRequest
 {
     /**
@@ -30,6 +33,11 @@ class StoreCourseRequest extends FormRequest
         ];
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

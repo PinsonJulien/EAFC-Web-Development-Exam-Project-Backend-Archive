@@ -8,6 +8,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
+/**
+ * Middleware class to handle pagination in the query parameters.
+ */
 class PaginationMiddleware
 {
     protected const QUERY_PARAMETER_NAME = "pagination";

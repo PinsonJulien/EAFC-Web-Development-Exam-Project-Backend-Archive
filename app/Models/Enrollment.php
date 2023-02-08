@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a Enrollment
+ */
 class Enrollment extends Model
 {
     use HasFactory, SoftDeletes;
@@ -38,16 +41,31 @@ class Enrollment extends Model
         'message' => null,
     ];
 
+    /**
+     * Returns the joined User
+     *
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Returns the joined Formation
+     *
+     * @return BelongsTo
+     */
     public function formation(): BelongsTo
     {
         return $this->belongsTo(Formation::class);
     }
 
+    /**
+     * Returns the joined Status
+     *
+     * @return BelongsTo
+     */
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);

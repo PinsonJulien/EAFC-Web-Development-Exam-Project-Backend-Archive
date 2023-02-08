@@ -2,10 +2,13 @@
 
 namespace App\Http\Responses\Errors;
 
+/**
+ * Response class for error responses for locked resources.
+ */
 class LockedErrorResponse extends ErrorResponse {
 
     /**
-     * Instanciate a response formatted for locked resources.
+     * Instantiate a response formatted for locked resources.
      * Use case: Update/Delete failed due a specific condition to do not allow to change the resource.
      *
      * @param string $message

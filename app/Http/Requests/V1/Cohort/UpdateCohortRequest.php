@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Cohort;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Cohort PUT/PATCH validation
+ */
 class UpdateCohortRequest extends FormRequest
 {
     /**
@@ -37,6 +40,11 @@ class UpdateCohortRequest extends FormRequest
         return $rules;
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

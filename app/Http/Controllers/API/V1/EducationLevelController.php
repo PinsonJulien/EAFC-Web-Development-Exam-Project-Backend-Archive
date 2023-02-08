@@ -12,12 +12,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * EducationLevel controller for the V1 of the API
+ */
 class EducationLevelController extends V1Controller
 {
     protected string $model = EducationLevel::class;
     protected string $resource = EducationLevelResource::class;
-
-    function __construct() {}
 
     /**
      * Returns the specified EducationLevel

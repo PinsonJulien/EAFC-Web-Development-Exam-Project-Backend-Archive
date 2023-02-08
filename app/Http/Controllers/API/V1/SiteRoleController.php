@@ -12,12 +12,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * SiteRole controller for the V1 of the API
+ */
 class SiteRoleController extends V1Controller
 {
     protected string $model = SiteRole::class;
     protected string $resource = SiteRoleResource::class;
-
-    function __construct() {}
 
     /**
      * Returns the specified SiteRole

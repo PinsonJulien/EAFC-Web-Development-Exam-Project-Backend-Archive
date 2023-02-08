@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a EducationLevel
+ */
 class EducationLevel extends Model
 {
     use HasFactory, SoftDeletes;
@@ -26,6 +29,11 @@ class EducationLevel extends Model
         'name',
     ];
 
+    /**
+     * Returns all the related Formation's
+     *
+     * @return HasMany
+     */
     public function formations(): HasMany
     {
         return $this->hasMany(Formation::class);

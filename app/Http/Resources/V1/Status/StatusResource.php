@@ -5,6 +5,9 @@ namespace App\Http\Resources\V1\Status;
 use App\Http\Resources\V1\Enrollment\EnrollmentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the Status model to json
+ */
 class StatusResource extends JsonResource
 {
     /**

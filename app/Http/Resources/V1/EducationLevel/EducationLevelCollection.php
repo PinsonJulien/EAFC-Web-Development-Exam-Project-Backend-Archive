@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\EducationLevel;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of EducationLevel to json.
+ */
 class EducationLevelCollection extends ResourceCollection
 {
     /**

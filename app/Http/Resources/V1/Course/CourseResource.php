@@ -7,6 +7,9 @@ use App\Http\Resources\V1\Grade\GradeResource;
 use App\Http\Resources\V1\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * V1 API Resource to transform the Course model to json
+ */
 class CourseResource extends JsonResource
 {
     /**

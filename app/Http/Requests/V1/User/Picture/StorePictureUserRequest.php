@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\User\Picture;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the User/picture POST validation
+ */
 class StorePictureUserRequest extends FormRequest
 {
     /**

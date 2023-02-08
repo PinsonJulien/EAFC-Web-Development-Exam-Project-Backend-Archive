@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustHosts as Middleware;
 
+/**
+ * Middleware class to get the trusted hosts.
+ */
 class TrustHosts extends Middleware
 {
     /**

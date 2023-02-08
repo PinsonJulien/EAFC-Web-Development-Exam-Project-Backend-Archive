@@ -12,12 +12,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * CohortRole controller for the V1 of the API
+ */
 class CohortRoleController extends V1Controller
 {
     protected string $model = CohortRole::class;
     protected string $resource = CohortRoleResource::class;
-
-    function __construct() {}
 
     /**
      * Display the specified cohort role

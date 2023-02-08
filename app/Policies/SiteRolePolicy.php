@@ -6,6 +6,9 @@ use App\Models\SiteRole;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the SiteRole model
+ */
 class SiteRolePolicy
 {
     use HandlesAuthorization;

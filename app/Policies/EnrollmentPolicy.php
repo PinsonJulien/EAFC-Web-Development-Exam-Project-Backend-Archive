@@ -6,6 +6,9 @@ use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the Enrollment model
+ */
 class EnrollmentPolicy
 {
     use HandlesAuthorization;

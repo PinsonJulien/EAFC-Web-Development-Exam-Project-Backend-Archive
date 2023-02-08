@@ -24,6 +24,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+/**
+ * Abstract controller for the V1 of the API
+ */
 abstract class V1Controller extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

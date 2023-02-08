@@ -2,6 +2,9 @@
 
 namespace App\Http\Responses\Errors;
 
+/**
+ * Response class for error responses for resource conflict.
+ */
 class ConflictErrorResponse extends ErrorResponse {
 
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\SiteRole;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the SiteRole POST validation
+ */
 class StoreSiteRoleRequest extends FormRequest
 {
     /**

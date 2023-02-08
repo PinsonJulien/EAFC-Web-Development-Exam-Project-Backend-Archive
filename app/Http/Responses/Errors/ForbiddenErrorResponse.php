@@ -2,10 +2,13 @@
 
 namespace App\Http\Responses\Errors;
 
+/**
+ * Response class for error responses for forbidden access.
+ */
 class ForbiddenErrorResponse extends ErrorResponse {
 
     /**
-     * Instanciate a response formatted for forbidden access
+     * Instantiate a response formatted for forbidden access
      * Use case: A user doesn't have the specific role required to access a resource.
      *
      * @param string $message

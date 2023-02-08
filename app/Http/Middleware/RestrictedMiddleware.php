@@ -9,6 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+/**
+ * Middleware class to prevent banned users to access a resource.
+ */
 class RestrictedMiddleware
 {
     /**

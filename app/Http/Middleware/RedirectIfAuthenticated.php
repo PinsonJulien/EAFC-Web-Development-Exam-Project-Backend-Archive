@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Middleware class to redirect authenticated users.
+ */
 class RedirectIfAuthenticated
 {
     /**

@@ -21,12 +21,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * Cohort controller for the V1 of the API
+ */
 class CohortController extends V1Controller
 {
     protected string $model = Cohort::class;
     protected string $resource = CohortResource::class;
-
-    function __construct() {}
 
     /**
      * Returns the specified cohort.

@@ -2,6 +2,9 @@
 
 namespace App\Http\Responses\Successes;
 
+/**
+* Response class for success responses which don't need a body (204)
+*/
 class NoContentSuccessResponse extends SuccessResponse {
     /**
      * Instantiate a response without content.

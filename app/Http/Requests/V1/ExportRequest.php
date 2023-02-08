@@ -5,6 +5,9 @@ namespace App\Http\Requests\V1;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * V1 Request to handle the export validation
+ */
 class ExportRequest extends FormRequest
 {
     /**

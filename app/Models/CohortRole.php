@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a CohortRole
+ */
 class CohortRole extends Model
 {
     use HasFactory, SoftDeletes;
@@ -31,9 +34,15 @@ class CohortRole extends Model
         'name',
     ];
 
+    /**
+     * Returns all the related CohortMember's
+     *
+     * @return HasMany
+     */
     public function cohortMembers(): HasMany
     {
         return $this->hasMany(CohortMember::class)
             ->with(['cohort', 'user']);
     }
+
 }

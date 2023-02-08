@@ -30,6 +30,9 @@ use App\Policies\StatusPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Provider to handle the authorization services (Policies)
+ */
 class AuthServiceProvider extends ServiceProvider
 {
     /**

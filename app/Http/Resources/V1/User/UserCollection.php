@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of User to json.
+ */
 class UserCollection extends ResourceCollection
 {
     /**

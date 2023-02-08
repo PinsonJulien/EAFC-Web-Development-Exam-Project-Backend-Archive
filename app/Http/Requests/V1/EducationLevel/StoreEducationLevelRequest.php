@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\EducationLevel;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the EducationLevel POST validation
+ */
 class StoreEducationLevelRequest extends FormRequest
 {
     /**

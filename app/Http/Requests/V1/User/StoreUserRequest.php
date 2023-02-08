@@ -5,6 +5,9 @@ namespace App\Http\Requests\V1\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
+/**
+ * V1 Request to handle the User POST validation
+ */
 class StoreUserRequest extends FormRequest
 {
     /**
@@ -40,6 +43,11 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

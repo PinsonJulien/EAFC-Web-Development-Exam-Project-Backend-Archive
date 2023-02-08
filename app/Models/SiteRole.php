@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a SiteRole
+ */
 class SiteRole extends Model
 {
     use HasFactory, SoftDeletes;
@@ -35,6 +38,11 @@ class SiteRole extends Model
 
     /** Relation methods */
 
+    /**
+     * Returns all the related User's
+     *
+     * @return HasMany
+     */
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

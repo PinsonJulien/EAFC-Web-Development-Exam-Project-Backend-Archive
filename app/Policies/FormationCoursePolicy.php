@@ -6,6 +6,9 @@ use App\Models\FormationCourse;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the FormationCourse model
+ */
 class FormationCoursePolicy
 {
     use HandlesAuthorization;

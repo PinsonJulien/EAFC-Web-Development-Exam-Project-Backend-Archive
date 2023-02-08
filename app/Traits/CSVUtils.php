@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+/**
+ * Trait to add CSV related methods to a class.
+ */
 trait CSVUtils
 {
     /**

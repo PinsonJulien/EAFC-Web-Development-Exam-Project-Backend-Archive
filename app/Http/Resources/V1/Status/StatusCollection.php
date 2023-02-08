@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\Status;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Collection to transform an array of Status to json.
+ */
 class StatusCollection extends ResourceCollection
 {
     /**

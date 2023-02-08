@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Course;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Course PUT/PATCH validation
+ */
 class UpdateCourseRequest extends FormRequest
 {
     /**
@@ -38,6 +41,11 @@ class UpdateCourseRequest extends FormRequest
         return $rules;
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

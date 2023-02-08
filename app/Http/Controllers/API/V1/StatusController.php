@@ -12,13 +12,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * Status controller for the V1 of the API
+ */
 class StatusController extends V1Controller
 {
     protected string $model = Status::class;
     protected string $resource = StatusResource::class;
     protected array $relations = [];
-
-    function __construct() {}
 
     /**
      * Returns the specified Status.

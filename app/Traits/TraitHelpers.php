@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+/**
+ * Trait to add trait related methods to a class.
+ */
 trait TraitHelpers
 {
     /**

@@ -4,6 +4,9 @@ namespace App\Traits;
 
 use Illuminate\Http\Request;
 
+/**
+ * Trait to extract data from requests.
+ */
 trait RequestInfoExtractor
 {
     /**

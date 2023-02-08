@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
+/**
+ * Policy for the Course model
+ */
 class CoursePolicy
 {
     use HandlesAuthorization;

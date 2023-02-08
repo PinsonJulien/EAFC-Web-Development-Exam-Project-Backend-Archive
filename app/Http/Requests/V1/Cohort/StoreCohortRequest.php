@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Cohort;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Cohort POST validation
+ */
 class StoreCohortRequest extends FormRequest
 {
     /**
@@ -29,6 +32,11 @@ class StoreCohortRequest extends FormRequest
         ];
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

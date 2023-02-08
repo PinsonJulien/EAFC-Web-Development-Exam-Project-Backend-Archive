@@ -12,6 +12,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
+/**
+ * Middleware class to handle filters in the query parameters.
+ */
 class FilterMiddleware
 {
     use RequestInfoExtractor;

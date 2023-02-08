@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
+/**
+ * Middleware class to check if the CSRF token is valid.
+ */
 class VerifyCsrfToken extends Middleware
 {
     /**

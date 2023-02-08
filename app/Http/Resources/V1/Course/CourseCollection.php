@@ -4,6 +4,9 @@ namespace App\Http\Resources\V1\Course;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * V1 API Resource to transform the Course model to json
+ */
 class CourseCollection extends ResourceCollection
 {
     /**

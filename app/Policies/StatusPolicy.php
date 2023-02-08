@@ -6,6 +6,9 @@ use App\Models\Status;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Policy for the Status model
+ */
 class StatusPolicy
 {
     use HandlesAuthorization;

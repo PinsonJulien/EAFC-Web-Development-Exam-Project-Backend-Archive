@@ -4,6 +4,9 @@ namespace App\Http\Requests\V1\Formation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * V1 Request to handle the Formation PUT/PATCH validation
+ */
 class UpdateFormationRequest extends FormRequest
 {
     /**
@@ -40,6 +43,11 @@ class UpdateFormationRequest extends FormRequest
         return $rules;
     }
 
+    /**
+     * Prepare the data for validation by changing the camel case to snake case.
+     *
+     * @return void
+     */
     protected function prepareForValidation()
     {
         $this->merge([

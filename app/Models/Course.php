@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Model to represent a Course
+ */
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
@@ -38,16 +41,31 @@ class Course extends Model
         'status' => 'boolean'
     ];
 
+    /**
+     * Returns the joined teacher
+     *
+     * @return BelongsTo
+     */
     public function teacher(): BelongsTo
     {
         return $this->belongsTo(User::class, 'teacher_user_id');
     }
 
+    /**
+     * Returns all the related Formation's
+     *
+     * @return BelongsToMany
+     */
     public function formations(): BelongsToMany
     {
         return $this->belongsToMany(Formation::class, 'formations_courses');
     }
 
+    /**
+     * Returns all the related Grade's
+     *
+     * @return HasMany
+     */
     public function grades(): HasMany
     {
         return $this->hasMany(Grade::class)

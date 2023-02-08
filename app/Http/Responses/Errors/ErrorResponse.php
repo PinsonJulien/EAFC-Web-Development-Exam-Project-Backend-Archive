@@ -4,6 +4,9 @@ namespace App\Http\Responses\Errors;
 
 use App\Http\Responses\CommonResponse;
 
+/**
+ * Response class for errors (400 by default)
+ */
 class ErrorResponse extends CommonResponse {
     /**
      * Instanciate a formatted response to return errors.
