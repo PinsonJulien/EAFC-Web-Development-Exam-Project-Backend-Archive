@@ -18,7 +18,7 @@ class StatusPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class StatusPolicy
      */
     public function view(User $user, Status $status): bool
     {
-        return $user->isSecretarySiteRole() || $user->isAdministratorSiteRole();
+        return true;
     }
 
     /**
