@@ -1,8 +1,8 @@
-# (ARCHIVED) School Website - Backend Laravel
+# (ARCHIVED) EAFC Web Development Exam Project Backend
 
 ## Archive note
 This repository will be archived as of **08/02/2022 (D/M/Y), 9PM (UTC+1 Brussels)** for school access.
-You can find the forked repository (here)[  WRITE URL ]
+You can find the forked repository [here](https://github.com/PinsonJulien/EAFC-Web-Development-Exam-Project-Backend)
 
 ## Context 
 This repository is part of the web development course of my bachelor degree in Business Computing, 2nd year.
