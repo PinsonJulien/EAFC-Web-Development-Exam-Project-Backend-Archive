@@ -55,6 +55,12 @@ Run `php artisan serve`
 
 ## Contribution tools
 
+### PHP Documentor
+
+Available in `/docs/app`
+
+To regenerate the document, run `php phpDocumentor.phar -d app -t docs/app`
+
 ### Postman collection
 
 Developers can import the `postman_collection.json` at the root of the project if they want to test this application without a frontend.
