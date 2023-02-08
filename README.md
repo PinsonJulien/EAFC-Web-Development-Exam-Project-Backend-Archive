@@ -16,16 +16,19 @@ This means that you're required to refresh a CSRF cookie and include its value i
 CSRF cookies can be obtained using the route : `/sanctum/csrf-cookie`
 
 ## Minimal requirements
+
 - PHP 8.0
 - MySQL 5.7.36
 - Composer 2.3.10
 
 ### Database configuration
+
 Make sure your mysql database:
 - Is using `InnoDB` as the engine.
 - Has `default-row-format` set to `dynamic`.
 
 ## Initial setup
+
 - Clone this repository
 - In `cd EAFC-Web-Development-Exam-Project-Backend-Archive`
 - Run `composer install`
@@ -37,6 +40,7 @@ Make sure your mysql database:
 - Run `php artisan migrate` command to generate all the tables.
 
 ## Prepare for the demo
+
 - Run `php artisan db:seed --class=DemoSeeder` to populate the database.
 - Each SiteRole has an initial User, you can log yourself using these credentials (email ; password)
   - Guest: **guest@site.com** ; **guest**
@@ -46,19 +50,24 @@ Make sure your mysql database:
   - Banned: **banned@site.com** ; **banned**
 
 ## How to serve the application
+
 Run `php artisan serve`
 
 ## Contribution tools
+
 ### Postman collection
+
 Developers can import the `postman_collection.json` at the root of the project if they want to test this application without a frontend.
 The CSRF token is automatically set in pre-request.
 
 ### Seeding for all the environments
+
 - Demo : `php artisan db:seed --class=DemoSeeder`
 - Development : `php artisan db:seed --class=DevelopmentSeeder`
 - Production : `php artisan db:seed --class=ProductionSeeder`
 
 ### Useful commands to work with
+
 - generate a new model and related classes : `php artisan make:model Name -mfsc`
 - refresh migrations : `php artisan migrate:refresh`
 - reset migrations : `php artisan migrate:reset`
@@ -71,9 +80,11 @@ The CSRF token is automatically set in pre-request.
 ## Project evolutions
 
 ### Ideas
+
 - Calendar to deal with courses and formations being available multiple times (instead of updating the formation start / end dates)
 
 ### Possible improvements
+
 Improvements to polish the application quality.
 This list contains thoughts of improvement that came across when working on the project.
 
